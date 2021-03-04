@@ -96,7 +96,42 @@ public class Cirugia extends Empleado {
         super(e);
         this.especialidades = especialidades;              
     }
+
+    @Override
+    public String toString() {
+        return "Cirugia{" + "especialidades=" + especialidades + '}';
+    }
+    
+    
    
-        
+        /**
+     * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
+     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
+     * ids coinciden con los identificadores del array en la lista
+     *
+     * @param lista de Cirujanos en las que buscar
+     * @param ids array de ids de Cirujanos
+     * @return ArrayList<code>Cirugia</code>
+     */
+    public static ArrayList<Cirugia> arrayde(ArrayList<Cirugia> lista, int[] ids) {
+        ArrayList<Cirugia> ret = new ArrayList<Cirugia>();
+        for (int i = 0; i < ids.length; i++) {
+            for (int j = 0; j < lista.size(); j++) {
+                if (lista.get(j).getId() == ids[i]) {
+                    ret.add((Cirugia) lista.get(j));
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
+    
+    public static final ArrayList<Cirugia> convertir(Cirugia[] array) {
+        ArrayList<Cirugia> ret = new ArrayList<Cirugia>();
+        for (Cirugia i : array) {
+            ret.add((Cirugia) i);
+        }
+        return ret;
+    }
     
     }

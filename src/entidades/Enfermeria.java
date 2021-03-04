@@ -93,9 +93,38 @@ public class Enfermeria extends Empleado {
         this.direccion = e.direccion;
     }
 
-    public Enfermeria(Empleado e, ArrayList<Especialidad> especialidades) {
+    public Enfermeria(Empleado e, char categoria) {
         super(e);
         this.categoria = categoria;
     }
 
+      /**
+     * Función que se le pasa una lista ArrayList<code>Enfermeria</code> y un
+     * array de identificadores, y devuelve una sublista con los Enfermeria cuyos
+     * ids coinciden con los identificadores del array en la lista
+     *
+     * @param lista de Enfermeria en las que buscar
+     * @param ids array de ids de Cirujanos
+     * @return ArrayList<code>Enfermeria</code>
+     */
+    public static ArrayList<Enfermeria> arrayde(ArrayList<Enfermeria> lista, int[] ids) {
+        ArrayList<Enfermeria> ret = new ArrayList<Enfermeria>();
+        for (int i = 0; i < ids.length; i++) {
+            for (int j = 0; j < lista.size(); j++) {
+                if (lista.get(j).getId() == ids[i]) {
+                    ret.add((Enfermeria) lista.get(j));
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
+    
+    public static final ArrayList<Enfermeria> convertir(Enfermeria[] array) {
+        ArrayList<Enfermeria> ret = new ArrayList<Enfermeria>();
+        for (Enfermeria i : array) {
+            ret.add((Enfermeria) i);
+        }
+        return ret;
+    }
 }

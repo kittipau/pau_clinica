@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Pago.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Pau_Clinica&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">entidades</a> &gt; <span class="el_source">Pago.java</span></div><h1>Pago.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package entidades;
+
+import pau_clinica.*;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+/**
+ *
+ * @author punib
+ */
+public class Pago {
+
+    private long id; // &gt; 0 
+<span class="pc" id="L20">    private Date fechaPago = Date.valueOf(LocalDate.now());</span>
+    ; // VALIDOS: Del 01/01/2000 hasta el 31/12/2100
+    private double importe; // &gt; 0 
+<span class="pc" id="L23">    private String metodopago = &quot;tarjeta&quot;; //VAL: “tarjeta”, “metálico”, “transferencia”</span>
+    private Cobro cobro;
+
+<span class="fc" id="L26">    public Pago(int i, Date valueOf, int i0, String tarjeta, Cobro cobro) {</span>
+<span class="fc" id="L27">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
+    }
+
+    //getters
+    public long getId() {
+<span class="nc" id="L32">        return id;</span>
+    }
+
+    public Date getFechaPago() {
+<span class="nc" id="L36">        return fechaPago;</span>
+    }
+
+    public double getImporte() {
+<span class="nc" id="L40">        return importe;</span>
+    }
+
+    public String getMetodopago() {
+<span class="nc" id="L44">        return metodopago;</span>
+    }
+
+    public Cobro getCobro() {
+<span class="nc" id="L48">        return cobro;</span>
+    }
+    //setters
+
+    public void setId(long id) {
+<span class="nc" id="L53">        this.id = id;</span>
+<span class="nc" id="L54">    }</span>
+
+    public void setFechaPago(Date fechaPago) {
+<span class="nc" id="L57">        this.fechaPago = fechaPago;</span>
+<span class="nc" id="L58">    }</span>
+
+    public void setImporte(double importe) {
+<span class="nc" id="L61">        this.importe = importe;</span>
+<span class="nc" id="L62">    }</span>
+
+    public void setMetodopago(String metodopago) {
+<span class="nc" id="L65">        this.metodopago = metodopago;</span>
+<span class="nc" id="L66">    }</span>
+
+    public void setCobro(Cobro cobro) {
+<span class="nc" id="L69">        this.cobro = cobro;</span>
+<span class="nc" id="L70">    }</span>
+    //constructores
+
+<span class="nc" id="L73">    public Pago() {</span>
+<span class="nc" id="L74">    }</span>
+
+<span class="nc" id="L76">    public Pago(long id, Date fechaPago, double importe, String metodoPago, Cobro cobro) {</span>
+<span class="nc" id="L77">        this.id = id;</span>
+<span class="nc" id="L78">        this.fechaPago = fechaPago;</span>
+<span class="nc" id="L79">        this.importe = importe;</span>
+<span class="nc" id="L80">        this.cobro = cobro;</span>
+<span class="nc" id="L81">        this.metodopago = metodopago;</span>
+<span class="nc" id="L82">    }</span>
+
+<span class="nc" id="L84">    public Pago(Pago p) {</span>
+<span class="nc" id="L85">        this.id = p.id;</span>
+<span class="nc" id="L86">        this.fechaPago = p.fechaPago;</span>
+<span class="nc" id="L87">        this.importe = p.importe;</span>
+<span class="nc" id="L88">        this.cobro = p.cobro;</span>
+<span class="nc" id="L89">        this.metodopago =p.metodopago;</span>
+<span class="nc" id="L90">    }</span>
+
+    public static long nextIdPago() {
+<span class="nc" id="L93">        long ret = 0;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        for (int i = 0; i &lt; Utilidades.PAGOS.length; i++) {</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (Utilidades.PAGOS[i].id &gt; ret);</span>
+<span class="nc" id="L96">            ret = Utilidades.PAGOS[i].id;</span>
+        }
+<span class="nc" id="L98">        return ret + 1;</span>
+    }
+
+    /**
+     * Función que se le pasa una lista ArrayList&lt;code&gt;Pago&lt;/code&gt; y un array de
+     * identificadores, y devuelve una sublista con los Pagos cuyos ids
+     * coinciden con los identificadores del array en la lista
+     *
+     * @param lista de Pago en las que buscar
+     * @param ids array de ids de Pago
+     * @return ArrayList&lt;code&gt;Pago&lt;/code&gt;
+     */
+    public static ArrayList&lt;Pago&gt; arrayde(ArrayList&lt;Pago&gt; lista, int[] ids) {
+<span class="nc" id="L111">        ArrayList&lt;Pago&gt; ret = new ArrayList&lt;Pago&gt;();</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        for (int i = 0; i &lt; ids.length; i++) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            for (int j = 0; j &lt; lista.size(); j++) {</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">                if (lista.get(j).getId() == ids[i]) {</span>
+<span class="nc" id="L115">                    ret.add((Pago) lista.get(j));</span>
+<span class="nc" id="L116">                    break;</span>
+                }
+            }
+        }
+<span class="nc" id="L120">        return ret;</span>
+    }
+
+    /**
+     * *
+     * Función que convierte un array de objetos Pago en un ArrayList de objetos
+     * Pago con los mismos elementos que el array.
+     *
+     * @param array de Pago
+     * @return ArrayList de Pago
+     */
+    public static final ArrayList&lt;Pago&gt; convertir(Pago[] array) {
+<span class="nc" id="L132">        ArrayList&lt;Pago&gt; ret = new ArrayList&lt;Pago&gt;();</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        for (Pago i : array) {</span>
+<span class="nc" id="L134">            ret.add((Pago) i);</span>
+        }
+<span class="nc" id="L136">        return ret;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

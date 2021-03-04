@@ -66,5 +66,34 @@ public class Alergia {
     
     //MÉTODOS
     
+         /**
+     * Función que se le pasa una lista ArrayList<code>Alergia</code> y un
+     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
+     * ids coinciden con los identificadores del array en la lista
+     *
+     * @param lista de alergias en las que buscar
+     * @param ids array de ids de Alergias
+     * @return ArrayList<code>Alergia</code>
+     */
+    public static ArrayList<Alergia> arrayde(ArrayList<Alergia> lista, int[] ids) {
+        ArrayList<Alergia> ret = new ArrayList<Alergia>();
+        for (int i = 0; i < ids.length; i++) {
+            for (int j = 0; j < lista.size(); j++) {
+                if (lista.get(j).getId() == ids[i]) {
+                    ret.add((Alergia) lista.get(j));
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
+    
+    public static final ArrayList<Alergia> convertir(Alergia[] array) {
+        ArrayList<Alergia> ret = new ArrayList<Alergia>();
+        for (Alergia i : array) {
+            ret.add((Alergia) i);
+        }
+        return ret;
+    }
    
 }

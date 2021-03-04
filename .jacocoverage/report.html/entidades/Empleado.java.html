@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Empleado.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Pau_Clinica&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">entidades</a> &gt; <span class="el_source">Empleado.java</span></div><h1>Empleado.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package entidades;
+
+import pau_clinica.Utilidades;
+
+/**
+ *
+ * @author punib
+ */
+public class Empleado {
+
+    protected long id; // &lt;0 
+    protected String nombre; // Máximo 20 caracteres alfanuméricos
+    protected String apellido; // Máximo 20 caracteres alfanuméricos
+    protected String tlfn; // Máximo 9 caracteres numéricos
+    protected String NIF; // VAL: 8 caracteres numéricos y 1 letra INVAL:!= 8 caracteres numéricos y 1 letra
+    protected String direccion; // Máximo 30 caracteres alfanuméricos
+
+<span class="nc" id="L23">    public Empleado() {</span>
+<span class="nc" id="L24">    }</span>
+
+<span class="nc" id="L26">    public Empleado(long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (Empleado.validarId(id)) {</span>
+<span class="nc" id="L28">            this.id = id;</span>
+        } else {
+            
+        }
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if (Empleado.validarNombre(nombre)) {</span>
+<span class="nc" id="L33">            this.nombre = nombre;</span>
+        }
+        else {
+
+        }
+<span class="nc" id="L38">        this.apellido = apellido;</span>
+<span class="nc" id="L39">        this.tlfn = tlfn;</span>
+<span class="nc" id="L40">        this.NIF = NIF;</span>
+<span class="nc" id="L41">        this.direccion = direccion;</span>
+<span class="nc" id="L42">    }</span>
+
+<span class="nc" id="L44">    public Empleado(Empleado e) {</span>
+<span class="nc" id="L45">        this.id = e.id;</span>
+<span class="nc" id="L46">        this.nombre = e.nombre;</span>
+<span class="nc" id="L47">        this.apellido = e.apellido;</span>
+<span class="nc" id="L48">        this.tlfn = e.tlfn;</span>
+<span class="nc" id="L49">        this.NIF = e.NIF;</span>
+<span class="nc" id="L50">        this.direccion = e.direccion;</span>
+<span class="nc" id="L51">    }</span>
+
+    public static boolean validarId(long id) {
+//        boolean ret = false;
+//        if(id &gt; 0)
+//            ret=true;
+//        
+//        return ret;
+
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">        return (id &gt; 0);</span>
+
+    }
+
+    public static boolean validarNombre(String nombre) {
+<span class="fc" id="L65">        boolean ret = true;</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if (nombre.length() &lt; 3) {</span>
+<span class="fc" id="L67">            return false;</span>
+        }
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (nombre.length() &gt; 150) {</span>
+<span class="nc" id="L70">            return false;</span>
+        }
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        if (Utilidades.contieneDigitos(nombre)) {</span>
+<span class="nc" id="L73">            return false;</span>
+        }
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (Utilidades.contieneCaracteresEspeciales(nombre)) {</span>
+<span class="nc" id="L76">            return false;</span>
+        }
+
+<span class="nc" id="L79">        return ret;</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

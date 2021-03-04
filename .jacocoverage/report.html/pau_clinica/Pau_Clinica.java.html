@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Pau_Clinica.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Pau_Clinica&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">pau_clinica</a> &gt; <span class="el_source">Pau_Clinica.java</span></div><h1>Pau_Clinica.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pau_clinica;
+
+import entidades.Empleado;
+import java.util.Scanner;
+
+/**
+ *
+ * @author punib
+ */
+<span class="nc" id="L15">public class Pau_Clinica {</span>
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+<span class="nc" id="L22">        Empleado e1 = new Empleado();</span>
+        //Empleado(long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
+        Scanner in;
+        int id;
+<span class="nc" id="L26">        boolean valido = false;</span>
+        do {
+<span class="nc" id="L28">            in = new Scanner(System.in);</span>
+<span class="nc" id="L29">            id = 12; //in.nextInt();</span>
+
+<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (!Empleado.validarId(id)) {</span>
+<span class="nc" id="L32">                System.out.println(&quot;Id incorrecto!&quot;);</span>
+            } else {
+<span class="nc" id="L34">                valido = true;</span>
+            }
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        } while (!valido);</span>
+<span class="nc" id="L37">        Empleado e2 = new Empleado(id, &quot;Laura&quot;, &quot;suarez&quot;, &quot;69982726&quot;, &quot;72149276L&quot;, &quot;Calle mayor, 3&quot;);</span>
+<span class="nc" id="L38">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

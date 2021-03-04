@@ -5,6 +5,9 @@
  */
 package pau_clinica;
 
+import entidades.Empleado;
+import java.util.Scanner;
+
 /**
  *
  * @author punib
@@ -16,6 +19,22 @@ public class Pau_Clinica {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Empleado e1 = new Empleado();
+        //Empleado(long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
+        Scanner in;
+        int id;
+        boolean valido = false;
+        do {
+            in = new Scanner(System.in);
+            id = 12; //in.nextInt();
+
+            if (!Empleado.validarId(id)) {
+                System.out.println("Id incorrecto!");
+            } else {
+                valido = true;
+            }
+        } while (!valido);
+        Empleado e2 = new Empleado(id, "Laura", "suarez", "69982726", "72149276L", "Calle mayor, 3");
     }
-    
+
 }

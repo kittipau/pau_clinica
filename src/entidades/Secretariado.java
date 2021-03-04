@@ -23,7 +23,12 @@ public class Secretariado extends Empleado {
 
     public ArrayList<InformeGlobal> getInformes() {
         return informes;
+            }
+
+    public long getId() {
+        return id;
     }
+    
     //setters
 
     public void setExperiencia(int experiencia) {
@@ -65,4 +70,35 @@ public class Secretariado extends Empleado {
         this.nombre = s.nombre;
         this.tlfn = s.tlfn;
     }
+    /**
+     * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
+     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
+     * ids coinciden con los identificadores del array en la lista
+     *
+     * @param lista de Cirujanos en las que buscar
+     * @param ids array de ids de Cirujanos
+     * @return ArrayList<code>Cirujano</code>
+     */
+    public static ArrayList<Secretariado> arrayde(ArrayList<Secretariado> lista, int[] ids) {
+        ArrayList<Secretariado> ret = new ArrayList<Secretariado>();
+        for (int i = 0; i < ids.length; i++) {
+            for (int j = 0; j < lista.size(); j++) {
+                if (lista.get(j).getId() == ids[i]) {
+                    ret.add((Secretariado) lista.get(j));
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
+    
+    public static final ArrayList<Secretariado> convertir(Secretariado[] array) {
+        ArrayList<Secretariado> ret = new ArrayList<Secretariado>();
+        for (Secretariado i : array) {
+            ret.add((Secretariado) i);
+        }
+        return ret;
+    }
+
+    
 }

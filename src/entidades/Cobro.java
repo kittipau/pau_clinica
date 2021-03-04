@@ -6,6 +6,7 @@
 package entidades;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -63,6 +64,43 @@ public class Cobro {
         this.importe = c.importe;
         this.FechaFin = c.FechaFin;
     }
+
+    @Override
+    public String toString() {
+        return "Cobro{" + "id=" + id + ", importe=" + importe + ", FechaFin=" + FechaFin + '}';
+    }
     
+    
+    //METODO
+    
+      /**
+     * Función que se le pasa una lista ArrayList<code>Cobro</code> y un
+     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
+     * ids coinciden con los identificadores del array en la lista
+     *
+     * @param lista de Cobros en las que buscar
+     * @param ids array de ids de Cobros
+     * @return ArrayList<code>Cobro</code>
+     */
+    public static ArrayList<Cobro> arrayde(ArrayList<Cobro> lista, int[] ids) {
+        ArrayList<Cobro> ret = new ArrayList<Cobro>();
+        for (int i = 0; i < ids.length; i++) {
+            for (int j = 0; j < lista.size(); j++) {
+                if (lista.get(j).getId() == ids[i]) {
+                    ret.add((Cobro) lista.get(j));
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
+    
+    public static final ArrayList<Cobro> convertir(Cobro[] array) {
+        ArrayList<Cobro> ret = new ArrayList<Cobro>();
+        for (Cobro i : array) {
+            ret.add((Cobro) i);
+        }
+        return ret;
+    }
     
 }

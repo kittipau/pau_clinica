@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Cirugia.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Pau_Clinica&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">entidades</a> &gt; <span class="el_source">Cirugia.java</span></div><h1>Cirugia.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package entidades;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author punib
+ */
+public class Cirugia extends Empleado {
+
+<span class="nc" id="L16">    private ArrayList&lt;Especialidad&gt; especialidades = new ArrayList&lt;Especialidad&gt;();</span>
+
+//getters
+    public ArrayList&lt;Especialidad&gt; getEspecialidades() {
+<span class="nc" id="L20">        return especialidades;</span>
+    }
+
+    public long getId() {
+<span class="nc" id="L24">        return id;</span>
+    }
+
+    public String getNombre() {
+<span class="nc" id="L28">        return nombre;</span>
+    }
+
+    public String getApellido() {
+<span class="nc" id="L32">        return apellido;</span>
+    }
+
+    public String getTlfn() {
+<span class="nc" id="L36">        return tlfn;</span>
+    }
+
+    public String getNIF() {
+<span class="nc" id="L40">        return NIF;</span>
+    }
+
+    public String getDireccion() {
+<span class="nc" id="L44">        return direccion;</span>
+    }
+
+    //setters
+    public void setEspecialidades(ArrayList&lt;Especialidad&gt; especialidades) {
+<span class="nc" id="L49">        this.especialidades = especialidades;</span>
+<span class="nc" id="L50">    }</span>
+
+    public void setId(long id) {
+<span class="nc" id="L53">        this.id = id;</span>
+<span class="nc" id="L54">    }</span>
+
+    public void setNombre(String nombre) {
+<span class="nc" id="L57">        this.nombre = nombre;</span>
+<span class="nc" id="L58">    }</span>
+
+    public void setApellido(String apellido) {
+<span class="nc" id="L61">        this.apellido = apellido;</span>
+<span class="nc" id="L62">    }</span>
+
+    public void setTlfn(String tlfn) {
+<span class="nc" id="L65">        this.tlfn = tlfn;</span>
+<span class="nc" id="L66">    }</span>
+
+    public void setNIF(String NIF) {
+<span class="nc" id="L69">        this.NIF = NIF;</span>
+<span class="nc" id="L70">    }</span>
+
+    public void setDireccion(String direccion) {
+<span class="nc" id="L73">        this.direccion = direccion;</span>
+<span class="nc" id="L74">    }</span>
+    //constructores
+
+    public Cirugia() {
+<span class="nc" id="L78">        super();</span>
+<span class="nc" id="L79">    }</span>
+
+    public Cirugia(ArrayList&lt;Especialidad&gt; especialidades, long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
+<span class="nc" id="L82">        super(id, nombre, apellido, tlfn, NIF, direccion);</span>
+<span class="nc" id="L83">        this.especialidades = especialidades;</span>
+<span class="nc" id="L84">    }</span>
+    
+<span class="nc" id="L86">    public Cirugia(Cirugia c){</span>
+<span class="nc" id="L87">        this.especialidades = c.especialidades;</span>
+<span class="nc" id="L88">        this.NIF = c.NIF;</span>
+<span class="nc" id="L89">        this.apellido = c.apellido;</span>
+<span class="nc" id="L90">        this.direccion = c.direccion;</span>
+<span class="nc" id="L91">        this.id = c.id;</span>
+<span class="nc" id="L92">        this.nombre = c.nombre;</span>
+<span class="nc" id="L93">        this.tlfn = c.tlfn;</span>
+<span class="nc" id="L94">}</span>
+    public Cirugia(Empleado e, ArrayList&lt;Especialidad&gt; especialidades){
+<span class="nc" id="L96">        super(e);</span>
+<span class="nc" id="L97">        this.especialidades = especialidades;              </span>
+<span class="nc" id="L98">    }</span>
+   
+        /**
+     * Función que se le pasa una lista ArrayList&lt;code&gt;Cirujano&lt;/code&gt; y un
+     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
+     * ids coinciden con los identificadores del array en la lista
+     *
+     * @param lista de Cirujanos en las que buscar
+     * @param ids array de ids de Cirujanos
+     * @return ArrayList&lt;code&gt;Cirujano&lt;/code&gt;
+     */
+    public static ArrayList&lt;Cirugia&gt; arrayde(ArrayList&lt;Cirugia&gt; lista, int[] ids) {
+<span class="nc" id="L110">        ArrayList&lt;Cirugia&gt; ret = new ArrayList&lt;Cirugia&gt;();</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        for (int i = 0; i &lt; ids.length; i++) {</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            for (int j = 0; j &lt; lista.size(); j++) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">                if (lista.get(j).getId() == ids[i]) {</span>
+<span class="nc" id="L114">                    ret.add((Cirugia) lista.get(j));</span>
+<span class="nc" id="L115">                    break;</span>
+                }
+            }
+        }
+<span class="nc" id="L119">        return ret;</span>
+    }
+    
+    public static final ArrayList&lt;Cirugia&gt; convertir(Cirugia[] array) {
+<span class="nc" id="L123">        ArrayList&lt;Cirugia&gt; ret = new ArrayList&lt;Cirugia&gt;();</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        for (Cirugia i : array) {</span>
+<span class="nc" id="L125">            ret.add((Cirugia) i);</span>
+        }
+<span class="nc" id="L127">        return ret;</span>
+    }
+    
+    }
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

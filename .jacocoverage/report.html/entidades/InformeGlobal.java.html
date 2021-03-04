@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>InformeGlobal.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Pau_Clinica&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">entidades</a> &gt; <span class="el_source">InformeGlobal.java</span></div><h1>InformeGlobal.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package entidades;
+
+import java.util.ArrayList;
+
+/**
+ *
+ * @author punib
+ */
+public class InformeGlobal {
+
+    private long id; //VAL: &gt; 0 
+    private String descripcion; // min 10 caracteres, máximo 500
+<span class="nc" id="L18">    private ArrayList&lt;Secretariado&gt; secretarios = new ArrayList&lt;Secretariado&gt;();</span>
+    
+    //getters
+
+    public long getId() {
+<span class="nc" id="L23">        return id;</span>
+    }
+
+    public String getDescripcion() {
+<span class="nc" id="L27">        return descripcion;</span>
+    }
+
+    public ArrayList&lt;Secretariado&gt; getSecretarios() {
+<span class="nc" id="L31">        return secretarios;</span>
+    }
+    
+    //Setters
+
+    public void setId(long id) {
+<span class="nc" id="L37">        this.id = id;</span>
+<span class="nc" id="L38">    }</span>
+
+    public void setDescripcion(String descripcion) {
+<span class="nc" id="L41">        this.descripcion = descripcion;</span>
+<span class="nc" id="L42">    }</span>
+
+    public void setSecretarios(ArrayList&lt;Secretariado&gt; secretarios) {
+<span class="nc" id="L45">        this.secretarios = secretarios;</span>
+<span class="nc" id="L46">    }</span>
+    //constructores
+
+<span class="nc" id="L49">    public InformeGlobal() {</span>
+<span class="nc" id="L50">    }</span>
+
+<span class="nc" id="L52">    public InformeGlobal(long id, String descripcion, ArrayList&lt;Secretariado&gt; Secretarios) {</span>
+<span class="nc" id="L53">        this.id = id;</span>
+<span class="nc" id="L54">        this.descripcion = descripcion;</span>
+<span class="nc" id="L55">        this.secretarios = secretarios;</span>
+<span class="nc" id="L56">    }</span>
+<span class="nc" id="L57">    public InformeGlobal(InformeGlobal i) {</span>
+<span class="nc" id="L58">        this.id = i.id;</span>
+<span class="nc" id="L59">        this.descripcion = i.descripcion;</span>
+<span class="nc" id="L60">        this.secretarios = i.secretarios;</span>
+<span class="nc" id="L61">    }</span>
+    
+     /**
+     * Función que se le pasa una lista ArrayList&lt;code&gt;Cirujano&lt;/code&gt; y un
+     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
+     * ids coinciden con los identificadores del array en la lista
+     *
+     * @param lista de Cirujanos en las que buscar
+     * @param ids array de ids de Cirujanos
+     * @return ArrayList&lt;code&gt;Cirujano&lt;/code&gt;
+     */
+    public static ArrayList&lt;InformeGlobal&gt; arrayde(ArrayList&lt;InformeGlobal&gt; lista, int[] ids) {
+<span class="nc" id="L73">        ArrayList&lt;InformeGlobal&gt; ret = new ArrayList&lt;InformeGlobal&gt;();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">        for (int i = 0; i &lt; ids.length; i++) {</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            for (int j = 0; j &lt; lista.size(); j++) {</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">                if (lista.get(j).getId() == ids[i]) {</span>
+<span class="nc" id="L77">                    ret.add((InformeGlobal) lista.get(j));</span>
+<span class="nc" id="L78">                    break;</span>
+                }
+            }
+        }
+<span class="nc" id="L82">        return ret;</span>
+    }
+    
+    public static final ArrayList&lt;InformeGlobal&gt; convertir(InformeGlobal[] array) {
+<span class="nc" id="L86">        ArrayList&lt;InformeGlobal&gt; ret = new ArrayList&lt;InformeGlobal&gt;();</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        for (InformeGlobal i : array) {</span>
+<span class="nc" id="L88">            ret.add((InformeGlobal) i);</span>
+        }
+<span class="nc" id="L90">        return ret;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
