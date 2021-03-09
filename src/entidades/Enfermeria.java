@@ -84,13 +84,8 @@ public class Enfermeria extends Empleado {
     }
 
     public Enfermeria(Enfermeria e) {
+        super(e);
         this.categoria = e.categoria;
-        this.id = e.id;
-        this.nombre = e.nombre;
-        this.apellido = e.apellido;
-        this.tlfn = e.tlfn;
-        this.NIF = e.NIF;
-        this.direccion = e.direccion;
     }
 
     public Enfermeria(Empleado e, char categoria) {
@@ -107,9 +102,10 @@ public class Enfermeria extends Empleado {
      * @param ids array de ids de Cirujanos
      * @return ArrayList<code>Enfermeria</code>
      */
+    
     public static ArrayList<Enfermeria> arrayde(ArrayList<Enfermeria> lista, int[] ids) {
         ArrayList<Enfermeria> ret = new ArrayList<Enfermeria>();
-        for (int i = 0; i < ids.length; i++) {
+         for (int i = 0; i < ids.length; i++) {
             for (int j = 0; j < lista.size(); j++) {
                 if (lista.get(j).getId() == ids[i]) {
                     ret.add((Enfermeria) lista.get(j));
@@ -118,7 +114,8 @@ public class Enfermeria extends Empleado {
             }
         }
         return ret;
-    }
+        
+        }
     
     public static final ArrayList<Enfermeria> convertir(Enfermeria[] array) {
         ArrayList<Enfermeria> ret = new ArrayList<Enfermeria>();

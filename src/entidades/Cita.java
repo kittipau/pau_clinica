@@ -77,12 +77,13 @@ public class Cita {
 
     }
 
-    public Cita(long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario) {
+    public Cita(long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos) {
         this.id = id;
         this.fecha = fecha;
         this.rangoHorario = rangoHorario;
         this.hora = hora;
         this.secretario = secretario;
+        this.medicamentos = medicamentos;
     }
 
     public Cita(Cita c) {

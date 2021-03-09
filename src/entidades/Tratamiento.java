@@ -105,4 +105,35 @@ public class Tratamiento {
         this.citas = t.citas;
     }
     
+    //METODOS
+    
+         /**
+     * Función que se le pasa una lista ArrayList<code>Tratamiento</code> y un
+     * array de identificadores, y devuelve una sublista con los Tratamientos cuyos
+     * ids coinciden con los identificadores del array en la lista
+     *
+     * @param lista de Tratamientos en las que buscar
+     * @param ids array de ids de Tratamientos
+     * @return ArrayList<code>Tratamientos</code>
+     */
+    public static ArrayList<Tratamiento> arrayde(ArrayList<Tratamiento> lista, int[] ids) {
+        ArrayList<Tratamiento> ret = new ArrayList<Tratamiento>();
+        for (int i = 0; i < ids.length; i++) {
+            for (int j = 0; j < lista.size(); j++) {
+                if (lista.get(j).getId() == ids[i]) {
+                    ret.add((Tratamiento) lista.get(j));
+                    break;
+                }
+            }
+        }
+        return ret;
+    }
+    
+    public static final ArrayList<Tratamiento> convertir(Tratamiento[] array) {
+        ArrayList<Tratamiento> ret = new ArrayList<Tratamiento>();
+        for (Tratamiento i : array) {
+            ret.add((Tratamiento) i);
+        }
+        return ret;
+    }
 }

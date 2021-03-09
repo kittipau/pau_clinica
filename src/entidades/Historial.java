@@ -13,16 +13,16 @@ import java.util.ArrayList;
  */
 public class Historial {
 
-    private long historia; // >0
+    private long historial; // >0
     private String descripcion; // Máximo 40 caracteres alfanuméricos
     private ArrayList<Alergia> alergias = new ArrayList<Alergia>();
 
     public long getHistoria() {
-        return historia;
+        return historial;
     }
 
     public void setHistoria(long historia) {
-        this.historia = historia;
+        this.historial = historia;
     }
 
     public String getDescripcion() {
@@ -46,7 +46,7 @@ public class Historial {
     }
 
     public Historial(long historia, String descripcion, ArrayList<Alergia> alergias) {
-        this.historia = historia;
+        this.historial = historia;
         this.descripcion = descripcion;
         this.alergias = alergias;
     }
@@ -54,12 +54,12 @@ public class Historial {
     public Historial(Historial h) {
         this.alergias = h.alergias;
         this.descripcion = h.descripcion;
-        this.historia = h.historia;
+        this.historial = h.historial;
     }
 
     @Override
     public String toString() {
-        return "Historial{" + "historia=" + historia + ", descripcion=" + descripcion + ", alergias=" + alergias + '}';
+        return "Historial{" + "historia=" + historial + ", descripcion=" + descripcion + ", alergias=" + alergias + '}';
     }
     //METODOS
        /**

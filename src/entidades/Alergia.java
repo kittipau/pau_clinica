@@ -6,6 +6,8 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import pau_clinica.Utilidades;
 
 /**
  *
@@ -48,14 +50,16 @@ public class Alergia {
     public Alergia() {
     }
 
-    public Alergia(long id, String nombre) {
+    public Alergia(long id, String nombre, ArrayList<Historial> historiales) {
         this.id = id;
         this.nombre = nombre;
+        this.historiales = historiales;
     }
 
     public Alergia(Alergia a) {
         this.id = a.id;
         this.nombre = a.nombre;
+        this.historiales = a.historiales;
     }
 
     @Override
@@ -63,13 +67,11 @@ public class Alergia {
         return "Id alergia: " + id + "\n nombre= " + nombre + " \n historiales= " + historiales;
     }
 
-    
     //MÉTODOS
-    
-         /**
-     * Función que se le pasa una lista ArrayList<code>Alergia</code> y un
-     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
-     * ids coinciden con los identificadores del array en la lista
+    /**
+     * Función que se le pasa una lista ArrayList<code>Alergia</code> y un array
+     * de identificadores, y devuelve una sublista con los Cirujanos cuyos ids
+     * coinciden con los identificadores del array en la lista
      *
      * @param lista de alergias en las que buscar
      * @param ids array de ids de Alergias
@@ -87,7 +89,7 @@ public class Alergia {
         }
         return ret;
     }
-    
+
     public static final ArrayList<Alergia> convertir(Alergia[] array) {
         ArrayList<Alergia> ret = new ArrayList<Alergia>();
         for (Alergia i : array) {
@@ -95,5 +97,35 @@ public class Alergia {
         }
         return ret;
     }
-   
-}
+
+    //METODO QUE DEVUELVE AUTOMATICAMENTE EL SIGUIENTE ID
+    public static long nextIdAlergia() {
+        long ret = 0;
+        for (int i = 0; i < Utilidades.ALERGIAS.length; i++) {
+            if (Utilidades.ALERGIAS[i].id > ret);
+            ret = Utilidades.ALERGIAS[i].id;
+        }
+        return ret + 1;
+    }
+
+    public static Alergia nuevaAlergia(Historial h) {
+        Alergia ret = new Alergia();
+        Scanner in = new Scanner(System.in);        
+        long id = nextIdAlergia();
+        ret.setId(id);
+        System.out.println("Introduce el nombre");
+        String nombre =in.nextLine();
+        ret.setNombre(nombre);
+        ret.historiales.add(h);
+        return ret;
+    }
+        
+        
+        
+         
+
+     
+
+    };
+
+

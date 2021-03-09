@@ -5,7 +5,10 @@
  */
 package entidades;
 
+import static entidades.Alergia.nextIdAlergia;
+import static java.lang.System.in;
 import java.util.ArrayList;
+import java.util.Scanner;
 import pau_clinica.Utilidades;
 
 /**
@@ -120,6 +123,44 @@ public class Empleado {
      * @param ids array de ids de Empleados
      * @return ArrayList<code>Empleados</code>
      */
+    
+    //METODO QUE DEVUELVE AUTOMATICAMENTE EL SIGUIENTE ID
+    public static long nextIdEmpleado() {
+        long ret = 0;
+        for (int i = 0; i < Utilidades.EMPLEADOS.length; i++) {
+            if (Utilidades.EMPLEADOS[i].id > ret);
+            ret = Utilidades.EMPLEADOS[i].id;
+        }
+        return ret + 1;
+        
+    }
+    
+    public static Empleado nuevoEmpleado(){
+        Empleado ret = new Empleado();
+        Scanner in = new Scanner(System.in);
+        long id = nextIdAlergia();
+        System.out.println("Introduce el nombre: ");
+        String nombre = in.nextLine();
+        ret.setNombre(nombre);
+        System.out.println("Introduce el apellido: ");
+        String apellido = in.nextLine();
+        ret.setNombre(apellido);
+        System.out.println("Introduce el NIF: ");
+        String NIF = in.nextLine();
+        ret.setNIF(NIF);
+        System.out.println("Introduce el teléfono: ");
+        String telefono = in.nextLine();
+        ret.setTlfn(telefono);
+        System.out.println("Introduce la dirección: ");
+        String direccion = in.nextLine();
+        ret.setDireccion(direccion);
+        
+        return ret;
+        
+    }
+        
+                 
+            
     public static ArrayList<Empleado> arrayde(ArrayList<Empleado> lista, int[] ids) {
         ArrayList<Empleado> ret = new ArrayList<Empleado>();
         for (int i = 0; i < ids.length; i++) {
@@ -143,7 +184,7 @@ public class Empleado {
     
     
     
-
+// VALIDACIONES
     public static boolean validarId(long id) {
 //        boolean ret = false;
 //        if(id > 0)
@@ -163,14 +204,17 @@ public class Empleado {
         if (nombre.length() > 150) {
             return false;
         }
-        if (Utilidades.contieneDigitos(nombre)) {
+    /*   if (Utilidades.contieneDigitos(nombre)) {
             return false;
         }
         if (Utilidades.contieneCaracteresEspeciales(nombre)) {
             return false;
         }
-
+}
+        */ 
         return ret;
 
-    }
+   
+}
+
 }

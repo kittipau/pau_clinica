@@ -15,7 +15,7 @@ public class Medicamento {
     private long id; // >0
     private String nombre; //Máximo 20 caracteres alfanuméricos
     private String principioActivo; //Máximo 20 caracteres alfanuméricos
-    private int dosismax; // >0
+    private int dosismax; // >0 en mg
     private ArrayList<Cita> citas = new ArrayList<Cita>();
     
     //Getters
@@ -80,4 +80,35 @@ public class Medicamento {
         this.citas = m.citas;
     }
     
+          /**
+     * Función que se le pasa una lista ArrayList<code>Medicamento</code> y un
+     * array de identificadores, y devuelve una sublista con los Medicamento cuyos
+     * ids coinciden con los identificadores del array en la lista
+     *
+     * @param lista de Medicamento en las que buscar
+     * @param ids array de ids de Medicamentos
+     * @return ArrayList<code>Medicamento</code>
+     */
+    
+    public static ArrayList<Medicamento> arrayde(ArrayList<Medicamento> lista, int[] ids) {
+        ArrayList<Medicamento> ret = new ArrayList<Medicamento>();
+         for (int i = 0; i < ids.length; i++) {
+            for (int j = 0; j < lista.size(); j++) {
+                if (lista.get(j).getId() == ids[i]) {
+                    ret.add((Medicamento) lista.get(j));
+                    break;
+                }
+            }
+        }
+        return ret;
+        
+        }
+    
+    public static final ArrayList<Medicamento> convertir(Medicamento[] array) {
+        ArrayList<Medicamento> ret = new ArrayList<Medicamento>();
+        for (Medicamento i : array) {
+            ret.add((Medicamento) i);
+        }
+        return ret;
+    }
 }

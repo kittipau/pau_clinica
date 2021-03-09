@@ -57,20 +57,17 @@ public class Intervencion extends Cita {
         this.cirujanos = cirujanos;
     }
 
-    public Intervencion(int duracion, long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario) {
-        super(id, fecha, rangoHorario, hora, secretario);
+    public Intervencion(int duracion, long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos) {
+        super(id, fecha, rangoHorario, hora, secretario, medicamentos);
         this.duracion = duracion;
         this.cirujanos = cirujanos;
         this.enfermeros = enfermeros;
+        this.medicamentos = medicamentos;
     }
 
     public Intervencion(Intervencion i) {
+        super(i);
         this.duracion = i.duracion;
-        this.id = i.id;
-        this.fecha = i.fecha;
-        this.rangoHorario = i.rangoHorario;
-        this.hora = i.hora;
-        this.secretario = i.secretario;
         this.cirujanos = i.cirujanos;
         this.enfermeros = i.enfermeros;
     }

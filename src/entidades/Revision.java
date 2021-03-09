@@ -7,6 +7,7 @@ package entidades;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 
 /**
  *
@@ -40,8 +41,8 @@ public class Revision extends Cita{
         super();
     }
 
-    public Revision(String anotacion, Cirugia cirugia, long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario) {
-        super(id, fecha, rangoHorario, hora, secretario);
+    public Revision(String anotacion, Cirugia cirugia, long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos) {
+        super(id, fecha, rangoHorario, hora, secretario, medicamentos);
         this.anotacion = anotacion;
         this.cirugia = cirugia;
     }
