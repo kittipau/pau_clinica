@@ -80,17 +80,7 @@ public class Empleado {
     
     
     public Empleado(long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
-        if (Empleado.validarId(id)) {
-            this.id = id;
-        } else {
-            
-        }
-        if (Empleado.validarNombre(nombre)) {
-            this.nombre = nombre;
-        }
-        else {
-
-        }
+       
         this.apellido = apellido;
         this.tlfn = tlfn;
         this.NIF = NIF;
@@ -196,25 +186,24 @@ public class Empleado {
 
     }
 
-    public static boolean validarNombre(String nombre) {
-        boolean ret = true;
-        if (nombre.length() < 3) {
-            return false;
-        }
-        if (nombre.length() > 150) {
-            return false;
-        }
-    /*   if (Utilidades.contieneDigitos(nombre)) {
-            return false;
-        }
-        if (Utilidades.contieneCaracteresEspeciales(nombre)) {
-            return false;
-        }
-}
-        */ 
-        return ret;
+//    public static boolean validarNombre(String nombre) {
+//        boolean ret = true;
+//        if (nombre.length() < 3) {
+//            return false;
+//        }
+//        if (nombre.length() > 150) {
+//            return false;
+//        }
+//    /*   if (Utilidades.contieneDigitos(nombre)) {
+//            return false;
+//        }
+//        if (Utilidades.contieneCaracteresEspeciales(nombre)) {
+//            return false;
+//        }
+//}
+//        */ 
+//        return ret;
 
    
 }
 
-}

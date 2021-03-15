@@ -88,10 +88,7 @@ public class Enfermeria extends Empleado {
         this.categoria = e.categoria;
     }
 
-    public Enfermeria(Empleado e, char categoria) {
-        super(e);
-        this.categoria = categoria;
-    }
+   
 
       /**
      * Función que se le pasa una lista ArrayList<code>Enfermeria</code> y un
