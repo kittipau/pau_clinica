@@ -37,7 +37,6 @@ public class Utilidades {
         new Empleado(10, "Pedro", "Setien", "664589674", "01257895G", "C/Javier Echevarría"),};
     public static final int numEmpleados = EMPLEADOS.length;
 
-    
     public static final Enfermeria ENFERMEROS[] = {
         new Enfermeria(EMPLEADOS[1], 'A'),
         new Enfermeria(EMPLEADOS[2], 'B'),
@@ -98,11 +97,11 @@ public class Utilidades {
     public static final InformeGlobal INFORMES[] = {
         //long id, String descripcion, ArrayList<Secretariado> Secretarios
 
-        new InformeGlobal(1, "Extracción muela 37", Secretariado.arrayde(Secretariado.convertir(SECRETARIOS), new int[]{2})),
-        new InformeGlobal(7, "Revisión rutania + limpieza buscal", Secretariado.arrayde(Secretariado.convertir(SECRETARIOS), new int[]{2, 3})),
-        new InformeGlobal(13, "Cirugía de elevación de seno maxilar ", Secretariado.arrayde(Secretariado.convertir(SECRETARIOS), new int[]{1, 2})),
-        new InformeGlobal(21, "Revisión y ajuste ortodoncia", Secretariado.arrayde(Secretariado.convertir(SECRETARIOS), new int[]{3})),
-        new InformeGlobal(23, "Extracciones muelas juicio ", Secretariado.arrayde(Secretariado.convertir(SECRETARIOS), new int[]{1, 3})),};
+        new InformeGlobal(1, "Extracción muela 37", Secretariado.arraydeSecretarios(Secretariado.convertir(SECRETARIOS), new int[]{2})),
+        new InformeGlobal(7, "Revisión rutania + limpieza buscal", Secretariado.arraydeSecretarios(Secretariado.convertir(SECRETARIOS), new int[]{2, 3})),
+        new InformeGlobal(13, "Cirugía de elevación de seno maxilar ", Secretariado.arraydeSecretarios(Secretariado.convertir(SECRETARIOS), new int[]{1, 2})),
+        new InformeGlobal(21, "Revisión y ajuste ortodoncia", Secretariado.arraydeSecretarios(Secretariado.convertir(SECRETARIOS), new int[]{3})),
+        new InformeGlobal(23, "Extracciones muelas juicio ", Secretariado.arraydeSecretarios(Secretariado.convertir(SECRETARIOS), new int[]{1, 3})),};
     public static final int numInformeGlobal = INFORMES.length;
 
     public static final Alergia ALERGIAS[] = {
@@ -168,25 +167,27 @@ public class Utilidades {
 
     public static final int numTratmamiento = TRATAMIENTOS.length;
 
-    public static final Intervencion INTERVENCIONES[] = { /*Cita c, int duracion, ArrayList<Enfermeria> enfermeros, ArrayList<Cirugia> cirujanos
-        new Intervencion(CITAS[0], Enfermeria.arrayde(Enfermeria.convertir(ENFERMEROS), new int[]{1, 3}, Cirugia.arrayde(Cirugia.convertir(CIRUJANOS), new int[]{1, 3})),
-        new Intervencion(CITAS[1], Enfermeria.arrayde(Enfermeria.convertir(ENFERMEROS), new int[]{1, 3}, Cirugia.arrayde(Cirugia.convertir(CIRUJANOS), new int[]{1, 3})),
-        new Intervencion(CITAS[2], Enfermeria.arrayde(Enfermeria.convertir(ENFERMEROS), new int[]{1, 3}, Cirugia.arrayde(Cirugia.convertir(CIRUJANOS), new int[]{1, 3})),
-        new Intervencion(CITAS[3], Enfermeria.arrayde(Enfermeria.convertir(ENFERMEROS), new int[]{1, 3}, Cirugia.arrayde(Cirugia.convertir(CIRUJANOS), new int[]{1, 3})),
-        new Intervencion(CITAS[4], Enfermeria.arrayde(Enfermeria.convertir(ENFERMEROS), new int[]{1, 3}, Cirugia.arrayde(Cirugia.convertir(CIRUJANOS), new int[]{1, 3})),
-        new Intervencion(CITAS[5], Enfermeria.arrayde(Enfermeria.convertir(ENFERMEROS), new int[]{1, 3}, Cirugia.arrayde(Cirugia.convertir(CIRUJANOS), new int[]{1, 3})),
-        new Intervencion(CITAS[8], Enfermeria.arrayde(Enfermeria.convertir(ENFERMEROS), new int[]{1, 3}, Cirugia.arrayde(Cirugia.convertir(CIRUJANOS), new int[]{1, 3})),
-        new Intervencion(CITAS[11], Enfermeria.arrayde(Enfermeria.convertir(ENFERMEROS), new int[]{1, 3}, Cirugia.arrayde(Cirugia.convertir(CIRUJANOS), new int[]{1, 3})),
-        new Intervencion(CITAS[13], Enfermeria.arrayde(Enfermeria.convertir(ENFERMEROS), new int[]{1, 3}, Cirugia.arrayde(Cirugia.convertir(CIRUJANOS), new int[]{1, 3})),
-     */};
+    public static final Intervencion INTERVENCIONES[] = {
+        //Cita c, int duracion, ArrayList<Enfermeria> enfermeros, ArrayList<Cirugia> cirujanos
+
+        new Intervencion(CITAS[0], 35, Enfermeria.arraydeEnfermeria(Enfermeria.convertir(ENFERMEROS), new int[]{0,1}), Cirugia.arraydeCirugia(Cirugia.convertir(CIRUJANOS), new int[]{0})),
+        new Intervencion(CITAS[1], 35, Enfermeria.arraydeEnfermeria(Enfermeria.convertir(ENFERMEROS), new int[]{0,2}), Cirugia.arraydeCirugia(Cirugia.convertir(CIRUJANOS), new int[]{1})),
+        new Intervencion(CITAS[2], 35, Enfermeria.arraydeEnfermeria(Enfermeria.convertir(ENFERMEROS), new int[]{1,2}), Cirugia.arraydeCirugia(Cirugia.convertir(CIRUJANOS), new int[]{1})),
+        new Intervencion(CITAS[5], 35, Enfermeria.arraydeEnfermeria(Enfermeria.convertir(ENFERMEROS), new int[]{0,2}), Cirugia.arraydeCirugia(Cirugia.convertir(CIRUJANOS), new int[]{1})),
+        new Intervencion(CITAS[7], 35, Enfermeria.arraydeEnfermeria(Enfermeria.convertir(ENFERMEROS), new int[]{1,2}), Cirugia.arraydeCirugia(Cirugia.convertir(CIRUJANOS), new int[]{0})),
+        new Intervencion(CITAS[8], 35, Enfermeria.arraydeEnfermeria(Enfermeria.convertir(ENFERMEROS), new int[]{0,2}), Cirugia.arraydeCirugia(Cirugia.convertir(CIRUJANOS), new int[]{2})),
+        new Intervencion(CITAS[11], 35, Enfermeria.arraydeEnfermeria(Enfermeria.convertir(ENFERMEROS), new int[]{0,1}), Cirugia.arraydeCirugia(Cirugia.convertir(CIRUJANOS), new int[]{2})),
+         };
     public static final int numIntervencion = INTERVENCIONES.length;
 
     public static final Revision REVISIONES[] = {
         //String anotacion, Cirugia cirugia, Cita c
+        new Revision("Nada a resaltar", CIRUJANOS[0], CITAS[3]),
+        new Revision("Nada a resaltar", CIRUJANOS[1], CITAS[4]),
         new Revision("Nada a resaltar", CIRUJANOS[0], CITAS[6]),
         new Revision("Nada a resaltar", CIRUJANOS[2], CITAS[9]),
         new Revision("Nada a resaltar", CIRUJANOS[1], CITAS[10]),
-        new Revision("Nada a resaltar", CIRUJANOS[3], CITAS[12]),};
+        new Revision("Nada a resaltar", CIRUJANOS[2], CITAS[12]),};
 
     public static final Paciente PACIENTES[] = {
         //long id, String nombre, String apellido, String DNI, String tlfn, String direccion, ArrayList<Tratamiento> tratamientos, ArrayList<Cita> citas, Historial historial
@@ -271,126 +272,77 @@ public class Utilidades {
             return ret;
 
         }
-
-        //hora
-        public static class Hora {
-
-            private int hora;
-            private int minuto;
-            private int segundo;
-
-            public int getHora() {
-                return hora;
-            }
-
-            public void setHora(int hora) {
-                this.hora = hora;
-            }
-
-            public int getMinuto() {
-                return minuto;
-            }
-
-            public void setMinuto(int minuto) {
-                this.minuto = minuto;
-            }
-
-            public int getSegundo() {
-                return segundo;
-            }
-
-            public void setSegundo(int segundo) {
-                this.segundo = segundo;
-            }
-
-            public Hora() {
-                Time hoy = Time.valueOf(LocalTime.now());
-            }
-
-            public Hora(int h, int m, int s) {
-                this.hora = h;
-                this.minuto = m;
-                this.segundo = s;
-            }
-
-            public Time conversorFecha() {
-                java.sql.Time ret = new Time(this.hora, this.minuto, this.segundo);
-                return ret;
-            }
-
-            public static Hora nuevaHora() {
-                Hora ret = new Hora();
-                Scanner in = new Scanner(System.in);
-                int h = 0;
-                do {
-                    System.out.println("Hora: ");
-                    h = in.nextInt();
-                } while (h <= 0 || h > 23);
-                ret.setHora(h);
-                int m = 0;
-                do {
-                    System.out.println("Minutos: ");
-                    m = in.nextInt();
-                } while (m <= 0 || m > 59);
-                ret.setHora(m);
-                int s = 0;
-                do {
-                    System.out.println("Segundos: ");
-                    s = in.nextInt();
-                } while (s <= 59);
-                ret.setHora(s);
-                return ret;
-
-            }
-        }
-
-        //METODOS PARA HACER VALIDACIONES
-        public static boolean validarNombre(String nombre) {
-            boolean ret = true;
-            if (nombre.isEmpty()) {
-                ret = false;
-            }
-            if (nombre.length() < 1 || nombre.length() > 20) {
-                ret = false;
-            }
-            for (char c : nombre.toCharArray()) {
-                if (Character.isDigit(c) || (!Character.isLetter(c) && c != ' '));
-                ret = false;
-                break;
-            }
-            return ret;
-        }
-
-        public static boolean validarApellido(String apellido) {
-            boolean ret = true;
-            if (apellido.isEmpty()) {
-                ret = false;
-            }
-            if (apellido.length() < 1 || apellido.length() > 20) {
-                ret = false;
-            }
-            for (char c : apellido.toCharArray()) {
-                if (Character.isDigit(c) || (!Character.isLetter(c) && c != ' '));
-                ret = false;
-                break;
-            }
-            return ret;
-        }
-
-        public static boolean validattlfn(String tlfn) {
-            boolean ret = true;
-            if (tlfn.isEmpty()) {
-                ret = false;
-            }
-            if (tlfn.length() != 9) {
-                ret = false;
-            }
-            if (!tlfn.matches("[0-9]+")) {
-                ret = false;
-            }
-        }
-        return ret ;
     }
 
-}
+    //hora
+    public static class Hora {
+
+        private int hora;
+        private int minuto;
+        private int segundo;
+
+        public int getHora() {
+            return hora;
+        }
+
+        public void setHora(int hora) {
+            this.hora = hora;
+        }
+
+        public int getMinuto() {
+            return minuto;
+        }
+
+        public void setMinuto(int minuto) {
+            this.minuto = minuto;
+        }
+
+        public int getSegundo() {
+            return segundo;
+        }
+
+        public void setSegundo(int segundo) {
+            this.segundo = segundo;
+        }
+
+        public Hora() {
+            Time hoy = Time.valueOf(LocalTime.now());
+        }
+
+        public Hora(int h, int m, int s) {
+            this.hora = h;
+            this.minuto = m;
+            this.segundo = s;
+        }
+
+        public Time conversorFecha() {
+            java.sql.Time ret = new Time(this.hora, this.minuto, this.segundo);
+            return ret;
+        }
+
+        public static Hora nuevaHora() {
+            Hora ret = new Hora();
+            Scanner in = new Scanner(System.in);
+            int h = 0;
+            do {
+                System.out.println("Hora: ");
+                h = in.nextInt();
+            } while (h <= 0 || h > 23);
+            ret.setHora(h);
+            int m = 0;
+            do {
+                System.out.println("Minutos: ");
+                m = in.nextInt();
+            } while (m <= 0 || m > 59);
+            ret.setHora(m);
+            int s = 0;
+            do {
+                System.out.println("Segundos: ");
+                s = in.nextInt();
+            } while (s <= 59);
+            ret.setHora(s);
+            return ret;
+
+        }
+    }
 }

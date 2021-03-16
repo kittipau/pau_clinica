@@ -70,6 +70,12 @@ public class Secretariado extends Empleado {
         this.nombre = s.nombre;
         this.tlfn = s.tlfn;
     }
+           public Secretariado (Empleado e, int experiencia, ArrayList<InformeGlobal> informes ){
+       super(e);
+       this.experiencia = experiencia;
+       this.informes = informes;
+             
+   } 
     /**
      * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
      * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
@@ -79,7 +85,7 @@ public class Secretariado extends Empleado {
      * @param ids array de ids de Cirujanos
      * @return ArrayList<code>Cirujano</code>
      */
-    public static ArrayList<Secretariado> arrayde(ArrayList<Secretariado> lista, int[] ids) {
+    public static ArrayList<Secretariado> arraydeSecretarios(ArrayList<Secretariado> lista, int[] ids) {
         ArrayList<Secretariado> ret = new ArrayList<Secretariado>();
         for (int i = 0; i < ids.length; i++) {
             for (int j = 0; j < lista.size(); j++) {

@@ -19,22 +19,124 @@ public class Pau_Clinica {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Empleado e1 = new Empleado();
-        //Empleado(long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
-        Scanner in;
-        int id;
-        boolean valido = false;
-        do {
-            in = new Scanner(System.in);
-            id = 12; //in.nextInt();
 
-            if (!Empleado.validarId(id)) {
-                System.out.println("Id incorrecto!");
-            } else {
-                valido = true;
+        //MENÚ PRINCIPAL
+        int op0 = -1, op1 = -1;
+        Scanner in = new Scanner(System.in);
+
+        do {
+            menuPrincipal();
+            in = new Scanner(System.in, "ISO-8859-1");
+            op0 = in.nextInt();
+            if (op0 < 0 || op0 > 3) {
+                System.out.println("\n Opcion incorrecta \n");
+                continue;
             }
-        } while (!valido);
-        Empleado e2 = new Empleado(id, "Laura", "suarez", "69982726", "72149276L", "Calle mayor, 3");
+
+            switch (op0) {
+
+                case 0:
+                    break;
+                case 1:
+                    do {
+                        menuPacientes();
+                        op1 = in.nextInt();
+                        if (op1 < 0 || op1 > 4) {
+                            System.out.println("\n Opcion incorrecta \n");
+                            continue;
+                        }
+                        switch (op1) {
+                            case 0:
+                                continue;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                        }
+
+                        break;
+                    } while (op1 < 0 || op1 > 4);
+
+                case 2:
+                    do {
+                        menuEmpleados();
+                        op1 = in.nextInt();
+                        if (op1 < 0 || op1 > 3) {
+                            System.out.println("\n Opcion incorrecta \n");
+                            continue;
+                        }
+                        switch (op1) {
+                            case 0:
+                                continue;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
+
+                        break;
+                    } while (op1 < 0 || op1 > 3);
+
+                case 3:
+                      do {
+                        menuCitas();
+                        op1 = in.nextInt();
+                        if (op1 < 0 || op1 > 3) {
+                            System.out.println("\n Opcion incorrecta \n");
+                            continue;
+                        }
+                        switch (op1) {
+                            case 0:
+                                continue;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
+
+                        break;
+                    } while (op1 < 0 || op1 > 3);
+            }
+
+        } while (op1 < 0 || op1 > 3);
+
+    }
+
+    private static void menuPrincipal() {
+        System.out.println("Pulsa 1 para la gestión de pacientes.");
+        System.out.println("Pulsa 2 para la gestión de empleados.");
+        System.out.println("Pulsa 3 para la gestión de citas.");
+        System.out.println("Pulsa 0 para salir del menú.");
+    }
+
+    private static void menuPacientes() {
+        System.out.println("Pulsa 1 para ver pacientes.");
+        System.out.println("Pulsa 2 para crear un nuevo paciente.");
+        System.out.println("Pulsa 3 para buscar un paciente.");
+        System.out.println("Pulsa 4 para ver el historial de un paciente.");
+        System.out.println("Pulsa 0 para ir al menú principal.");
+    }
+
+    private static void menuEmpleados() {
+        System.out.println("Pulsa 1 para ver empleados.");
+        System.out.println("Pulsa 2 para crear un nuevo empleado.");
+        System.out.println("Pulsa 3 para buscar un empleado..");
+        System.out.println("Pulsa 0 para ir al menú principal.");
+    }
+
+    private static void menuCitas() {
+        System.out.println("Pulsa 1 para ver las citas.");
+        System.out.println("Pulsa 2 para crear una nueva cita.");
+        System.out.println("Pulsa 3 para buscar una cita.");
+        System.out.println("Pulsa 0 para volver al menú principal.");
     }
 
 }

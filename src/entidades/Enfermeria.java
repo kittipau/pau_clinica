@@ -88,21 +88,25 @@ public class Enfermeria extends Empleado {
         this.categoria = e.categoria;
     }
 
+   public Enfermeria (Empleado e, char categoria){
+       super(e);
+       this.categoria = categoria;
+             
+   }
+ 
    
-
-      /**
-     * Función que se le pasa una lista ArrayList<code>Enfermeria</code> y un
-     * array de identificadores, y devuelve una sublista con los Enfermeria cuyos
+   /**
+     * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
+     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
      * ids coinciden con los identificadores del array en la lista
      *
-     * @param lista de Enfermeria en las que buscar
+     * @param lista de Cirujanos en las que buscar
      * @param ids array de ids de Cirujanos
-     * @return ArrayList<code>Enfermeria</code>
+     * @return ArrayList<code>Cirujano</code>
      */
-    
-    public static ArrayList<Enfermeria> arrayde(ArrayList<Enfermeria> lista, int[] ids) {
+    public static ArrayList<Enfermeria> arraydeEnfermeria(ArrayList<Enfermeria> lista, int[] ids) {
         ArrayList<Enfermeria> ret = new ArrayList<Enfermeria>();
-         for (int i = 0; i < ids.length; i++) {
+        for (int i = 0; i < ids.length; i++) {
             for (int j = 0; j < lista.size(); j++) {
                 if (lista.get(j).getId() == ids[i]) {
                     ret.add((Enfermeria) lista.get(j));
@@ -111,8 +115,7 @@ public class Enfermeria extends Empleado {
             }
         }
         return ret;
-        
-        }
+    }
     
     public static final ArrayList<Enfermeria> convertir(Enfermeria[] array) {
         ArrayList<Enfermeria> ret = new ArrayList<Enfermeria>();
@@ -121,4 +124,8 @@ public class Enfermeria extends Empleado {
         }
         return ret;
     }
-}
+    
+        
+        }
+    
+  
