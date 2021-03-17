@@ -7,6 +7,11 @@ package entidades;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Scanner;
+import pau_clinica.Utilidades;
+import pau_clinica.Validaciones;
+
+
 
 /**
  *
@@ -72,6 +77,42 @@ public class Cobro {
     
     
     //METODO
+    
+    public static Cobro nuevoCobro() {
+        Cobro ret = new Cobro();
+        Scanner in = new Scanner(System.in);
+        long id = nextIdCobro();
+        ret.setId(id);
+        System.out.println("Introduce la fecha fin del cobro: ");
+        Date fecha = Utilidades.Fecha.nuevaFecha().conversorFecha();
+        ret.setFechaFin(fecha);        
+        double importe =-1;
+        do {
+            System.out.println("Introduce el importe del cobro: ");
+            importe = in.nextDouble();
+            if (!Validaciones.validarDouble(importe)) {
+                System.out.println("Importe introducido inválido.");
+            }
+        }
+            while(!Validaciones.validarDouble(importe));
+            ret.setImporte(importe);
+
+            return ret;                   
+             }
+        
+        
+   
+
+    public static long nextIdCobro() {
+        long ret = 0;
+        for (int i = 0; i < Utilidades.COBROS.length; i++) {
+            if (Utilidades.COBROS[i].id > ret);
+            ret = Utilidades.COBROS[i].id;
+        }
+        return ret + 1;
+    }
+
+    
     
       /**
      * Función que se le pasa una lista ArrayList<code>Cobro</code> y un

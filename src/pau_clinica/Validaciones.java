@@ -7,6 +7,7 @@ package pau_clinica;
 
 import Entidades.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -129,5 +130,32 @@ public class Validaciones {
             ret = false;
         return ret;
 }
-
+/**
+     * Función que pide al usuario que introduzca un valor decimal por la
+     * entrada estándar. Si el formato introducido no es correcto, avisa al
+     * usuario y le vuelve a pedir que lo introduzca de nuevo.
+     *
+     * @return el valor double introducido por el usuario
+     */
+    public static boolean validarDouble(double importe) {
+        importe = 0.0;
+        boolean correcto = false;
+        Scanner in;
+        do {
+            System.out.println("Introduzca un valor decimal (xx.xx)");
+            in = new Scanner(System.in, "ISO-8859-1");
+            try {
+                if (importe <= 0) {
+                correcto = false;
+                }
+                importe = in.nextDouble();
+                correcto = true;
+            } catch (InputMismatchException ime) {
+                System.out.println("Formato introducido incorrecto.");
+                correcto = false;
+            }
+        } while (!correcto);
+        return correcto;
+    }
+     
 }

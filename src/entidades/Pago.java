@@ -5,10 +5,13 @@
  */
 package entidades;
 
+
 import pau_clinica.*;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 /**
  *
@@ -20,12 +23,10 @@ public class Pago {
     private Date fechaPago = Date.valueOf(LocalDate.now());
     ; // VALIDOS: Del 01/01/2000 hasta el 31/12/2100
     private double importe; // > 0 
-    private String metodopago = "tarjeta"; //VAL: “tarjeta”, “metálico”, “transferencia”
+    private String metodoPago = "tarjeta"; //VAL: “tarjeta”, “metálico”, “transferencia”
     private Cobro cobro;
 
-    public Pago(int i, Date valueOf, int i0, String tarjeta, Cobro cobro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     //getters
     public long getId() {
@@ -40,8 +41,8 @@ public class Pago {
         return importe;
     }
 
-    public String getMetodopago() {
-        return metodopago;
+    public String getMetodoPago() {
+        return metodoPago;
     }
 
     public Cobro getCobro() {
@@ -61,8 +62,8 @@ public class Pago {
         this.importe = importe;
     }
 
-    public void setMetodopago(String metodopago) {
-        this.metodopago = metodopago;
+    public void setMetodoPago(String metodopago) {
+        this.metodoPago = metodopago;
     }
 
     public void setCobro(Cobro cobro) {
@@ -78,7 +79,7 @@ public class Pago {
         this.fechaPago = fechaPago;
         this.importe = importe;
         this.cobro = cobro;
-        this.metodopago = metodopago;
+        this.metodoPago = metodoPago;
     }
 
     public Pago(Pago p) {
@@ -86,7 +87,7 @@ public class Pago {
         this.fechaPago = p.fechaPago;
         this.importe = p.importe;
         this.cobro = p.cobro;
-        this.metodopago =p.metodopago;
+        this.metodoPago =p.metodoPago;
     }
 
     public static long nextIdPago() {
@@ -97,6 +98,48 @@ public class Pago {
         }
         return ret + 1;
     }
+    
+     // método para introducir nuevo pago.
+     public static Pago nuevoPago() {
+         // private long id; // > 0 
+//    private Date fechaPago = Date.valueOf(LocalDate.now());
+//    ; // VALIDOS: Del 01/01/2000 hasta el 31/12/2100
+//    private double importe; // > 0 
+//    private String metodopago = "tarjeta"; //VAL: “tarjeta”, “metálico”, “transferencia”
+//    private Cobro cobro;
+
+        Pago ret = new Pago();
+        Scanner in = new Scanner(System.in);
+        
+        long id = nextIdPago();
+        ret.setId(id);
+        
+        Date fecha = Date.valueOf(LocalDate.now());
+        ret.setFechaPago(fecha);
+
+        double importe = -1;
+        do {
+            System.out.println("Introduce el importe: ");
+            importe = in.nextDouble();
+            if (!Validaciones.validarDouble(importe)) {
+                System.out.println("Importe introducido inválido: ");
+            }
+        } while (!Validaciones.validarDouble(importe));
+        ret.setImporte(importe);
+
+        String metodoPago = "";
+        do {
+            System.out.println("Introduce el método de pago: ");
+            metodoPago = in.nextLine();
+            if (!Validaciones.validarMetodoPago(metodoPago)) {
+                System.out.println("Método de pago inválido");
+            }
+        } while (!Validaciones.validarMetodoPago(metodoPago));
+        ret.setMetodoPago(metodoPago);
+
+        return ret;
+    }
+
 
     /**
      * Función que se le pasa una lista ArrayList<code>Pago</code> y un array de

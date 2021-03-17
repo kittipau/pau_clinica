@@ -345,4 +345,10 @@ public class Utilidades {
 
         }
     }
+    
+     public static String removeDiacriticalMarks(String string) {
+        //Form.NFC acepta ñ y distingue las tildes en español
+        return Normalizer.normalize(string, Normalizer.Form.NFC)
+                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");}
+
 }
