@@ -61,7 +61,7 @@ public class Especialidad {
 
     @Override
     public String toString() {
-        return "Especialidad{" + "id=" + id + ", nombre=" + nombre + ", cirujanos=" + cirujanos + '}';
+        return "ID: " + id + ", nombre: " + nombre + ", lista de cirujanos=" + cirujanos;
     }
     
     //METODO    

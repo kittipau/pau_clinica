@@ -76,7 +76,7 @@ public class Empleado {
     }
 
     public Empleado(long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
-
+        this.nombre = nombre;
         this.apellido = apellido;
         this.tlfn = tlfn;
         this.NIF = NIF;
@@ -94,7 +94,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", tlfn=" + tlfn + ", NIF=" + NIF + ", direccion=" + direccion + '}';
+        return   "ID: " + id + ". Nombre: " + nombre +" " + apellido + ", DNI: " + NIF+ ", dirección " + direccion+ ", Tlfn: " + tlfn ;
     }
 
     //MÉTODO

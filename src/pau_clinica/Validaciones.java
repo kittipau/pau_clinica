@@ -16,6 +16,10 @@ import java.util.Scanner;
  */
 public class Validaciones {
 
+    public static boolean validarId(long id) {
+        return (id > 0);
+    }
+
     public static boolean validarNombre(String nombre) {
         boolean ret = true;
         if (nombre.isEmpty()) {
@@ -95,7 +99,7 @@ public class Validaciones {
             ret = false;
         }
 
-        if (!(metodo.contentEquals("Tarjeta") && metodo.contentEquals("Metálico") && metodo.contentEquals("Transferencia"))) {
+        if (!(metodo.contentEquals("Tarjeta") || metodo.contentEquals("Metálico") || metodo.contentEquals("Transferencia"))) {
             ret = false;
         }
         return ret;
@@ -103,34 +107,40 @@ public class Validaciones {
 
     public static boolean validarDNI(String dni) {
         boolean ret = true;
-        if (dni.isEmpty())
+        if (dni.isEmpty()) {
             ret = false;
-        
-        if (dni.length() != 9)
-            ret =false;
-            
-        if (dni.matches("[0-9]{7,8}[A-Z]")) 
+        }
+
+        if (dni.length() != 9) {
             ret = false;
-        
+        }
+
+        if (!dni.matches("[0-9]{7,8}[A-Z]")) {
+            ret = false;
+        }
 
         return ret;
     }
-    public static boolean validarCategoria(char categoria){
-        boolean ret = true;             
-            
-        if(categoria != 'A' || categoria != 'B' || categoria !=  'C')
+
+    public static boolean validarCategoria(char categoria) {
+        boolean ret = true;
+
+        if (categoria != 'A' || categoria != 'B' || categoria != 'C') {
             ret = false;
+        }
         return ret;
     }
-    
-     public static boolean validarrangoHorario(char rango){
-        boolean ret = true;             
-            
-        if(rango != 'M' || rango != 'm' || rango !=  'T' || rango !=  't')
+
+    public static boolean validarrangoHorario(char rango) {
+        boolean ret = true;
+
+        if (rango != 'M' || rango != 'm' || rango != 'T' || rango != 't') {
             ret = false;
+        }
         return ret;
-}
-/**
+    }
+
+    /**
      * Función que pide al usuario que introduzca un valor decimal por la
      * entrada estándar. Si el formato introducido no es correcto, avisa al
      * usuario y le vuelve a pedir que lo introduzca de nuevo.
@@ -146,7 +156,7 @@ public class Validaciones {
             in = new Scanner(System.in, "ISO-8859-1");
             try {
                 if (importe <= 0) {
-                correcto = false;
+                    correcto = false;
                 }
                 importe = in.nextDouble();
                 correcto = true;
@@ -157,5 +167,5 @@ public class Validaciones {
         } while (!correcto);
         return correcto;
     }
-     
+
 }

@@ -76,6 +76,12 @@ public class Secretariado extends Empleado {
        this.informes = informes;
              
    } 
+
+    @Override
+    public String toString() {
+        return  "ID: " + id + ". Nombre: " + nombre +" " + apellido + ", DNI: " + NIF+ ", dirección " + direccion+ ", Tlfn: " + tlfn + "años de experiencia: " + experiencia + "Listado de informes: " + informes;
+    }
+           
     /**
      * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
      * array de identificadores, y devuelve una sublista con los Cirujanos cuyos

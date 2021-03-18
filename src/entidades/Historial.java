@@ -59,7 +59,7 @@ public class Historial {
 
     @Override
     public String toString() {
-        return "Historial{" + "historia=" + historial + ", descripcion=" + descripcion + ", alergias=" + alergias + '}';
+        return "Nº de historia: " + historial + ". Descripcion: " + descripcion + ", Listado de alergias: " + alergias;
     }
     //METODOS
        /**

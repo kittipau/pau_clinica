@@ -47,6 +47,11 @@ public class Cirugia extends Empleado {
         this.tlfn = c.tlfn;
         this.especialidades = especialidades;
     }
+
+    @Override
+    public String toString() {
+        return   "ID: " + id + ". Nombre: " + nombre +" " + apellido + ", DNI: " + NIF+ ", dirección " + direccion+ ", Tlfn: " + tlfn + ". Especialidades: " + especialidades;
+   }
     
     
     /**

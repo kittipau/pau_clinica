@@ -126,6 +126,12 @@ public class Paciente {
         this.tratamientos = p.tratamientos;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " + id + ". Nombre: " + nombre + apellido + ", DNI: " + DNI + ", tlfn: " + tlfn + ", direccion: " + direccion + ". Listado de tratamientos: " + tratamientos + ", listado de citas: " + citas + ", historial: " + historial;
+    }
+
+    
     //Funcion para ver todos los pacientes//
     public static void verPacientes() {
         System.out.println("Listado de pacientes: ");

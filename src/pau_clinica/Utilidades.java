@@ -22,7 +22,7 @@ import java.time.LocalTime;
 public class Utilidades {
 
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss");
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public static final Empleado EMPLEADOS[] = {
         new Empleado(1, "Sara", "Garcia", "649678821", "72598327C", "C/Menendez Pelayo"),
@@ -139,25 +139,25 @@ public class Utilidades {
     public static final Cita CITAS[] = {
         //long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario
         new Cita(1, Date.valueOf(LocalDate.parse("22/09/2020", dateFormatter)), 'M', Time.valueOf(LocalTime.parse("08:35:00", timeFormatter)), SECRETARIOS[0], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{1})),
-        new Cita(2, Date.valueOf(LocalDate.parse("29/09/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("16:15:00", timeFormatter)), SECRETARIOS[0], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{0})),
-        new Cita(3, Date.valueOf(LocalDate.parse("4/10/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("16:15:00", timeFormatter)), SECRETARIOS[1], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{0})),
-        new Cita(4, Date.valueOf(LocalDate.parse("01/10/2020", dateFormatter)), 'M', Time.valueOf(LocalTime.parse("09:30:00", timeFormatter)), SECRETARIOS[0], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{1})),
-        new Cita(5, Date.valueOf(LocalDate.parse("13/10/2020", dateFormatter)), 'M', Time.valueOf(LocalTime.parse("11:30:00", timeFormatter)), SECRETARIOS[3], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
-        new Cita(6, Date.valueOf(LocalDate.parse("20/10/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
-        new Cita(7, Date.valueOf(LocalDate.parse("30/10/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
-        new Cita(8, Date.valueOf(LocalDate.parse("25/11/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
+        new Cita(2, Date.valueOf(LocalDate.parse("29/09/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("16:15:00", timeFormatter)), SECRETARIOS[0], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{3})),
+        new Cita(3, Date.valueOf(LocalDate.parse("14/10/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("16:15:00", timeFormatter)), SECRETARIOS[1], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{4})),
+        new Cita(4, Date.valueOf(LocalDate.parse("01/10/2020", dateFormatter)), 'M', Time.valueOf(LocalTime.parse("09:30:00", timeFormatter)), SECRETARIOS[0], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{1,3})),
+        new Cita(5, Date.valueOf(LocalDate.parse("13/10/2020", dateFormatter)), 'M', Time.valueOf(LocalTime.parse("11:30:00", timeFormatter)), SECRETARIOS[1], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{1})),
+        new Cita(6, Date.valueOf(LocalDate.parse("20/10/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{3})),
+        new Cita(7, Date.valueOf(LocalDate.parse("30/10/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{1})),
+        new Cita(8, Date.valueOf(LocalDate.parse("25/11/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[1], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
         new Cita(9, Date.valueOf(LocalDate.parse("01/12/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
-        new Cita(10, Date.valueOf(LocalDate.parse("06/12/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
-        new Cita(11, Date.valueOf(LocalDate.parse("30/11/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
-        new Cita(12, Date.valueOf(LocalDate.parse("30/12/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
-        new Cita(13, Date.valueOf(LocalDate.parse("30/12/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),};
+        new Cita(10, Date.valueOf(LocalDate.parse("06/12/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[0], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{1})),
+        new Cita(11, Date.valueOf(LocalDate.parse("30/11/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{3})),
+        new Cita(12, Date.valueOf(LocalDate.parse("30/12/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[0], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{2})),
+        new Cita(13, Date.valueOf(LocalDate.parse("30/12/2020", dateFormatter)), 'T', Time.valueOf(LocalTime.parse("18:45:00", timeFormatter)), SECRETARIOS[2], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{1})),};
 
     public static final int numCitas = CITAS.length;
 
     public static final Tratamiento TRATAMIENTOS[] = {
         new Tratamiento(1, "Revisión + empaste", Date.valueOf(LocalDate.parse("22/09/2020", dateFormatter)), true, COBROS[1], INFORMES[1], Cita.arrayde(Cita.convertir(CITAS), new int[]{1})),
         new Tratamiento(2, "Limpieza + blanqueamiento", Date.valueOf(LocalDate.parse("29/09/2020", dateFormatter)), true, COBROS[1], INFORMES[1], Cita.arrayde(Cita.convertir(CITAS), new int[]{2, 3})),
-        new Tratamiento(3, "Limpieza + empaste", Date.valueOf(LocalDate.parse("1/10/2020", dateFormatter)), true, COBROS[1], INFORMES[1], Cita.arrayde(Cita.convertir(CITAS), new int[]{4})),
+        new Tratamiento(3, "Limpieza + empaste", Date.valueOf(LocalDate.parse("01/10/2020", dateFormatter)), true, COBROS[1], INFORMES[1], Cita.arrayde(Cita.convertir(CITAS), new int[]{4})),
         new Tratamiento(4, "Endodoncia", Date.valueOf(LocalDate.parse("13/10/2020", dateFormatter)), true, COBROS[1], INFORMES[1], Cita.arrayde(Cita.convertir(CITAS), new int[]{5})),
         new Tratamiento(5, "Extracción", Date.valueOf(LocalDate.parse("20/10/2020", dateFormatter)), true, COBROS[1], INFORMES[1], Cita.arrayde(Cita.convertir(CITAS), new int[]{6})),
         new Tratamiento(6, "Revision periódica", Date.valueOf(LocalDate.parse("30/10/2020", dateFormatter)), true, COBROS[1], INFORMES[1], Cita.arrayde(Cita.convertir(CITAS), new int[]{7})),

@@ -85,6 +85,12 @@ public class Pago {
         this.cobro = p.cobro;
         this.metodoPago = p.metodoPago;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + " Importe: " + importe + "€" + " Fecha del pago: " + fechaPago + " Método de pago " + metodoPago + ". Corresponde al cobro " + cobro;
+    }
+     
     
     public static long nextIdPago() {
         long ret = 0;
@@ -129,9 +135,9 @@ public class Pago {
         long idCobro = -1;
         Cobro.verCobros();
         System.out.println("Introduce el id del cobro: ");
-        idCobro = in.nextLong();
-      // tontería  ret.setCobro(cobro.setId(idCobro));
-        
+        idCobro = in.nextLong();      
+        Cobro cobro = Cobro.buscarCobroporId(idCobro, Cobro.convertir(Utilidades.COBROS));
+        ret.setCobro(cobro);
         return ret;
     }
 

@@ -104,6 +104,12 @@ public class Tratamiento {
         this.informeGlobal = t.informeGlobal;
         this.citas = t.citas;
     }
+
+    @Override
+    public String toString() {
+        return  "ID: " + id + ", Tratamiento: " + nombre + ", fecha de incio: " + fechaInicio + ", consentimiento: " + consentimiento + ", cobro: " + cobro + ", informeGlobal: " + informeGlobal + ". Listado de citas: " + citas + '}';
+    }
+    
     
     //METODOS
     

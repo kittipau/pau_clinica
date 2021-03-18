@@ -72,4 +72,11 @@ public class Intervencion extends Cita {
         this.enfermeros = i.enfermeros;
     }
 
+    @Override
+    public String toString() {
+        return "Duración de la intervención: " + duracion + "minutos,  enfermeros: " + enfermeros + ", cirujanos: " + cirujanos + "/n ID: " + id + ". fecha: " + fecha + ", rangoHorario: " + rangoHorario + ", hora: " + hora + ", secretario: " + secretario + ", medicamentos recetados: " + medicamentos;
+    }
+    
+    
+
 }

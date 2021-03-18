@@ -13,12 +13,12 @@ import java.util.ArrayList;
  *
  * @author punib
  */
-public class Revision extends Cita{
+public class Revision extends Cita {
+
     private String anotacion; //<=40 caracteres alfanumericos
     private Cirugia cirugia;
-    
-    //getters
 
+    //getters
     public String getAnotacion() {
         return anotacion;
     }
@@ -52,11 +52,16 @@ public class Revision extends Cita{
         this.anotacion = anotacion;
         this.cirugia = cirugia;
     }
-    public Revision(Revision r){
-        this.anotacion=r.anotacion;
-        this.cirugia=r.cirugia;
-        
+
+    public Revision(Revision r) {
+        this.anotacion = r.anotacion;
+        this.cirugia = r.cirugia;
+
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Medicamentos recetados: " + medicamentos + ", anotaciones: " + anotacion + "Cirujano encargado de la revisión: " + cirugia + "/n ID: " + id + ". fecha: " + fecha + ", rangoHorario: " + rangoHorario + ", hora: " + hora + ", secretario: " + secretario + ", medicamentos recetados: " + medicamentos;
+    }
+
 }

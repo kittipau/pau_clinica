@@ -8,6 +8,8 @@ package entidades;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pau_clinica.Utilidades;
 import pau_clinica.Validaciones;
 
@@ -37,8 +39,13 @@ public class Cobro {
     }
 
 //setters
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long id) throws Exception {
+        if (Validaciones.validarId(id)) {
+            this.id = id;
+        } else {
+            throw new Exception("Id Inválido.");
+
+        }
     }
 
     public void setImporte(double importe) {
@@ -68,28 +75,34 @@ public class Cobro {
 
     @Override
     public String toString() {
-        return "Cobro{" + "id=" + id + ", importe=" + importe + ", FechaFin=" + FechaFin + '}';
+        return "ID: " + id + ", importe: " + importe + ", Fecha fin: " + FechaFin;
     }
 
     //METODO
     public static Cobro nuevoCobro() {
-        Cobro ret = new Cobro();
-        Scanner in = new Scanner(System.in);
-        long id = nextIdCobro();
-        ret.setId(id);
-        System.out.println("Introduce la fecha fin del cobro: ");
-        Date fecha = Utilidades.Fecha.nuevaFecha().conversorFecha();
-        ret.setFechaFin(fecha);
-        double importe = -1;
-        do {
-            System.out.println("Introduce el importe del cobro: ");
-            importe = in.nextDouble();
-            if (!Validaciones.validarDouble(importe)) {
-                System.out.println("Importe introducido inválido.");
-            }
-        } while (!Validaciones.validarDouble(importe));
-        ret.setImporte(importe);
 
+        Cobro ret = new Cobro();
+
+        try {
+            Scanner in = new Scanner(System.in);
+            long id = nextIdCobro();
+            ret.setId(id);
+            System.out.println("Introduce la fecha fin del cobro: ");
+            Date fecha = Utilidades.Fecha.nuevaFecha().conversorFecha();
+            ret.setFechaFin(fecha);
+            double importe = -1;
+            do {
+                System.out.println("Introduce el importe del cobro: ");
+                importe = in.nextDouble();
+                if (!Validaciones.validarDouble(importe)) {
+                    System.out.println("Importe introducido inválido.");
+                }
+            } while (!Validaciones.validarDouble(importe));
+            ret.setImporte(importe);
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         return ret;
     }
 
@@ -139,5 +152,16 @@ public class Cobro {
             System.out.println(Utilidades.COBROS[i]);
         }
 
+    }
+    
+      public static Cobro buscarCobroporId(long id, ArrayList<Cobro> cobros) {
+        Cobro ret = null;
+        for (Cobro c : Cobro.convertir(Utilidades.COBROS)) {
+            if (c.getId() == id) {
+                ret = c;
+                break;
+            }
+        }
+        return ret;
     }
 }

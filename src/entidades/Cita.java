@@ -97,7 +97,7 @@ public class Cita {
 
     @Override
     public String toString() {
-        return "Cita{" + "id=" + id + ", fecha=" + fecha + ", rangoHorario=" + rangoHorario + ", hora=" + hora + ", secretario=" + secretario + ", medicamentos=" + medicamentos + '}';
+        return "ID: " + id + ". fecha: " + fecha + ", rangoHorario: " + rangoHorario + ", hora: " + hora + ", secretario: " + secretario + ", medicamentos recetados: " + medicamentos;
     }
     
     

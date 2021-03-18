@@ -64,7 +64,7 @@ public class Alergia {
 
     @Override
     public String toString() {
-        return "Id alergia: " + id + "\n nombre= " + nombre + " \n historiales= " + historiales;
+        return "Id alergia: " + id + ", nombre: " + nombre + ", historiales: " + historiales;
     }
 
     //MÉTODOS

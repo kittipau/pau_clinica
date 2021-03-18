@@ -59,6 +59,12 @@ public class InformeGlobal {
         this.descripcion = i.descripcion;
         this.secretarios = i.secretarios;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + ". Descripcion: " + descripcion + ", Listado de secretarios=" + secretarios;
+    }
+    
     
      /**
      * Función que se le pasa una lista ArrayList<code>InformeGlobal</code> y un

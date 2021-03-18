@@ -93,6 +93,11 @@ public class Enfermeria extends Empleado {
        this.categoria = categoria;
              
    }
+   
+    @Override
+    public String toString() {
+        return   "ID: " + id + ". Nombre: " + nombre +" " + apellido + ", DNI: " + NIF+ ", dirección " + direccion+ ", Tlfn: " + tlfn +" , categoria: " + categoria;
+    }
  
    
    /**
