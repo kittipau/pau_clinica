@@ -11,21 +11,19 @@ import java.util.Scanner;
 import pau_clinica.Utilidades;
 import pau_clinica.Validaciones;
 
-
-
 /**
  *
  * @author punib
  */
 public class Cobro {
+
     private long id; // > 0 
     private double importe; // > 0 
-    private Date FechaFin; 
+    private Date FechaFin;
     //VAL: Todos los valores comprendidos entre el 01/01/2000 hasta el 31/12/2100
     //INVAL: Letras y caracteres especiales excepto “/"
 
     //getters
-
     public long getId() {
         return id;
     }
@@ -37,9 +35,8 @@ public class Cobro {
     public Date getFechaFin() {
         return FechaFin;
     }
-    
-//setters
 
+//setters
     public void setId(long id) {
         this.id = id;
     }
@@ -51,9 +48,8 @@ public class Cobro {
     public void setFechaFin(Date FechaFin) {
         this.FechaFin = FechaFin;
     }
-    
-    //Constructores
 
+    //Constructores
     public Cobro() {
     }
 
@@ -62,9 +58,9 @@ public class Cobro {
         this.importe = importe;
         this.FechaFin = FechaFin;
     }
-    
-    public Cobro (Cobro c){
-        
+
+    public Cobro(Cobro c) {
+
         this.id = c.id;
         this.importe = c.importe;
         this.FechaFin = c.FechaFin;
@@ -74,10 +70,8 @@ public class Cobro {
     public String toString() {
         return "Cobro{" + "id=" + id + ", importe=" + importe + ", FechaFin=" + FechaFin + '}';
     }
-    
-    
+
     //METODO
-    
     public static Cobro nuevoCobro() {
         Cobro ret = new Cobro();
         Scanner in = new Scanner(System.in);
@@ -85,23 +79,19 @@ public class Cobro {
         ret.setId(id);
         System.out.println("Introduce la fecha fin del cobro: ");
         Date fecha = Utilidades.Fecha.nuevaFecha().conversorFecha();
-        ret.setFechaFin(fecha);        
-        double importe =-1;
+        ret.setFechaFin(fecha);
+        double importe = -1;
         do {
             System.out.println("Introduce el importe del cobro: ");
             importe = in.nextDouble();
             if (!Validaciones.validarDouble(importe)) {
                 System.out.println("Importe introducido inválido.");
             }
-        }
-            while(!Validaciones.validarDouble(importe));
-            ret.setImporte(importe);
+        } while (!Validaciones.validarDouble(importe));
+        ret.setImporte(importe);
 
-            return ret;                   
-             }
-        
-        
-   
+        return ret;
+    }
 
     public static long nextIdCobro() {
         long ret = 0;
@@ -112,12 +102,10 @@ public class Cobro {
         return ret + 1;
     }
 
-    
-    
-      /**
-     * Función que se le pasa una lista ArrayList<code>Cobro</code> y un
-     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
-     * ids coinciden con los identificadores del array en la lista
+    /**
+     * Función que se le pasa una lista ArrayList<code>Cobro</code> y un array
+     * de identificadores, y devuelve una sublista con los Cirujanos cuyos ids
+     * coinciden con los identificadores del array en la lista
      *
      * @param lista de Cobros en las que buscar
      * @param ids array de ids de Cobros
@@ -135,7 +123,7 @@ public class Cobro {
         }
         return ret;
     }
-    
+
     public static final ArrayList<Cobro> convertir(Cobro[] array) {
         ArrayList<Cobro> ret = new ArrayList<Cobro>();
         for (Cobro i : array) {
@@ -143,5 +131,13 @@ public class Cobro {
         }
         return ret;
     }
-    
+
+    //Funcion para ver todos los cobros//
+    public static void verCobros() {
+        System.out.println("Listado de cobros: ");
+        for (int i = 0; i < Utilidades.numCobros; i++) {
+            System.out.println(Utilidades.COBROS[i]);
+        }
+
+    }
 }

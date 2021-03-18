@@ -6,6 +6,7 @@
 package entidades;
 
 import java.util.ArrayList;
+import pau_clinica.Utilidades;
 
 /**
  *
@@ -123,5 +124,35 @@ public class Paciente {
         this.historial = p.historial;
         this.citas = p.citas;
         this.tratamientos = p.tratamientos;
+    }
+
+    //Funcion para ver todos los pacientes//
+    public static void verPacientes() {
+        System.out.println("Listado de pacientes: ");
+        for (int i = 0; i < Utilidades.numPacientes; i++) {
+            System.out.println(Utilidades.PACIENTES[i]);
+        }
+    }
+    
+    
+    public static Empleado buscarEmpleadoPorIdd(int idEmpleado, ArrayList<Empleado> empleados) {
+        Empleado ret = null;
+        for (Empleado e : Empleado.convertir(Utilidades.EMPLEADOS)) {
+            if (e.getId() == idEmpleado) {
+                ret = e;
+                break;
+            }
+        }
+        return ret;
+        
+    }
+
+    
+    public static final ArrayList<Paciente> convertir(Paciente[] array) {
+        ArrayList<Paciente> ret = new ArrayList<Paciente>();
+        for (Paciente i : array) {
+            ret.add((Paciente) i);
+        }
+        return ret;
     }
 }

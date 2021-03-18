@@ -8,6 +8,7 @@ package entidades;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import pau_clinica.Utilidades;
 
 /**
  *
@@ -101,6 +102,18 @@ public class Cita {
     
     
 //METODOS
+    
+    
+    
+    
+        //Funcion para ver todas las citas//
+    public static void verCitas() {
+        System.out.println("Listado de citas: ");
+        for (int i = 0; i < Utilidades.numCitas; i++) {
+            System.out.println(Utilidades.CITAS[i]);
+        }
+
+    }
     
          /**
      * Función que se le pasa una lista ArrayList<code>Citas</code> y un

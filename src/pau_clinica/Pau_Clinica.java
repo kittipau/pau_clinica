@@ -25,7 +25,7 @@ public class Pau_Clinica {
         Scanner in = new Scanner(System.in);
 
         do {
-            menuPrincipal();
+            mostrarMenuPrincipal();
             in = new Scanner(System.in, "ISO-8859-1");
             op0 = in.nextInt();
             if (op0 < 0 || op0 > 3) {
@@ -73,10 +73,13 @@ public class Pau_Clinica {
                             case 0:
                                 continue;
                             case 1:
+                                Empleado.verEmpleados();
                                 break;
                             case 2:
+                                Empleado.nuevoEmpleado();
                                 break;
                             case 3:
+                               // Empleado.buscarEmpleados(empleados);
                                 break;
                         }
 
@@ -110,7 +113,7 @@ public class Pau_Clinica {
 
     }
 
-    private static void menuPrincipal() {
+    private static void mostrarMenuPrincipal() {
         System.out.println("Pulsa 1 para la gestión de pacientes.");
         System.out.println("Pulsa 2 para la gestión de empleados.");
         System.out.println("Pulsa 3 para la gestión de citas.");
@@ -128,8 +131,10 @@ public class Pau_Clinica {
     private static void menuEmpleados() {
         System.out.println("Pulsa 1 para ver empleados.");
         System.out.println("Pulsa 2 para crear un nuevo empleado.");
-        System.out.println("Pulsa 3 para buscar un empleado..");
+        System.out.println("Pulsa 3 para buscar un empleado.");
         System.out.println("Pulsa 0 para ir al menú principal.");
+         
+        
     }
 
     private static void menuCitas() {
