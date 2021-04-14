@@ -5,7 +5,11 @@
  */
 package entidades;
 
+import static entidades.Especialidad.nextIdEspecialidades;
 import java.util.ArrayList;
+import java.util.Scanner;
+import pau_clinica.Utilidades;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -21,8 +25,17 @@ public class Historial {
         return historial;
     }
 
-    public void setHistoria(long historia) {
-        this.historial = historia;
+    public void setHistorial(long historial) {
+        try {
+            if (Validaciones.validarId(historial)) {
+                this.historial = historial;
+            } else {
+                throw new Exception("Id Inválido: " + historial);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public String getDescripcion() {
@@ -30,7 +43,16 @@ public class Historial {
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        try {
+            if (Validaciones.validarTexto(descripcion)) {
+                this.descripcion = descripcion;
+            } else {
+                throw new Exception("Id Inválido: " + historial);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     public ArrayList<Alergia> getAlergias() {
@@ -61,8 +83,35 @@ public class Historial {
     public String toString() {
         return "Nº de historia: " + historial + ". Descripcion: " + descripcion + ", Listado de alergias: " + alergias;
     }
+
     //METODOS
-       /**
+    public static long nextHistorial() {
+        long ret = 0;
+        for (int i = 0; i < Utilidades.HISTORIALES.length; i++) {
+            if (Utilidades.HISTORIALES[i].historial > ret);
+            ret = Utilidades.HISTORIALES[i].historial;
+        }
+        return ret + 1;
+    }
+    
+    public static Historial nuevoHistorial() {
+        Historial ret = new Historial();
+        Scanner in = new Scanner(System.in, "ISO-8859-1");
+        long historial = nextHistorial();
+        ret.setHistorial(historial);
+        String descripcion = "";
+        do {
+            System.out.println("Introduce descripción: ");
+            descripcion = in.nextLine();
+            if (!Validaciones.validarTexto(descripcion));
+            System.out.println("El texto no es válido: " + descripcion);
+        } while (!Validaciones.validarTexto(descripcion));
+        ret.setDescripcion(descripcion);
+
+        return ret;
+    }
+
+    /**
      * Función que se le pasa una lista ArrayList<code>historial</code> y un
      * array de identificadores, y devuelve una sublista con los Historial cuyos
      * ids coinciden con los identificadores del array en la lista
@@ -83,7 +132,7 @@ public class Historial {
         }
         return ret;
     }
-    
+
     public static final ArrayList<Historial> convertir(Historial[] array) {
         ArrayList<Historial> ret = new ArrayList<Historial>();
         for (Historial i : array) {

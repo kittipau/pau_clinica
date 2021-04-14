@@ -8,7 +8,9 @@ package entidades;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Scanner;
 import pau_clinica.Utilidades;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -50,15 +52,32 @@ public class Cita {
 
     //setters
     public void setId(long id) {
-        this.id = id;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
-    public void setRangoHorario(char rangoHorario) {
-        this.rangoHorario = rangoHorario;
+    public void setRangoHorario(char rangoHorario)  {
+        try {
+            if (Validaciones.validarrangoHorario(rangoHorario)) {
+                this.rangoHorario = rangoHorario;
+            } else {
+                throw new Exception("Rango inválido: " + rangoHorario);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setHora(Time hora) {
@@ -78,13 +97,26 @@ public class Cita {
 
     }
 
-    public Cita(long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos) {
-        this.id = id;
-        this.fecha = fecha;
-        this.rangoHorario = rangoHorario;
-        this.hora = hora;
-        this.secretario = secretario;
-        this.medicamentos = medicamentos;
+    public Cita(long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos)  {
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+            this.fecha = fecha;
+
+            if (Validaciones.validarrangoHorario(rangoHorario)) {
+                this.rangoHorario = rangoHorario;
+            } else {
+                throw new Exception("Rango inválido: " + rangoHorario);
+            }
+            this.hora = hora;
+            this.secretario = secretario;
+            this.medicamentos = medicamentos;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Cita(Cita c) {
@@ -99,26 +131,57 @@ public class Cita {
     public String toString() {
         return "ID: " + id + ". fecha: " + fecha + ", rangoHorario: " + rangoHorario + ", hora: " + hora + ", secretario: " + secretario + ", medicamentos recetados: " + medicamentos;
     }
-    
-    
+
 //METODOS
-    
-    
-    
-    
-        //Funcion para ver todas las citas//
+    public static long nextIdCita() {
+        long ret = 0;
+        for (int i = 0; i < Utilidades.CITAS.length; i++) {
+            if (Utilidades.CITAS[i].id > ret);
+            ret = Utilidades.CITAS[i].id;
+        }
+        return ret + 1;
+    }
+
+    //Funcion para ver todas las citas//
     public static void verCitas() {
         System.out.println("Listado de citas: ");
         for (int i = 0; i < Utilidades.numCitas; i++) {
             System.out.println(Utilidades.CITAS[i]);
         }
-
     }
-    
-         /**
-     * Función que se le pasa una lista ArrayList<code>Citas</code> y un
-     * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
-     * ids coinciden con los identificadores del array en la lista
+
+    public static Cita nuevaCita() {
+        Cita ret = new Cita();
+        Scanner in = new Scanner(System.in, "ISO-8859-1");
+        long id = nextIdCita();
+        ret.setId(id);
+        Date fecha = Utilidades.Fecha.nuevaFecha().conversorFecha();
+        ret.setFecha(fecha);
+        char rangoHorario = 's';
+        do {
+            System.out.println("Introduce el rango horario (Mañana M, Tarde T: ");
+            rangoHorario = in.nextLine().charAt(0);
+            if (!Validaciones.validarrangoHorario(rangoHorario)) {
+                System.out.println("El valor es incorrecto. " + rangoHorario);
+            }
+        } while (Validaciones.validarrangoHorario(rangoHorario));
+
+        Time hora = Utilidades.Hora.nuevaHora().conversorHora();
+        ret.setHora(hora);
+
+        return ret;
+    }
+
+//         protected long id; // >0
+//    protected Date fecha; //VAL: Del 01/01/2000 hasta el 31/12/2100
+//    protected char rangoHorario; //caracteres M, m, T, t
+//    protected Time hora; // 
+//        
+//    }
+    /**
+     * Función que se le pasa una lista ArrayList<code>Citas</code> y un array
+     * de identificadores, y devuelve una sublista con los Cirujanos cuyos ids
+     * coinciden con los identificadores del array en la lista
      *
      * @param lista de Citas en las que buscar
      * @param ids array de ids de Citas
@@ -136,7 +199,7 @@ public class Cita {
         }
         return ret;
     }
-    
+
     public static final ArrayList<Cita> convertir(Cita[] array) {
         ArrayList<Cita> ret = new ArrayList<Cita>();
         for (Cita i : array) {
@@ -144,5 +207,5 @@ public class Cita {
         }
         return ret;
     }
-    
+
 }

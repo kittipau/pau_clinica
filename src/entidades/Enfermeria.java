@@ -6,6 +6,8 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -20,57 +22,19 @@ public class Enfermeria extends Empleado {
         return categoria;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public String getTlfn() {
-        return tlfn;
-    }
-
-    public String getNIF() {
-        return NIF;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
     //setters
     public void setCategoria(char categoria) {
-        this.categoria = categoria;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+        try {
+            if (Validaciones.validarCategoria(categoria)) {
+                this.categoria = categoria;
+            } else {
+                throw new Exception("Categoría inválida: " + categoria);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public void setTlfn(String tlfn) {
-        this.tlfn = tlfn;
-    }
-
-    public void setNIF(String NIF) {
-        this.NIF = NIF;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
     }
 
     //constructores
@@ -81,6 +45,7 @@ public class Enfermeria extends Empleado {
     public Enfermeria(char categoria, long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
         super(id, nombre, apellido, tlfn, NIF, direccion);
         this.categoria = categoria;
+
     }
 
     public Enfermeria(Enfermeria e) {
@@ -88,19 +53,34 @@ public class Enfermeria extends Empleado {
         this.categoria = e.categoria;
     }
 
-   public Enfermeria (Empleado e, char categoria){
-       super(e);
-       this.categoria = categoria;
-             
-   }
-   
+    public Enfermeria(Empleado e, char categoria) {
+        super(e);
+        this.categoria = categoria;
+
+    }
+
     @Override
     public String toString() {
-        return   "ID: " + id + ". Nombre: " + nombre +" " + apellido + ", DNI: " + NIF+ ", dirección " + direccion+ ", Tlfn: " + tlfn +" , categoria: " + categoria;
+        return "ID: " + id + ". Nombre: " + nombre + " " + apellido + ", DNI: " + NIF + ", dirección " + direccion + ", Tlfn: " + tlfn + " , categoria: " + categoria;
     }
- 
-   
-   /**
+
+    public static Enfermeria nuevoEnfermero() {
+        Empleado empleado = Empleado.nuevoEmpleado();
+        Scanner in = new Scanner(System.in, "ISO-8859-1");
+        char categoria = 't';
+        do {
+            System.out.println("Introduce la categoría 'A', 'B', 'C': ");
+            categoria = in.nextLine().charAt(0);
+            if (!Validaciones.validarCategoria(categoria)) {
+                System.out.println("Valor incorrecto: " + categoria);
+            }
+        } while (!Validaciones.validarCategoria(categoria));
+        Enfermeria ret = new Enfermeria(empleado, categoria);
+        return ret;
+
+    }
+
+    /**
      * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
      * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
      * ids coinciden con los identificadores del array en la lista
@@ -121,7 +101,7 @@ public class Enfermeria extends Empleado {
         }
         return ret;
     }
-    
+
     public static final ArrayList<Enfermeria> convertir(Enfermeria[] array) {
         ArrayList<Enfermeria> ret = new ArrayList<Enfermeria>();
         for (Enfermeria i : array) {
@@ -129,8 +109,5 @@ public class Enfermeria extends Empleado {
         }
         return ret;
     }
-    
-        
-        }
-    
-  
+
+}

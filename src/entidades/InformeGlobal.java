@@ -6,6 +6,9 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import pau_clinica.Utilidades;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -16,9 +19,8 @@ public class InformeGlobal {
     private long id; //VAL: > 0 
     private String descripcion; // min 10 caracteres, máximo 500
     private ArrayList<Secretariado> secretarios = new ArrayList<Secretariado>();
-    
-    //getters
 
+    //getters
     public long getId() {
         return id;
     }
@@ -30,15 +32,30 @@ public class InformeGlobal {
     public ArrayList<Secretariado> getSecretarios() {
         return secretarios;
     }
-    
-    //Setters
 
+    //Setters
     public void setId(long id) {
-        this.id = id;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        try {
+            if (Validaciones.validarTexto(descripcion)) {
+                this.descripcion = descripcion;
+            } else {
+                throw new Exception("Descripción inválida: " + descripcion);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setSecretarios(ArrayList<Secretariado> secretarios) {
@@ -50,10 +67,23 @@ public class InformeGlobal {
     }
 
     public InformeGlobal(long id, String descripcion, ArrayList<Secretariado> Secretarios) {
-        this.id = id;
-        this.descripcion = descripcion;
-        this.secretarios = secretarios;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+            if (Validaciones.validarTexto(descripcion)) {
+                this.descripcion = descripcion;
+            } else {
+                throw new Exception("Descripción inválida: " + descripcion);
+            }
+            this.secretarios = secretarios;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
+
     public InformeGlobal(InformeGlobal i) {
         this.id = i.id;
         this.descripcion = i.descripcion;
@@ -64,12 +94,40 @@ public class InformeGlobal {
     public String toString() {
         return "ID: " + id + ". Descripcion: " + descripcion + ", Listado de secretarios=" + secretarios;
     }
-    
-    
-     /**
+    //METODOS
+
+    public static long nextIdInforme() {
+        long ret = 0;
+        for (int i = 0; i < Utilidades.INFORMES.length; i++) {
+            if (Utilidades.INFORMES[i].id > ret);
+            ret = Utilidades.INFORMES[i].id;
+        }
+        return ret + 1;
+    }
+
+    public static InformeGlobal nuevoInforme() {
+        InformeGlobal ret = new InformeGlobal();
+        Scanner in = new Scanner(System.in, "ISO-8859-1");
+        long id = nextIdInforme();
+        ret.setId(id);
+        String descripcion = "";
+        do {
+            System.out.println("Introduce la descripción: ");
+            descripcion = in.nextLine();
+            if (!Validaciones.validarTexto(descripcion)) {
+                System.out.println("Valores incorrectos: " + descripcion);
+            }
+        } while (!Validaciones.validarTexto(descripcion));
+        ret.setDescripcion(descripcion);
+
+        return ret;
+
+    }
+
+    /**
      * Función que se le pasa una lista ArrayList<code>InformeGlobal</code> y un
-     * array de identificadores, y devuelve una sublista con los InformeGlobal cuyos
-     * ids coinciden con los identificadores del array en la lista
+     * array de identificadores, y devuelve una sublista con los InformeGlobal
+     * cuyos ids coinciden con los identificadores del array en la lista
      *
      * @param lista de Cirujanos en las que buscar
      * @param ids array de ids de Cirujanos
@@ -87,7 +145,7 @@ public class InformeGlobal {
         }
         return ret;
     }
-    
+
     public static final ArrayList<InformeGlobal> convertir(InformeGlobal[] array) {
         ArrayList<InformeGlobal> ret = new ArrayList<InformeGlobal>();
         for (InformeGlobal i : array) {

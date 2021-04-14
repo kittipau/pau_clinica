@@ -6,6 +6,8 @@
 package entidades;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -23,16 +25,25 @@ public class Secretariado extends Empleado {
 
     public ArrayList<InformeGlobal> getInformes() {
         return informes;
-            }
+    }
 
     public long getId() {
         return id;
     }
-    
-    //setters
 
+    //setters
     public void setExperiencia(int experiencia) {
-        this.experiencia = experiencia;
+        try {
+            if (Validaciones.validarEntero(experiencia)) {
+                this.experiencia = experiencia;
+
+            } else {
+                throw new Exception("Experiencia inválida: " + experiencia);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setInformes(ArrayList<InformeGlobal> informes) {
@@ -70,18 +81,41 @@ public class Secretariado extends Empleado {
         this.nombre = s.nombre;
         this.tlfn = s.tlfn;
     }
-           public Secretariado (Empleado e, int experiencia, ArrayList<InformeGlobal> informes ){
-       super(e);
-       this.experiencia = experiencia;
-       this.informes = informes;
-             
-   } 
+
+    public Secretariado(Empleado e, int experiencia, ArrayList<InformeGlobal> informes) {
+        super(e);
+        this.experiencia = experiencia;
+        this.informes = informes;
+    }
+
+    public Secretariado(Empleado e, int experiencia) {
+        super(e);
+        this.experiencia = experiencia;
+
+    }
 
     @Override
     public String toString() {
-        return  "ID: " + id + ". Nombre: " + nombre +" " + apellido + ", DNI: " + NIF+ ", dirección " + direccion+ ", Tlfn: " + tlfn + "años de experiencia: " + experiencia + "Listado de informes: " + informes;
+        return "ID: " + id + ". Nombre: " + nombre + " " + apellido + ", DNI: " + NIF + ", dirección " + direccion + ", Tlfn: " + tlfn + "años de experiencia: " + experiencia + "Listado de informes: " + informes;
     }
-           
+
+    public static Secretariado nuevoSecretario() {
+        int experiencia = -1;
+        Scanner in = new Scanner(System.in, "UTF-8859-1");
+        do {
+            System.out.println("Introduce la experiencia: ");
+            experiencia = in.nextInt();
+            if (!Validaciones.validarEntero(experiencia)) {
+                System.out.println("Experiencia inválida: ");
+            }
+
+        } while (!Validaciones.validarEntero(experiencia));
+
+        Empleado empleado = Empleado.nuevoEmpleado();
+        Secretariado ret = new Secretariado(empleado, experiencia);
+        return ret;
+    }
+
     /**
      * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
      * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
@@ -103,7 +137,7 @@ public class Secretariado extends Empleado {
         }
         return ret;
     }
-    
+
     public static final ArrayList<Secretariado> convertir(Secretariado[] array) {
         ArrayList<Secretariado> ret = new ArrayList<Secretariado>();
         for (Secretariado i : array) {
@@ -112,5 +146,4 @@ public class Secretariado extends Empleado {
         return ret;
     }
 
-    
 }

@@ -8,6 +8,8 @@ package entidades;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Scanner;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -29,7 +31,15 @@ public class Revision extends Cita {
     //setters
 
     public void setAnotacion(String anotacion) {
-        this.anotacion = anotacion;
+        try {
+            if (Validaciones.validarTexto(anotacion)) {
+                this.anotacion = anotacion;
+            } else {
+                throw new Exception("Anotación inválida:  " + anotacion);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setCirugia(Cirugia cirugia) {
@@ -62,6 +72,23 @@ public class Revision extends Cita {
     @Override
     public String toString() {
         return "Medicamentos recetados: " + medicamentos + ", anotaciones: " + anotacion + "Cirujano encargado de la revisión: " + cirugia + "/n ID: " + id + ". fecha: " + fecha + ", rangoHorario: " + rangoHorario + ", hora: " + hora + ", secretario: " + secretario + ", medicamentos recetados: " + medicamentos;
+    }
+
+    public static Revision nuevaRevision() {
+        Revision ret = new Revision();
+        Scanner in = new Scanner(System.in, "UTF-8859-1");
+        String anotacion = "";
+        do {
+            System.out.println("Introduce la anotación: ");
+            anotacion = in.nextLine();
+            if (!Validaciones.validarNombreDesc(anotacion)) {
+                System.out.println("Anotación inválida: " + anotacion);
+            }
+        } while (!Validaciones.validarNombreDesc(anotacion));
+        ret.setAnotacion(anotacion);
+
+        return ret;
+
     }
 
 }

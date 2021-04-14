@@ -8,6 +8,7 @@ package entidades;
 import java.util.ArrayList;
 import java.util.Scanner;
 import pau_clinica.Utilidades;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Alergia {
     private long id; // >0
     private String nombre; //Máximo 20 caracteres alfanuméricos
     private ArrayList<Historial> historiales = new ArrayList<Historial>();
+    private Medicamento medicamento;
 
     //getters
     public long getId() {
@@ -32,28 +34,66 @@ public class Alergia {
     public ArrayList<Historial> getHistoriales() {
         return historiales;
     }
-    //setters
 
+    public Medicamento getMedicamento() {
+        return medicamento;
+    }
+
+    //setters
     public void setId(long id) {
-        this.id = id;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        try {
+            if (Validaciones.validarNombre(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + nombre);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setHistoriales(ArrayList<Historial> historiales) {
         this.historiales = historiales;
     }
 
+    public void setMedicamento(Medicamento medicamento) {
+        this.medicamento = medicamento;
+    }
+
     //constructores
     public Alergia() {
     }
 
-    public Alergia(long id, String nombre, ArrayList<Historial> historiales) {
-        this.id = id;
-        this.nombre = nombre;
-        this.historiales = historiales;
+    public Alergia(long id, String nombre, ArrayList<Historial> historiales, Medicamento medicamento) {
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+            if (Validaciones.validarNombre(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + nombre);
+            }
+            this.historiales = historiales;
+            this.medicamento = medicamento;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     public Alergia(Alergia a) {
@@ -77,6 +117,26 @@ public class Alergia {
      * @param ids array de ids de Alergias
      * @return ArrayList<code>Alergia</code>
      */
+    
+      public static Alergia nuevoAlergia(){
+        Alergia ret = new Alergia();
+        Scanner in = new Scanner(System.in, "ISO-8859-1");      
+        ret.setId(nextIdAlergia());    
+        String nombre = null;
+       do{
+        System.out.println("Introduce el nombre del medicamento: ");
+        nombre = in.nextLine();
+        if(!Validaciones.validarNombMedicamento(nombre)){
+            System.out.println("Nombre inválido: ");}        
+       } while(!Validaciones.validarNombMedicamento(nombre));    
+         ret.setNombre(nombre);
+                  
+        return ret;
+    }
+      
+      
+     
+    
     public static ArrayList<Alergia> arrayde(ArrayList<Alergia> lista, int[] ids) {
         ArrayList<Alergia> ret = new ArrayList<Alergia>();
         for (int i = 0; i < ids.length; i++) {
@@ -108,24 +168,5 @@ public class Alergia {
         return ret + 1;
     }
 
-    public static Alergia nuevaAlergia(Historial h) {
-        Alergia ret = new Alergia();
-        Scanner in = new Scanner(System.in);        
-        long id = nextIdAlergia();
-        ret.setId(id);
-        System.out.println("Introduce el nombre");
-        String nombre =in.nextLine();
-        ret.setNombre(nombre);
-        ret.historiales.add(h);
-        return ret;
-    }
-        
-        
-        
-         
 
-     
-
-    };
-
-
+};

@@ -7,6 +7,7 @@ package entidades;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -18,12 +19,11 @@ public class Tratamiento {
     private String nombre; //<=40 caracteres alfanumericos
     private Date fechaInicio; //VAL: Del 01/01/2000 hasta el 31/12/2100
     private boolean consentimiento; //caracteres S, s, N, s
-    private Cobro cobro; 
-    private InformeGlobal informeGlobal; 
+    private Cobro cobro;
+    private InformeGlobal informeGlobal;
     private ArrayList<Cita> citas = new ArrayList<Cita>();
-    
-    //getters
 
+    //getters
     public long getId() {
         return id;
     }
@@ -54,11 +54,28 @@ public class Tratamiento {
     //setters
 
     public void setId(long id) {
-        this.id = id;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        try {
+            if (Validaciones.validarNombreDesc(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + id);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setFechaInicio(Date fechaInicio) {
@@ -80,9 +97,8 @@ public class Tratamiento {
     public void setCitas(ArrayList<Cita> citas) {
         this.citas = citas;
     }
-    
-    //consturctores
 
+    //consturctores
     public Tratamiento() {
     }
 
@@ -95,6 +111,7 @@ public class Tratamiento {
         this.informeGlobal = informeGlobal;
         this.citas = citas;
     }
+
     public Tratamiento(Tratamiento t) {
         this.id = t.id;
         this.nombre = t.nombre;
@@ -107,16 +124,14 @@ public class Tratamiento {
 
     @Override
     public String toString() {
-        return  "ID: " + id + ", Tratamiento: " + nombre + ", fecha de incio: " + fechaInicio + ", consentimiento: " + consentimiento + ", cobro: " + cobro + ", informeGlobal: " + informeGlobal + ". Listado de citas: " + citas + '}';
+        return "ID: " + id + ", Tratamiento: " + nombre + ", fecha de incio: " + fechaInicio + ", consentimiento: " + consentimiento + ", cobro: " + cobro + ", informeGlobal: " + informeGlobal + ". Listado de citas: " + citas + '}';
     }
-    
-    
+
     //METODOS
-    
-         /**
+    /**
      * Función que se le pasa una lista ArrayList<code>Tratamiento</code> y un
-     * array de identificadores, y devuelve una sublista con los Tratamientos cuyos
-     * ids coinciden con los identificadores del array en la lista
+     * array de identificadores, y devuelve una sublista con los Tratamientos
+     * cuyos ids coinciden con los identificadores del array en la lista
      *
      * @param lista de Tratamientos en las que buscar
      * @param ids array de ids de Tratamientos
@@ -134,7 +149,7 @@ public class Tratamiento {
         }
         return ret;
     }
-    
+
     public static final ArrayList<Tratamiento> convertir(Tratamiento[] array) {
         ArrayList<Tratamiento> ret = new ArrayList<Tratamiento>();
         for (Tratamiento i : array) {

@@ -10,6 +10,7 @@ import static java.lang.System.in;
 import java.util.ArrayList;
 import java.util.Scanner;
 import pau_clinica.Utilidades;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -28,27 +29,76 @@ public class Empleado {
     }
 
     public void setId(long id) {
-        this.id = id;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        try {
+            if (Validaciones.validarNombre(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + nombre);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        try {
+            if (Validaciones.validarNombre(apellido)) {
+                this.apellido = apellido;
+            } else {
+                throw new Exception("Apellido inválido: " + apellido);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setTlfn(String tlfn) {
-        this.tlfn = tlfn;
+        try {
+            if (Validaciones.validattlfn(tlfn)) {
+                this.tlfn = tlfn;
+            } else {
+                throw new Exception("Teléfono inválido: " + tlfn);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setNIF(String NIF) {
-        this.NIF = NIF;
+        try {
+            if (Validaciones.validarDNI(NIF)) {
+                this.NIF = NIF;
+            } else {
+                throw new Exception("NIF inválido: " + NIF);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        try {
+            if (Validaciones.validarDireccion(direccion)) {
+                this.direccion = direccion;
+            } else {
+                throw new Exception("Dirección inválida: " + direccion);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public long getId() {
@@ -76,11 +126,42 @@ public class Empleado {
     }
 
     public Empleado(long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.tlfn = tlfn;
-        this.NIF = NIF;
-        this.direccion = direccion;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+            if (Validaciones.validarNombre(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + nombre);
+            }
+
+            if (Validaciones.validarNombre(apellido)) {
+                this.apellido = apellido;
+            } else {
+                throw new Exception("Apellido inválido: " + apellido);
+            }
+            if (Validaciones.validattlfn(tlfn)) {
+                this.tlfn = tlfn;
+            } else {
+                throw new Exception("Teléfono inválido: " + tlfn);
+            }
+            if (Validaciones.validarDNI(NIF)) {
+                this.NIF = NIF;
+            } else {
+                throw new Exception("NIF inválido: " + NIF);
+            }
+            if (Validaciones.validarDireccion(direccion)) {
+                this.direccion = direccion;
+            } else {
+                throw new Exception("Dirección inválida: " + direccion);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     public Empleado(Empleado e) {
@@ -94,7 +175,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return   "ID: " + id + ". Nombre: " + nombre +" " + apellido + ", DNI: " + NIF+ ", dirección " + direccion+ ", Tlfn: " + tlfn ;
+        return "ID: " + id + ". Nombre: " + nombre + " " + apellido + ", DNI: " + NIF + ", dirección " + direccion + ", Tlfn: " + tlfn;
     }
 
     //MÉTODO
@@ -120,26 +201,57 @@ public class Empleado {
 
     public static Empleado nuevoEmpleado() {
         Empleado ret = new Empleado();
-        Scanner in = new Scanner(System.in);
-        long id = nextIdAlergia();
-        System.out.println("Introduce el nombre: ");
-        String nombre = in.nextLine();
+        Scanner in = new Scanner(System.in, "ISO-8859-1");
+        long id = nextIdEmpleado();
+        ret.setId(id);
+        String nombre = "";
+        do {
+            System.out.println("Introduce el nombre del empleado: ");
+            nombre = in.nextLine();
+            if (!Validaciones.validarNombre(nombre));
+            System.out.println("El nombre introducido no es válido." + nombre);
+
+        } while (!Validaciones.validarNombre(nombre));
         ret.setNombre(nombre);
-        System.out.println("Introduce el apellido: ");
-        String apellido = in.nextLine();
-        ret.setNombre(apellido);
-        System.out.println("Introduce el NIF: ");
-        String NIF = in.nextLine();
+        String apellido = "";
+        do {
+            System.out.println("Introduce el apellido del empleado: ");
+            apellido = in.nextLine();
+            if (!Validaciones.validarNombre(apellido));
+            System.out.println("El apellido introducido no es válido." + apellido);
+
+        } while (!Validaciones.validarNombre(apellido));
+        ret.setApellido(apellido);
+        String tlfn = "";
+        do {
+            System.out.println("Introduce el teléfono del empleado: ");
+            tlfn = in.nextLine();
+            if (!Validaciones.validarTlfn(tlfn));
+            System.out.println("El telefono introducido no es válido." + tlfn);
+
+        } while (!Validaciones.validarTlfn(tlfn));
+        ret.setTlfn(tlfn);
+        String NIF = "";
+        do {
+            System.out.println("Introduce el NIF del empleado: ");
+            NIF = in.nextLine();
+            if (!Validaciones.validarDNI(NIF));
+            System.out.println("El NIF introducido no es válido." + NIF);
+
+        } while (!Validaciones.validarDNI(NIF));
         ret.setNIF(NIF);
-        System.out.println("Introduce el teléfono: ");
-        String telefono = in.nextLine();
-        ret.setTlfn(telefono);
-        System.out.println("Introduce la dirección: ");
-        String direccion = in.nextLine();
+
+        String direccion = "";
+        do {
+            System.out.println("Introduce la direccion del empleado: ");
+            direccion = in.nextLine();
+            if (!Validaciones.validarDireccion(direccion));
+            System.out.println("La dirección introducida no es válida." + direccion);
+
+        } while (!Validaciones.validarDireccion(direccion));
         ret.setDireccion(direccion);
 
         return ret;
-
     }
 
     public static ArrayList<Empleado> arrayde(ArrayList<Empleado> lista, int[] ids) {

@@ -39,17 +39,29 @@ public class Cobro {
     }
 
 //setters
-    public void setId(long id) throws Exception {
-        if (Validaciones.validarId(id)) {
-            this.id = id;
-        } else {
-            throw new Exception("Id Inválido.");
+    public void setId(long id) {
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
 
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
     public void setImporte(double importe) {
-        this.importe = importe;
+        try {
+            if (Validaciones.validarDouble(importe)) {
+                this.importe = importe;
+            } else {
+                throw new Exception("Importe inválido: " + importe);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setFechaFin(Date FechaFin) {
@@ -60,10 +72,23 @@ public class Cobro {
     public Cobro() {
     }
 
-    public Cobro(long id, double importe, Date FechaFin) {
-        this.id = id;
-        this.importe = importe;
-        this.FechaFin = FechaFin;
+    public Cobro(long id, double importe, Date FechaFin)  {
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+
+            if (Validaciones.validarDouble(importe)) {
+                this.importe = importe;
+            } else {
+                throw new Exception("Importe inválido: " + importe);
+            }
+            this.FechaFin = FechaFin;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Cobro(Cobro c) {
@@ -153,8 +178,8 @@ public class Cobro {
         }
 
     }
-    
-      public static Cobro buscarCobroporId(long id, ArrayList<Cobro> cobros) {
+
+    public static Cobro buscarCobroporId(long id, ArrayList<Cobro> cobros) {
         Cobro ret = null;
         for (Cobro c : Cobro.convertir(Utilidades.COBROS)) {
             if (c.getId() == id) {

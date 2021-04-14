@@ -27,33 +27,42 @@ public class Cirugia extends Empleado {
     public Cirugia() {
     }
 
-    public Cirugia(Empleado e, ArrayList<Especialidad> especialidades) {
+    public Cirugia(Empleado e) {
         super(e);
-        this.especialidades = especialidades;        
     }
 
-    public Cirugia(long id, String nombre, String apellido, String tlfn, String NIF, String direccion, ArrayList<Especialidad> especialidades) {
+    public Cirugia(Empleado e, ArrayList<Especialidad> especialidades) {
+        super(e);
+        this.especialidades = especialidades;
+    }
+
+    public Cirugia(long id, String nombre, String apellido, String tlfn, String NIF, String direccion, ArrayList<Especialidad> especialidades) throws Exception {
         super(id, nombre, apellido, tlfn, NIF, direccion);
         this.especialidades = especialidades;
-        
-     }
-    
-    public Cirugia(Cirugia c){
+
+    }
+
+    public Cirugia(Cirugia c) {
         this.id = c.id;
         this.nombre = c.nombre;
         this.apellido = c.apellido;
-        this.NIF = c.NIF;        
-        this.direccion = c.direccion;    
+        this.NIF = c.NIF;
+        this.direccion = c.direccion;
         this.tlfn = c.tlfn;
         this.especialidades = especialidades;
     }
 
     @Override
     public String toString() {
-        return   "ID: " + id + ". Nombre: " + nombre +" " + apellido + ", DNI: " + NIF+ ", dirección " + direccion+ ", Tlfn: " + tlfn + ". Especialidades: " + especialidades;
-   }
-    
-    
+        return "ID: " + id + ". Nombre: " + nombre + " " + apellido + ", DNI: " + NIF + ", dirección " + direccion + ", Tlfn: " + tlfn + ". Especialidades: " + especialidades;
+    }
+
+    public static Cirugia nuevoCirujano() {
+        Empleado empleado = Empleado.nuevoEmpleado();
+        Cirugia ret = new Cirugia(empleado);
+        return ret;
+    }
+
     /**
      * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
      * array de identificadores, y devuelve una sublista con los Cirujanos cuyos
@@ -75,7 +84,7 @@ public class Cirugia extends Empleado {
         }
         return ret;
     }
-    
+
     public static final ArrayList<Cirugia> convertir(Cirugia[] array) {
         ArrayList<Cirugia> ret = new ArrayList<Cirugia>();
         for (Cirugia i : array) {

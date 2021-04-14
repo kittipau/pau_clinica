@@ -16,10 +16,10 @@ import java.util.Scanner;
  * @author punib
  */
 public class Pago {
-    
+
     private long id; // > 0 
     private Date fechaPago = Date.valueOf(LocalDate.now()); //// VALIDOS: Del 01/01/2000 hasta el 31/12/2100
-    
+
     private double importe; // > 0 
     private String metodoPago = "tarjeta"; //VAL: “tarjeta”, “metálico”, “transferencia”
     private Cobro cobro;
@@ -28,40 +28,65 @@ public class Pago {
     public long getId() {
         return id;
     }
-    
+
     public Date getFechaPago() {
         return fechaPago;
     }
-    
+
     public double getImporte() {
         return importe;
     }
-    
+
     public String getMetodoPago() {
         return metodoPago;
     }
-    
+
     public Cobro getCobro() {
         return cobro;
     }
     //setters
 
     public void setId(long id) {
-        this.id = id;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+
     public void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
-    
+
     public void setImporte(double importe) {
-        this.importe = importe;
+        try {
+            if (Validaciones.validarDouble(importe)) {
+                this.importe = importe;
+            } else {
+                throw new Exception("Importe inválido: " + importe);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+
     public void setMetodoPago(String metodopago) {
-        this.metodoPago = metodopago;
+        try {
+            if (Validaciones.validarMetodoPago(metodopago)) {
+                this.metodoPago = metodopago;
+            } else {
+                throw new Exception("Método de pago inválido: " + metodopago);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+
     public void setCobro(Cobro cobro) {
         this.cobro = cobro;
     }
@@ -69,16 +94,35 @@ public class Pago {
 
     public Pago() {
     }
-    
+
     public Pago(long id, Date fechaPago, double importe, String metodoPago, Cobro cobro) {
-        this.id = id;
-        this.fechaPago = fechaPago;
-        this.importe = importe;
-        this.cobro = cobro;
-        this.metodoPago = metodoPago;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+
+            this.fechaPago = fechaPago;
+            if (Validaciones.validarDouble(importe)) {
+                this.importe = importe;
+            } else {
+                throw new Exception("Importe inválido: " + importe);
+            }
+            this.cobro = cobro;
+            this.metodoPago = metodoPago;
+            if (Validaciones.validarMetodoPago(metodoPago)) {
+                this.metodoPago = metodoPago;
+            } else {
+                throw new Exception("Método de pago inválido: " + metodoPago);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
-    public Pago(Pago p) {
+
+
+public Pago(Pago p) {
         this.id = p.id;
         this.fechaPago = p.fechaPago;
         this.importe = p.importe;
@@ -87,11 +131,10 @@ public class Pago {
     }
 
     @Override
-    public String toString() {
+        public String toString() {
         return "ID: " + id + " Importe: " + importe + "€" + " Fecha del pago: " + fechaPago + " Método de pago " + metodoPago + ". Corresponde al cobro " + cobro;
     }
-     
-    
+
     public static long nextIdPago() {
         long ret = 0;
         for (int i = 0; i < Utilidades.PAGOS.length; i++) {
@@ -105,13 +148,12 @@ public class Pago {
     public static Pago nuevoPago() {
         Pago ret = new Pago();
         Scanner in = new Scanner(System.in);
-        
+
         long id = nextIdPago();
         ret.setId(id);
-        
         Date fecha = Date.valueOf(LocalDate.now());
         ret.setFechaPago(fecha);
-        
+
         double importe = -1;
         do {
             System.out.println("Introduce el importe: ");
@@ -121,7 +163,7 @@ public class Pago {
             }
         } while (!Validaciones.validarDouble(importe));
         ret.setImporte(importe);
-        
+
         String metodoPago = "";
         do {
             System.out.println("Introduce el método de pago: ");
@@ -131,16 +173,15 @@ public class Pago {
             }
         } while (!Validaciones.validarMetodoPago(metodoPago));
         ret.setMetodoPago(metodoPago);
-        
-        long idCobro = -1;
-        Cobro.verCobros();
-        System.out.println("Introduce el id del cobro: ");
-        idCobro = in.nextLong();      
-        Cobro cobro = Cobro.buscarCobroporId(idCobro, Cobro.convertir(Utilidades.COBROS));
-        ret.setCobro(cobro);
+
+//        long idCobro = -1;
+//        Cobro.verCobros();
+//        System.out.println("Introduce el id del cobro: ");
+//        idCobro = in.nextLong();
+//        Cobro cobro = Cobro.buscarCobroporId(idCobro, Cobro.convertir(Utilidades.COBROS));
+//        ret.setCobro(cobro);
         return ret;
     }
-
     /**
      * Función que se le pasa una lista ArrayList<code>Pago</code> y un array de
      * identificadores, y devuelve una sublista con los Pagos cuyos ids
@@ -178,5 +219,5 @@ public class Pago {
         }
         return ret;
     }
-    
+
 }

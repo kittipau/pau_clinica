@@ -104,13 +104,24 @@ public class Utilidades {
         new InformeGlobal(23, "Extracciones muelas juicio ", Secretariado.arraydeSecretarios(Secretariado.convertir(SECRETARIOS), new int[]{1, 3})),};
     public static final int numInformeGlobal = INFORMES.length;
 
-    public static final Alergia ALERGIAS[] = {
-        //long id, String nombre, ArrayList<Historial> historiales
-        new Alergia(1, "amoxicilina", new ArrayList<Historial>()),
-        new Alergia(2, "latex", new ArrayList<Historial>()),
-        new Alergia(3, "metronidazol", new ArrayList<Historial>()),
-        new Alergia(4, "espiramicina", new ArrayList<Historial>()),
-        new Alergia(5, "ibuprofeno", new ArrayList<Historial>())};
+   
+
+    public static Medicamento MEDICAMENTOS[] = {
+        //  long id, String nombre, String principioActivo, int dosismax, ArrayList<Cita> citas
+        new Medicamento(1, "Paracetamol", "Paracetamol", 1000, new ArrayList<Cita>()),
+        new Medicamento(2, "Spidifen", "Ibuprofeno", 1000, new ArrayList<Cita>()),
+        new Medicamento(3, "Paracetamol", "Paracetamol", 1000, new ArrayList<Cita>()),
+        new Medicamento(4, "Paracetamol", "Paracetamol", 1000, new ArrayList<Cita>()),
+        new Medicamento(5, "Paracetamol", "Paracetamol", 1000, new ArrayList<Cita>())};
+    public static final int numMedicamentos = MEDICAMENTOS.length;
+
+     public static final Alergia ALERGIAS[] = {
+        //long id, String nombre, ArrayList<Historial> historiales, medicamentos
+        new Alergia(1, "amoxicilina", new ArrayList<Historial>(), MEDICAMENTOS[1]),
+        new Alergia(2, "latex", new ArrayList<Historial>(), MEDICAMENTOS[2]),
+        new Alergia(3, "metronidazol", new ArrayList<Historial>(), MEDICAMENTOS[0]),
+        new Alergia(4, "espiramicina", new ArrayList<Historial>(), MEDICAMENTOS[3]),
+        new Alergia(5, "ibuprofeno", new ArrayList<Historial>(), MEDICAMENTOS[1])};
 
     public static final int numAlergias = ALERGIAS.length;
 
@@ -126,16 +137,6 @@ public class Utilidades {
         new Historial(9, " ", Alergia.arrayde(Alergia.convertir(ALERGIAS), new int[]{5}))};
 
     public static final int numHistoriales = HISTORIALES.length;
-
-    public static Medicamento MEDICAMENTOS[] = {
-        //  long id, String nombre, String principioActivo, int dosismax, ArrayList<Cita> citas
-        new Medicamento(1, "Paracetamol", "Paracetamol", 1000, new ArrayList<Cita>()),
-        new Medicamento(2, "Spidifen", "Ibuprofeno", 1000, new ArrayList<Cita>()),
-        new Medicamento(3, "Paracetamol", "Paracetamol", 1000, new ArrayList<Cita>()),
-        new Medicamento(4, "Paracetamol", "Paracetamol", 1000, new ArrayList<Cita>()),
-        new Medicamento(5, "Paracetamol", "Paracetamol", 1000, new ArrayList<Cita>())};
-    public static final int numMedicamentos = MEDICAMENTOS.length;
-
     public static final Cita CITAS[] = {
         //long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario
         new Cita(1, Date.valueOf(LocalDate.parse("22/09/2020", dateFormatter)), 'M', Time.valueOf(LocalTime.parse("08:35:00", timeFormatter)), SECRETARIOS[0], Medicamento.arrayde(Medicamento.convertir(MEDICAMENTOS), new int[]{1})),
@@ -315,7 +316,7 @@ public class Utilidades {
             this.segundo = s;
         }
 
-        public Time conversorFecha() {
+        public Time conversorHora() {
             java.sql.Time ret = new Time(this.hora, this.minuto, this.segundo);
             return ret;
         }

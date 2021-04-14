@@ -5,8 +5,11 @@
  */
 package entidades;
 
+import static entidades.Empleado.nextIdEmpleado;
 import java.util.ArrayList;
+import java.util.Scanner;
 import pau_clinica.Utilidades;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -63,27 +66,77 @@ public class Paciente {
     //setters
 
     public void setId(long id) {
-        this.id = id;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        try {
+            if (Validaciones.validarNombre(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + nombre);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        try {
+            if (Validaciones.validarNombre(apellido)) {
+                this.apellido = apellido;
+            } else {
+                throw new Exception("Apellido inválido: " + apellido);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setDNI(String DNI) {
-        this.DNI = DNI;
+        try {
+            if (Validaciones.validarDNI(DNI)) {
+                this.DNI = DNI;
+            } else {
+                throw new Exception("DNI inválido: " + DNI);
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setTlfn(String tlfn) {
-        this.tlfn = tlfn;
+        try {
+            if (Validaciones.validattlfn(tlfn)) {
+                this.tlfn = tlfn;
+            } else {
+                throw new Exception("Teléfono inválido: " + tlfn);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        try {
+            if (Validaciones.validarDireccion(direccion)) {
+                this.direccion = direccion;
+            } else {
+                throw new Exception("Dirección inválida: " + tlfn);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void setTratamientos(ArrayList<Tratamiento> tratamientos) {
@@ -103,15 +156,45 @@ public class Paciente {
     }
 
     public Paciente(long id, String nombre, String apellido, String DNI, String tlfn, String direccion, ArrayList<Tratamiento> tratamientos, ArrayList<Cita> citas, Historial historial) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.DNI = DNI;
-        this.tlfn = tlfn;
-        this.direccion = direccion;
-        this.historial = historial;
-        this.citas = citas;
-        this.tratamientos = tratamientos;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+
+            }
+            if (Validaciones.validarNombre(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + nombre);
+            }
+            if (Validaciones.validarNombre(apellido)) {
+                this.apellido = apellido;
+            } else {
+                throw new Exception("Apellido inválido: " + apellido);
+            }
+            if (Validaciones.validarDNI(DNI)) {
+                this.DNI = DNI;
+            } else {
+                throw new Exception("DNI inválido: " + DNI);
+            }
+            if (Validaciones.validattlfn(tlfn)) {
+                this.tlfn = tlfn;
+            } else {
+                throw new Exception("Teléfono inválido: " + tlfn);
+            }
+            if (Validaciones.validarDireccion(direccion)) {
+                this.direccion = direccion;
+            } else {
+                throw new Exception("Dirección inválida: " + tlfn);
+            }
+
+            this.historial = historial;
+            this.citas = citas;
+            this.tratamientos = tratamientos;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Paciente(Paciente p) {
@@ -131,7 +214,77 @@ public class Paciente {
         return "ID: " + id + ". Nombre: " + nombre + apellido + ", DNI: " + DNI + ", tlfn: " + tlfn + ", direccion: " + direccion + ". Listado de tratamientos: " + tratamientos + ", listado de citas: " + citas + ", historial: " + historial;
     }
 
-    
+    public static long nextIdPaciente() {
+        long ret = 0;
+        for (int i = 0; i < Utilidades.PACIENTES.length; i++) {
+            if (Utilidades.PACIENTES[i].id > ret);
+            ret = Utilidades.PACIENTES[i].id;
+        }
+        return ret + 1;
+    }
+
+    public static Paciente nuevoPaciente() {
+        Paciente ret = new Paciente();
+        Scanner in = new Scanner(System.in, "ISO-8859-1");
+        long id = nextIdPaciente();
+        ret.setId(id);
+        String nombre = "";
+        do {
+            System.out.println("Introduce el nombre del paciente: ");
+            nombre = in.nextLine();
+            if (!Validaciones.validarNombre(nombre));
+            System.out.println("El nombre introducido no es válido: " + nombre);
+
+        } while (!Validaciones.validarNombre(nombre));
+        ret.setNombre(nombre);
+        String apellido = "";
+        do {
+            System.out.println("Introduce el apellido del paciente: ");
+            apellido = in.nextLine();
+            if (!Validaciones.validarNombre(apellido));
+            System.out.println("El apellido introducido no es válido: " + apellido);
+
+        } while (!Validaciones.validarNombre(apellido));
+        ret.setApellido(apellido);
+
+        String NIF = "";
+        do {
+            System.out.println("Introduce el NIF del paciente: ");
+            NIF = in.nextLine();
+            if (!Validaciones.validarDNI(NIF));
+            System.out.println("El NIF introducido no es válido." + NIF);
+
+        } while (!Validaciones.validarDNI(NIF));
+        ret.setDNI(NIF);
+        String tlfn = "";
+        do {
+            System.out.println("Introduce el teléfono del paciente: ");
+            tlfn = in.nextLine();
+            if (!Validaciones.validarTlfn(tlfn));
+            System.out.println("El telefono introducido no es válido." + tlfn);
+
+        } while (!Validaciones.validarTlfn(tlfn));
+        ret.setTlfn(tlfn);
+
+        String direccion = "";
+        do {
+            System.out.println("Introduce la direccion del paciente: ");
+            direccion = in.nextLine();
+            if (!Validaciones.validarDireccion(direccion));
+            System.out.println("La dirección introducida no es válida." + direccion);
+
+        } while (!Validaciones.validarDireccion(direccion));
+        ret.setDireccion(direccion);
+
+        return ret;
+    }
+
+//    private long id; // >0 
+//    private String nombre; //<=15 caracteres alfanumericos
+//    private String apellido; //<=20 caracteres alfanumericos
+//    private String DNI; // VAL: 8 caracteres numéricos y 1 letra INVAL:!= 8 caracteres numéricos y 1 letra
+//    private String tlfn; // Máximo 9 caracteres numéricos
+//    private String direccion;// <=40 caracteres alfanumericos
     //Funcion para ver todos los pacientes//
     public static void verPacientes() {
         System.out.println("Listado de pacientes: ");
@@ -139,8 +292,7 @@ public class Paciente {
             System.out.println(Utilidades.PACIENTES[i]);
         }
     }
-    
-    
+
     public static Empleado buscarEmpleadoPorIdd(int idEmpleado, ArrayList<Empleado> empleados) {
         Empleado ret = null;
         for (Empleado e : Empleado.convertir(Utilidades.EMPLEADOS)) {
@@ -150,10 +302,9 @@ public class Paciente {
             }
         }
         return ret;
-        
+
     }
 
-    
     public static final ArrayList<Paciente> convertir(Paciente[] array) {
         ArrayList<Paciente> ret = new ArrayList<Paciente>();
         for (Paciente i : array) {
