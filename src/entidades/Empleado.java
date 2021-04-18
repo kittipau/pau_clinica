@@ -301,7 +301,7 @@ public class Empleado {
             op = in.nextInt();
             if (op < 0 || op > 3) {
                 System.out.println("\n Opcion incorrecta \n");
-                continue;
+                
             }
             switch (op) {
                 case 0:

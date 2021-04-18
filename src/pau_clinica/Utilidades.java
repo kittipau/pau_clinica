@@ -28,10 +28,10 @@ public class Utilidades {
         new Empleado(1, "Sara", "Garcia", "649678821", "72598327C", "C/Menendez Pelayo"),
         new Empleado(2, "Carlos", "Martinez", "649673821", "72598327N", "C/Venancio Bosco"),
         new Empleado(3, "David", "Lopez", "659678821", "73598327E", "C/Bajada el Chorrillo"),
-        new Empleado(4, "Hector", "Setien", "67789451", "7465372J", "C/vargas, 13"),
+        new Empleado(4, "Hector", "Setien", "677894451", "74653724J", "C/vargas"),
         new Empleado(5, "Sofia", "Santisteban", "649673821", "78566327R", "Barrio Llatazos"),
         new Empleado(6, "Nerea", "Gonzalez", "666777888", "72598327N", "C/Ignacio estus"),
-        new Empleado(7, "Jose", "Rodriguez", "607598547", "722567415E", "C/Venancio Bosco"),
+        new Empleado(7, "Jose", "Rodriguez", "607598547", "72256715E", "C/Venancio Bosco"),
         new Empleado(8, "Bella", "Rodriguez", "607598453", "72958632T", "C/belen"),
         new Empleado(9, "Mónica", "Perez", "690783036", "85632014F", "C/San ignacio"),
         new Empleado(10, "Pedro", "Setien", "664589674", "01257895G", "C/Javier Echevarría"),};
@@ -57,7 +57,7 @@ public class Utilidades {
         new Especialidad(1, "Odontopediatra", new ArrayList<Cirugia>()),
         new Especialidad(2, "Endodoncista", new ArrayList<Cirugia>()),
         new Especialidad(3, "Ortodoncistas", new ArrayList<Cirugia>()),
-        new Especialidad(4, "Cirujano maxilofacial", new ArrayList<Cirugia>()),
+        new Especialidad(4, "Cirujano", new ArrayList<Cirugia>()),
         new Especialidad(5, "Periodoncista", new ArrayList<Cirugia>())
     };
     public static final int numEspecialidades = ESPECIALIDADES.length;

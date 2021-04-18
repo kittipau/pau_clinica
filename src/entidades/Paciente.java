@@ -293,12 +293,105 @@ public class Paciente {
         }
     }
 
-    public static Empleado buscarEmpleadoPorIdd(int idEmpleado, ArrayList<Empleado> empleados) {
-        Empleado ret = null;
-        for (Empleado e : Empleado.convertir(Utilidades.EMPLEADOS)) {
-            if (e.getId() == idEmpleado) {
+     public static void buscarPacientes(ArrayList<Paciente> pacientes) {
+        Paciente buscado;
+        ArrayList<Paciente> encontrados;
+        Scanner in = new Scanner(System.in);
+        in = new Scanner(System.in, "ISO-8859-1");
+        int op = -1;
+        do {
+            buscado = null;
+            encontrados = new ArrayList<Paciente>();
+
+            System.out.println("Pula 1 para buscar por ID");
+            System.out.println("Pulsa 2 para buscar por nombre");
+            System.out.println("Pulsa 3 para buscar por NIF");
+            System.out.println("Pulsa 0 para salir");
+            op = in.nextInt();
+            if (op < 0 || op > 3) {
+                System.out.println("\n Opcion incorrecta \n");
+                continue;
+            }
+            switch (op) {
+                case 0:
+                    break;
+                case 1:
+                    System.out.println("Introduce el id del paciente: ");
+                    int idPac = in.nextInt();
+                    buscado = buscarPacientePorId(idPac, pacientes);
+                    if (buscado != null) {
+                        System.out.println("Paciente: ");
+                        System.out.println(buscado.getId() + ". " + buscado.getDNI() + ", " + buscado.getNombre() + ", " + buscado.getApellido() + ", " + buscado.getTlfn());
+
+                    } else {
+                        System.out.println("Paciente no encontrado.");
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("Introduce el nombre del paciente: ");
+                    String nombrePac = in.nextLine();
+                    encontrados = buscarPacientePorNombre(nombrePac, pacientes);
+                    if (encontrados.size() > 0) {
+                        System.out.println("Pacientes que coincuden: ");
+                        for (Paciente e : encontrados) {
+                            System.out.println(buscado.getNombre() + ", " + buscado.getId() + ". " + buscado.getApellido() + ", " + buscado.getTlfn());
+                        }
+                    }
+                    break;
+                case 3:
+                    System.out.println("Introduce el NIF del empleado: ");
+                    String nifPac = in.nextLine();
+                    encontrados = buscarPacienteporNIF(nifPac, pacientes);
+                    if (encontrados.size() > 0) {
+                        System.out.println("Empleados que coinciden: ");
+                        for (Paciente e : pacientes) {
+                            System.out.println(buscado.getDNI() + ", " + +buscado.getId() + ". " + buscado.getNombre() + ", " + buscado.getApellido() + ", " + buscado.getTlfn());
+                        }
+                        break;
+
+                    }
+            }
+
+        } while (op < 0 || op > 3);
+    }
+
+    public static Paciente buscarPacientePorId(int id, ArrayList<Paciente> pacientes) {
+        Paciente ret = null;
+        for (Paciente e : Paciente.convertir(Utilidades.PACIENTES)) {
+            if (e.getId() == id) {
                 ret = e;
                 break;
+            }
+        }
+        return ret;
+    }
+
+    public static ArrayList<Paciente> buscarPacientePorNombre(String nombre, ArrayList<Paciente> pacientes) {
+        ArrayList<Paciente> ret = new ArrayList<Paciente>();
+        for (Paciente e : Paciente.convertir(Utilidades.PACIENTES)) {
+            if (Utilidades.removeDiacriticalMarks(e.getNombre().toLowerCase()).contains(Utilidades.removeDiacriticalMarks(nombre.toLowerCase()))) {
+                ret.add(e);
+            }
+            if (e.getNombre().toLowerCase().contains(nombre.toLowerCase())) {
+                if (!ret.contains(e)) {
+                    ret.add(e);
+                }
+            }
+        }
+        return ret;
+    }
+
+    public static ArrayList<Paciente> buscarPacienteporNIF(String nif, ArrayList<Paciente> pacientes) {
+        ArrayList<Paciente> ret = new ArrayList<Paciente>();
+        for (Paciente e : Paciente.convertir(Utilidades.PACIENTES)) {
+            if (Utilidades.removeDiacriticalMarks(e.getDNI().toLowerCase()).contains(Utilidades.removeDiacriticalMarks(nif.toLowerCase()))) {
+                ret.add(e);
+            }
+            if (e.getDNI().toLowerCase().contains(nif.toLowerCase())) {
+                if (!ret.contains(e)) {
+                    ret.add(e);
+                }
             }
         }
         return ret;

@@ -78,7 +78,7 @@ public class Validaciones {
             ret = false;
         }
         for (char c : direccion.toCharArray()) {
-            if (!Character.isLetter(c) || c != ' ' || c != '/' || !Character.isDigit(c)) {
+            if (!Character.isLetter(c) && c != ' ' && c != '/' && !Character.isDigit(c)) {
                 ret = false;
                 break;
             }
@@ -160,7 +160,7 @@ public class Validaciones {
     public static boolean validarCategoria(char categoria) {
         boolean ret = true;
 
-        if (categoria != 'A' || categoria != 'B' || categoria != 'C') {
+        if (categoria != 'A' && categoria != 'B' && categoria != 'C') {
             ret = false;
         }
         return ret;
@@ -169,7 +169,7 @@ public class Validaciones {
     public static boolean validarrangoHorario(char rango) {
         boolean ret = true;
 
-        if (rango != 'M' || rango != 'm' || rango != 'T' || rango != 't') {
+        if (rango != 'M' && rango != 'm' && rango != 'T' && rango != 't') {
             ret = false;
         }
         return ret;

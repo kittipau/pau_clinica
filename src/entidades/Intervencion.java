@@ -65,14 +65,36 @@ public class Intervencion extends Cita {
 
     public Intervencion(Cita c, int duracion, ArrayList<Enfermeria> enfermeros, ArrayList<Cirugia> cirujanos) {
         super(c);
-        this.duracion = duracion;
+        try {
+            if (Validaciones.validarEntero(duracion)) {
+                this.duracion = duracion;
+
+            } else {
+                throw new Exception("Duración inválida: " + duracion);
+
+            }
+            this.enfermeros = enfermeros;
+            this.cirujanos = cirujanos;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         this.enfermeros = enfermeros;
         this.cirujanos = cirujanos;
     }
 
     public Intervencion(Cita c, int duracion) {
         super(c);
-        this.duracion = duracion;
+        try {
+            if (Validaciones.validarEntero(duracion)) {
+                this.duracion = duracion;
+
+            } else {
+                throw new Exception("Duración inválida: " + duracion);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Intervencion(int duracion, long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos) {
@@ -109,5 +131,13 @@ public class Intervencion extends Cita {
         Intervencion ret = new Intervencion(cita, duracion);
         return ret;
 
+    }
+    
+      public static final ArrayList<Intervencion> convertir(Intervencion[] array) {
+        ArrayList<Intervencion> ret = new ArrayList<Intervencion>();
+        for (Cita i : array) {
+            ret.add((Intervencion) i);
+        }
+        return ret;
     }
 }

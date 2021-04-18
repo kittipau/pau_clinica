@@ -44,18 +44,42 @@ public class Enfermeria extends Empleado {
 
     public Enfermeria(char categoria, long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
         super(id, nombre, apellido, tlfn, NIF, direccion);
-        this.categoria = categoria;
+         try {
+            if (Validaciones.validarCategoria(categoria)) {
+                this.categoria = categoria;
+            } else {
+                throw new Exception("Categoría inválida: " + categoria);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
 
     }
 
     public Enfermeria(Enfermeria e) {
         super(e);
-        this.categoria = e.categoria;
+         try {
+            if (Validaciones.validarCategoria(categoria)) {
+                this.categoria = categoria;
+            } else {
+                throw new Exception("Categoría inválida: " + categoria);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Enfermeria(Empleado e, char categoria) {
         super(e);
-        this.categoria = categoria;
+         try {
+            if (Validaciones.validarCategoria(categoria)) {
+                this.categoria = categoria;
+            } else {
+                throw new Exception("Categoría inválida: " + categoria);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
 
     }
 

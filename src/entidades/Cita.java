@@ -24,6 +24,7 @@ public class Cita {
     protected Time hora; // 
     protected Secretariado secretario;
     protected ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
+    protected long idTrat;
 
     //getters
     public long getId() {
@@ -68,7 +69,7 @@ public class Cita {
         this.fecha = fecha;
     }
 
-    public void setRangoHorario(char rangoHorario)  {
+    public void setRangoHorario(char rangoHorario) {
         try {
             if (Validaciones.validarrangoHorario(rangoHorario)) {
                 this.rangoHorario = rangoHorario;
@@ -97,7 +98,7 @@ public class Cita {
 
     }
 
-    public Cita(long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos)  {
+    public Cita(long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos) {
         try {
             if (Validaciones.validarId(id)) {
                 this.id = id;
@@ -169,6 +170,33 @@ public class Cita {
         Time hora = Utilidades.Hora.nuevaHora().conversorHora();
         ret.setHora(hora);
 
+        return ret;
+    }
+
+    public static void buscarCita(ArrayList<Cita> citas) {
+
+        Scanner in = new Scanner(System.in, "ISO-8859-1");
+        System.out.println("Introduce el id de la cita: ");
+        Cita ret = null;
+        int idCita = in.nextInt();
+        for (Cita e : Cita.convertir(Utilidades.CITAS)) {
+            if (e.getId() == idCita) {
+                ret = e;
+                System.out.println("Id: " + ret.getId() + ", fecha: " + ret.getFecha() + " , hora: " + ret.getHora() + ", rango Horario: " + ret.getRangoHorario());
+            }
+                   }
+    }
+
+    public static Cita buscarCitadoporId(int id, ArrayList<Cita> citas) {
+        Scanner in = new Scanner(System.in, "ISO-8859-1");
+        System.out.println("Introduce el id del empleado: ");
+        Cita ret = null;
+        for (Cita e : Cita.convertir(Utilidades.CITAS)) {
+            if (e.getId() == id) {
+                ret = e;
+                break;
+            }
+        }
         return ret;
     }
 

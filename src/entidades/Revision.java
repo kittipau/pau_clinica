@@ -53,19 +53,44 @@ public class Revision extends Cita {
 
     public Revision(String anotacion, Cirugia cirugia, long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos) {
         super(id, fecha, rangoHorario, hora, secretario, medicamentos);
-        this.anotacion = anotacion;
-        this.cirugia = cirugia;
+        try {
+            if (Validaciones.validarTexto(anotacion)) {
+                this.anotacion = anotacion;
+            } else {
+                throw new Exception("Anotación inválida:  " + anotacion);
+            }
+            this.cirugia = cirugia;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
     }
 
     public Revision(String anotacion, Cirugia cirugia, Cita c) {
         super(c);
-        this.anotacion = anotacion;
-        this.cirugia = cirugia;
+          try {
+            if (Validaciones.validarTexto(anotacion)) {
+                this.anotacion = anotacion;
+            } else {
+                throw new Exception("Anotación inválida:  " + anotacion);
+            }
+            this.cirugia = cirugia;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Revision(Revision r) {
-        this.anotacion = r.anotacion;
-        this.cirugia = r.cirugia;
+          try {
+            if (Validaciones.validarTexto(anotacion)) {
+                this.anotacion = anotacion;
+            } else {
+                throw new Exception("Anotación inválida:  " + anotacion);
+            }
+            this.cirugia = cirugia;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
 
     }
 
@@ -90,5 +115,11 @@ public class Revision extends Cita {
         return ret;
 
     }
-
+ public static final ArrayList<Revision> convertir(Revision[] array) {
+        ArrayList<Revision> ret = new ArrayList<Revision>();
+        for (Cita i : array) {
+            ret.add((Revision) i);
+        }
+        return ret;
+    }
 }

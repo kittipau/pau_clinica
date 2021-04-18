@@ -21,6 +21,7 @@ public class Alergia {
     private String nombre; //Máximo 20 caracteres alfanuméricos
     private ArrayList<Historial> historiales = new ArrayList<Historial>();
     private Medicamento medicamento;
+    private long idMed;
 
     //getters
     public long getId() {

@@ -7,6 +7,8 @@ package entidades;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import pau_clinica.Utilidades;
+import static pau_clinica.Utilidades.TRATAMIENTOS;
 import pau_clinica.Validaciones;
 
 /**
@@ -103,13 +105,27 @@ public class Tratamiento {
     }
 
     public Tratamiento(long id, String nombre, Date fechaInicio, boolean consentimiento, Cobro cobro, InformeGlobal informeGlobal, ArrayList<Cita> citas) {
-        this.id = id;
-        this.nombre = nombre;
-        this.fechaInicio = fechaInicio;
-        this.consentimiento = consentimiento;
-        this.cobro = cobro;
-        this.informeGlobal = informeGlobal;
-        this.citas = citas;
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+
+            if (Validaciones.validarNombreDesc(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + id);
+
+            }
+            this.fechaInicio = fechaInicio;
+            this.consentimiento = consentimiento;
+            this.cobro = cobro;
+            this.informeGlobal = informeGlobal;
+            this.citas = citas;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Tratamiento(Tratamiento t) {
@@ -120,6 +136,21 @@ public class Tratamiento {
         this.cobro = t.cobro;
         this.informeGlobal = t.informeGlobal;
         this.citas = t.citas;
+    }
+
+    public static Tratamiento nuevoTratamiento() {
+        Tratamiento ret = new Tratamiento();
+
+        return ret;
+    }
+
+    public static long nextIdTratamiento() {
+        long ret = 0;
+        for (int i = 0; i < Utilidades.TRATAMIENTOS.length; i++) {
+            if (Utilidades.TRATAMIENTOS[i].id > ret);
+            ret = Utilidades.TRATAMIENTOS[i].id;
+        }
+        return ret + 1;
     }
 
     @Override
