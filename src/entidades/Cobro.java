@@ -54,7 +54,7 @@ public class Cobro {
 
     public void setImporte(double importe) {
         try {
-            if (Validaciones.validarDouble(importe)) {
+            if (Validaciones.validarImporte(importe)) {
                 this.importe = importe;
             } else {
                 throw new Exception("Importe inválido: " + importe);
@@ -80,7 +80,7 @@ public class Cobro {
                 throw new Exception("Id Inválido: " + id);
             }
 
-            if (Validaciones.validarDouble(importe)) {
+            if (Validaciones.validarImporte(importe)) {
                 this.importe = importe;
             } else {
                 throw new Exception("Importe inválido: " + importe);
@@ -119,10 +119,10 @@ public class Cobro {
             do {
                 System.out.println("Introduce el importe del cobro: ");
                 importe = in.nextDouble();
-                if (!Validaciones.validarDouble(importe)) {
+                if (!Validaciones.validarImporte(importe)) {
                     System.out.println("Importe introducido inválido.");
                 }
-            } while (!Validaciones.validarDouble(importe));
+            } while (!Validaciones.validarImporte(importe));
             ret.setImporte(importe);
 
         } catch (Exception ex) {

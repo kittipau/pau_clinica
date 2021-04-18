@@ -132,7 +132,7 @@ public class Paciente {
             if (Validaciones.validarDireccion(direccion)) {
                 this.direccion = direccion;
             } else {
-                throw new Exception("Dirección inválida: " + tlfn);
+                throw new Exception("Dirección inválida: " + direccion);
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -186,7 +186,7 @@ public class Paciente {
             if (Validaciones.validarDireccion(direccion)) {
                 this.direccion = direccion;
             } else {
-                throw new Exception("Dirección inválida: " + tlfn);
+                throw new Exception("Dirección inválida: " + direccion);
             }
 
             this.historial = historial;
@@ -275,6 +275,7 @@ public class Paciente {
 
         } while (!Validaciones.validarDireccion(direccion));
         ret.setDireccion(direccion);
+        System.out.println("Se ha creado el paciente: "+ret);
 
         return ret;
     }

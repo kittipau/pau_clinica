@@ -169,7 +169,7 @@ public class Cita {
 
         Time hora = Utilidades.Hora.nuevaHora().conversorHora();
         ret.setHora(hora);
-
+        System.out.println("Se ha creado la cita: "+ret);
         return ret;
     }
 

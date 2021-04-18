@@ -80,8 +80,6 @@ public class Pau_Clinica {
 
         } while (op1 < 0 || op1 > 3);
 
-       
-       
     }
 
     private static void mostrarMenuPrincipal() {
@@ -171,22 +169,22 @@ public class Pau_Clinica {
             if (op < 0 || op > 3) {
                 System.out.println("\n Opción incorrecta:");
                 continue;
-                switch (op) {
-                    case 0:
-                        break;
-                    case 1:
-                        Empleado.verCitas();
-                        break;
-                    case 2:
-                        Cita.nuevaCita();
-                        break;
-                    case 3:
-                        Cita.buscarCitas(citas);
-                        break;
-
-                }
+            }
+            switch (op) {
+                case 0:
+                    break;
+                case 1:
+                    Cita.verCitas();
+                    break;
+                case 2:
+                    Cita.nuevaCita();
+                    break;
+                case 3:
+                    Cita.buscarCita(citas);
+                    break;
 
             }
-            while (op < 0 || op > 3);
 
-        }
+        } while (op < 0 || op > 3);
+    }
+}

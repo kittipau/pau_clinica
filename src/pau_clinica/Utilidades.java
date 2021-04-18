@@ -85,11 +85,11 @@ public class Utilidades {
     public static final int numCobros = COBROS.length;
 
     public static final Pago PAGOS[] = {
-        new Pago(100, Date.valueOf(LocalDate.parse("23/12/2020", dateFormatter)), 160, "tarjeta", COBROS[0]),
-        new Pago(101, Date.valueOf(LocalDate.parse("27/12/2020", dateFormatter)), 70, "metálico", COBROS[1]),
-        new Pago(102, Date.valueOf(LocalDate.parse("31/12/2020", dateFormatter)), 55, "tarjeta", COBROS[2]),
-        new Pago(103, Date.valueOf(LocalDate.parse("31/12/2020", dateFormatter)), 55, "tarjeta", COBROS[0]),
-        new Pago(104, Date.valueOf(LocalDate.parse("31/12/2020", dateFormatter)), 66, "transferencia", COBROS[3])
+        new Pago(100, Date.valueOf(LocalDate.parse("23/12/2020", dateFormatter)), 160, "Tarjeta", COBROS[0]),
+        new Pago(101, Date.valueOf(LocalDate.parse("27/12/2020", dateFormatter)), 70, "Metálico", COBROS[1]),
+        new Pago(102, Date.valueOf(LocalDate.parse("31/12/2020", dateFormatter)), 55, "Tarjeta", COBROS[2]),
+        new Pago(103, Date.valueOf(LocalDate.parse("31/12/2020", dateFormatter)), 55, "Tarjeta", COBROS[0]),
+        new Pago(104, Date.valueOf(LocalDate.parse("31/12/2020", dateFormatter)), 66, "Transferencia", COBROS[3])
     };
 
     public static final int numPagos = PAGOS.length;
@@ -193,14 +193,14 @@ public class Utilidades {
     public static final Paciente PACIENTES[] = {
         //long id, String nombre, String apellido, String DNI, String tlfn, String direccion, ArrayList<Tratamiento> tratamientos, ArrayList<Cita> citas, Historial historial
         new Paciente(1, "Susana", "Menendez", "22740599S", "942678544", "Barrio Llatazos, 13", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{1}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
-        new Paciente(2, "Jorge", "Lorenzo", "57896354T", "63598745", "B/ Lavapies, 79", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{2}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
+        new Paciente(2, "Jorge", "Lorenzo", "57896354T", "635498745", "B/ Lavapies, 79", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{2}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
         new Paciente(3, "Elsa", "Oslé", "22475599F", "942689657", "C/ Julio Urquijo,33", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{3}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
-        new Paciente(4, "Eder", "Aurrere", "72698534S", "944653298", "C/ Dr. Areilza, 3", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{4}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
-        new Paciente(5, "Miguel", "Sainz", "75698532T", "607659842", "Avda. Sabino Arana, 9", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{5}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
+        new Paciente(4, "Eder", "Aurrere", "72698534S", "944653298", "C/ Dr Areilza, 3", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{4}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
+        new Paciente(5, "Miguel", "Sainz", "75698532T", "607659842", "Avda/ Sabino Arana, 9", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{5}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
         new Paciente(6, "Pablo", "Diez", "12365479E", "699536874", "C/ julio mendoza, 66", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{6}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
-        new Paciente(7, "Ana", "Vazquez", "632598741S", "657945365", "C/ Santander, 1", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{7}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
-        new Paciente(8, "Hugo", "De Miguel", "423698741F", "698745385", "C/ republica de perú, 12", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{8}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
-        new Paciente(9, "Daniel", "Garcia", "365987456I", "663987541", "C/ Diego Lopez de Haro, 12", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{9}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),};
+        new Paciente(7, "Ana", "Vazquez", "63259874S", "657945365", "C/ Santander, 1", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{7}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
+        new Paciente(8, "Hugo", "De Miguel", "42369741F", "698745385", "C/ republica de perú, 12", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{8}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),
+        new Paciente(9, "Daniel", "Garcia", "36598756I", "663987541", "C/ Diego Lopez de Haro, 12", Tratamiento.arrayde(Tratamiento.convertir(TRATAMIENTOS), new int[]{9}), Cita.arrayde(Cita.convertir(CITAS), new int[]{1, 3}), HISTORIALES[1]),};
     public static final int numPacientes = PACIENTES.length;
 
     //fecha

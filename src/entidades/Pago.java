@@ -65,7 +65,7 @@ public class Pago {
 
     public void setImporte(double importe) {
         try {
-            if (Validaciones.validarDouble(importe)) {
+            if (Validaciones.validarImporte(importe)) {
                 this.importe = importe;
             } else {
                 throw new Exception("Importe inválido: " + importe);
@@ -104,7 +104,7 @@ public class Pago {
             }
 
             this.fechaPago = fechaPago;
-            if (Validaciones.validarDouble(importe)) {
+            if (Validaciones.validarImporte(importe)) {
                 this.importe = importe;
             } else {
                 throw new Exception("Importe inválido: " + importe);
@@ -158,10 +158,10 @@ public Pago(Pago p) {
         do {
             System.out.println("Introduce el importe: ");
             importe = in.nextDouble();
-            if (!Validaciones.validarDouble(importe)) {
+            if (!Validaciones.validarImporte(importe)) {
                 System.out.println("Importe introducido inválido: ");
             }
-        } while (!Validaciones.validarDouble(importe));
+        } while (!Validaciones.validarImporte(importe));
         ret.setImporte(importe);
 
         String metodoPago = "";

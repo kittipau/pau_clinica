@@ -250,7 +250,7 @@ public class Empleado {
 
         } while (!Validaciones.validarDireccion(direccion));
         ret.setDireccion(direccion);
-
+        System.out.println("Se ha creado el empleado: "+ret);
         return ret;
     }
 

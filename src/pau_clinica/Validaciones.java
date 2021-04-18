@@ -23,6 +23,9 @@ public class Validaciones {
     public static boolean validarEntero(int id) {
         return (id > 0);
     }
+    public static boolean validarImporte(double id) {
+        return (id > 0);
+    }
 
     public static boolean validarNombre(String nombre) {
         boolean ret = true;
@@ -61,7 +64,7 @@ public class Validaciones {
             ret = false;
         }
         for (char c : nombre.toCharArray()) {
-            if (!Character.isLetter(c) || c != ' ' || !Character.isDigit(c)) {
+            if (!Character.isLetter(c) && c != ' ' && !Character.isDigit(c)) {
                 ret = false;
                 break;
             }
@@ -78,7 +81,7 @@ public class Validaciones {
             ret = false;
         }
         for (char c : direccion.toCharArray()) {
-            if (!Character.isLetter(c) && c != ' ' && c != '/' && !Character.isDigit(c)) {
+            if (!Character.isLetter(c) && c != ' ' && c != '/' && c != ',' && !Character.isDigit(c)) {
                 ret = false;
                 break;
             }
@@ -182,25 +185,25 @@ public class Validaciones {
      *
      * @return el valor double introducido por el usuario
      */
-    public static boolean validarDouble(double importe) {
-        importe = 0.0;
-        boolean correcto = false;
-        Scanner in;
-        do {
-            System.out.println("Introduzca un valor decimal (xx.xx)");
-            in = new Scanner(System.in, "ISO-8859-1");
-            try {
-                if (importe <= 0) {
-                    correcto = false;
-                }
-                importe = in.nextDouble();
-                correcto = true;
-            } catch (InputMismatchException ime) {
-                System.out.println("Formato introducido incorrecto.");
-                correcto = false;
-            }
-        } while (!correcto);
-        return correcto;
-    }
+//    public static boolean validarDouble(double importe) {
+//        importe = 0.0;
+//        boolean correcto = false;
+//        Scanner in;
+//        do {
+//            System.out.println("Introduzca un valor decimal (xx.xx)");
+//            in = new Scanner(System.in, "ISO-8859-1");
+//            try {
+//                if (importe <= 0) {
+//                    correcto = false;
+//                }
+//                importe = in.nextDouble();
+//                correcto = true;
+//            } catch (InputMismatchException ime) {
+//                System.out.println("Formato introducido incorrecto.");
+//                correcto = false;
+//            }
+//        } while (!correcto);
+//        return correcto;
+//    }
 
 }
