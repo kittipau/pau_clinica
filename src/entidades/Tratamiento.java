@@ -24,7 +24,20 @@ public class Tratamiento {
     private Cobro cobro;
     private InformeGlobal informeGlobal;
     private ArrayList<Cita> citas = new ArrayList<Cita>();
+    private long idInforme;
+    private long idPaciente;
+    private long idCobro;
 
+    /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|nombre|apellido|tlfn|NIF|direccion|experiencia|idEmp
+     */
+    public String data(){
+        String ret;
+        ret = id + "|" + nombre + "|" + fechaInicio + "|" + consentimiento + "|" + idInforme + "|" + idPaciente + "|" + idCobro;
+        return ret;
+    }
+    
     //getters
     public long getId() {
         return id;
@@ -55,6 +68,54 @@ public class Tratamiento {
     }
     //setters
 
+    public long getIdInforme() {
+        return idInforme;
+    }
+
+    public void setIdInforme(long idInforme) {
+         try {
+            if (Validaciones.validarId(idInforme)) {
+                this.idInforme = idInforme;
+            } else {
+                throw new Exception("Id Inválido: " + idInforme);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public long getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(long idPaciente) {
+        try {
+            if (Validaciones.validarId(idPaciente)) {
+                this.idPaciente = idPaciente;
+            } else {
+                throw new Exception("Id Inválido: " + idPaciente);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public long getIdCobro() {
+        return idCobro;
+    }
+
+    public void setIdCobro(long idCobro) {
+         try {
+            if (Validaciones.validarId(idCobro)) {
+                this.idCobro = idCobro;
+            } else {
+                throw new Exception("Id Inválido: " + idCobro);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     public void setId(long id) {
         try {
             if (Validaciones.validarId(id)) {
@@ -128,6 +189,43 @@ public class Tratamiento {
         }
     }
 
+    public Tratamiento(long id, String nombre, Date fechaInicio, boolean consentimiento, long idCobro, long idPaciente, long idInforme ) {
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+
+            if (Validaciones.validarNombreDesc(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + id);
+
+            }
+            if (Validaciones.validarId(idPaciente)) {
+                this.idPaciente = idPaciente;
+            } else {
+                throw new Exception("Id Inválido: " + idPaciente);
+            }
+             if (Validaciones.validarId(idCobro)) {
+                this.idCobro = idCobro;
+            } else {
+                throw new Exception("Id Inválido: " + idCobro);
+            }
+              if (Validaciones.validarId(idInforme)) {
+                this.idInforme = idInforme;
+            } else {
+                throw new Exception("Id Inválido: " + idInforme);
+            }
+            this.fechaInicio = fechaInicio;
+            this.consentimiento = consentimiento;
+            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     public Tratamiento(Tratamiento t) {
         this.id = t.id;
         this.nombre = t.nombre;
@@ -158,6 +256,8 @@ public class Tratamiento {
         return "ID: " + id + ", Tratamiento: " + nombre + ", fecha de incio: " + fechaInicio + ", consentimiento: " + consentimiento + ", cobro: " + cobro + ", informeGlobal: " + informeGlobal + ". Listado de citas: " + citas + '}';
     }
 
+    
+    
     //METODOS
     /**
      * Función que se le pasa una lista ArrayList<code>Tratamiento</code> y un

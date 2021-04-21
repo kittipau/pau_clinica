@@ -17,7 +17,10 @@ public class Secretariado extends Empleado {
 
     private int experiencia; // >= 0
     private ArrayList<InformeGlobal> informes = new ArrayList<InformeGlobal>();
+    private long idEmp;
 
+     
+    
     //getters
     public int getExperiencia() {
         return experiencia;
@@ -25,6 +28,23 @@ public class Secretariado extends Empleado {
 
     public ArrayList<InformeGlobal> getInformes() {
         return informes;
+    }
+
+    public long getIdEmp() {
+        return idEmp;
+    }
+
+    public void setIdEmp(long idEmp) {
+        try {
+            if (Validaciones.validarId(idEmp)) {
+                this.idEmp = idEmp;
+            } else {
+                throw new Exception("Id Inválido: " + idEmp);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public long getId() {
@@ -63,6 +83,29 @@ public class Secretariado extends Empleado {
         super(id, nombre, apellido, tlfn, NIF, direccion);
         this.experiencia = experiencia;
         this.informes = informes;
+    }
+
+    public Secretariado(int experiencia, long id, String nombre, String apellido, String tlfn, String NIF, String direccion, ArrayList<InformeGlobal> informes, long idEmp) {
+        super(id, nombre, apellido, tlfn, NIF, direccion);
+        try {
+            if (Validaciones.validarEntero(experiencia)) {
+                this.experiencia = experiencia;
+
+            } else {
+                throw new Exception("Experiencia inválida: " + experiencia);
+
+            }
+            if (Validaciones.validarId(idEmp)) {
+                this.idEmp = idEmp;
+            } else {
+                throw new Exception("Id Inválido: " + idEmp);
+
+            }
+            this.informes = informes;
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public Secretariado(int experiencia, Empleado e, ArrayList<InformeGlobal> informes) {
@@ -116,6 +159,16 @@ public class Secretariado extends Empleado {
         return ret;
     }
 
+     /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|nombre|apellido|tlfn|NIF|direccion|experiencia|idEmp
+     */
+    public String data(){
+        String ret;
+        ret = super.id + "|" + super.nombre + "|" + super.apellido + "|" + super.tlfn + "|" + super.NIF + "|" + super.direccion + "|" + experiencia +"|"+idEmp;
+        return ret;
+    }
+    
     /**
      * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
      * array de identificadores, y devuelve una sublista con los Cirujanos cuyos

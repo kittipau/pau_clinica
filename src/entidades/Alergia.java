@@ -53,6 +53,24 @@ public class Alergia {
         }
     }
 
+    public long getIdMed() {
+        return idMed;
+    }
+
+    public void setIdMed(long idMed) {
+      try {
+            if (Validaciones.validarId(idMed)) {
+                this.idMed = idMed;
+            } else {
+                throw new Exception("Id Inválido: " + idMed);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    
+
     public void setNombre(String nombre) {
         try {
             if (Validaciones.validarNombre(nombre)) {
@@ -77,7 +95,7 @@ public class Alergia {
     public Alergia() {
     }
 
-    public Alergia(long id, String nombre, ArrayList<Historial> historiales, Medicamento medicamento) {
+    public Alergia(long id, String nombre, ArrayList<Historial> historiales, Medicamento medicamento, long idMed) {
         try {
             if (Validaciones.validarId(id)) {
                 this.id = id;
@@ -89,6 +107,12 @@ public class Alergia {
             } else {
                 throw new Exception("Nombre inválido: " + nombre);
             }
+            
+            if (Validaciones.validarId(idMed)) {
+                this.idMed = idMed;
+            } else {
+                throw new Exception("Id Inválido: " + idMed);
+            }
             this.historiales = historiales;
             this.medicamento = medicamento;
         } catch (Exception ex) {
@@ -96,7 +120,26 @@ public class Alergia {
         }
 
     }
+ public Alergia(long id, String nombre, ArrayList<Historial> historiales, Medicamento medicamento) {
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+            if (Validaciones.validarNombre(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + nombre);
+            }          
+                        
+            this.historiales = historiales;
+            this.medicamento = medicamento;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
 
+    }
     public Alergia(Alergia a) {
         this.id = a.id;
         this.nombre = a.nombre;
@@ -109,6 +152,19 @@ public class Alergia {
     }
 
     //MÉTODOS
+    /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|nombre|idMed
+     */
+    public String data(){
+        String ret;
+        ret = id + "|" + nombre + "|" + idMed;
+        return ret;
+    }
+            
+    
+    
+    
     /**
      * Función que se le pasa una lista ArrayList<code>Alergia</code> y un array
      * de identificadores, y devuelve una sublista con los Cirujanos cuyos ids

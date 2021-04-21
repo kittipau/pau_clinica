@@ -23,6 +23,26 @@ public class Pago {
     private double importe; // > 0 
     private String metodoPago = "tarjeta"; //VAL: “tarjeta”, “metálico”, “transferencia”
     private Cobro cobro;
+    private long idCobro;
+    
+    
+
+    public long getIdCobro() {
+        return idCobro;
+    }
+
+    public void setIdCobro(long idCobro) {
+        try {
+            if (Validaciones.validarId(idCobro)) {
+                this.idCobro = idCobro;
+            } else {
+                throw new Exception("Id Inválido: " + idCobro);
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     //getters
     public long getId() {
@@ -120,9 +140,38 @@ public class Pago {
             System.out.println(ex.getMessage());
         }
     }
+public Pago(long id, Date fechaPago, double importe, String metodoPago, long idCobro) {
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
 
-
-public Pago(Pago p) {
+            this.fechaPago = fechaPago;
+            if (Validaciones.validarImporte(importe)) {
+                this.importe = importe;
+            } else {
+                throw new Exception("Importe inválido: " + importe);
+            }
+            this.cobro = cobro;
+            this.metodoPago = metodoPago;
+            if (Validaciones.validarMetodoPago(metodoPago)) {
+                this.metodoPago = metodoPago;
+            } else {
+                throw new Exception("Método de pago inválido: " + metodoPago);
+            }
+            if (Validaciones.validarId(idCobro)) {
+                this.idCobro = idCobro;
+            } else {
+                throw new Exception("Id Inválido: " + idCobro);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    public Pago(Pago p) {
         this.id = p.id;
         this.fechaPago = p.fechaPago;
         this.importe = p.importe;
@@ -131,10 +180,20 @@ public Pago(Pago p) {
     }
 
     @Override
-        public String toString() {
+    public String toString() {
         return "ID: " + id + " Importe: " + importe + "€" + " Fecha del pago: " + fechaPago + " Método de pago " + metodoPago + ". Corresponde al cobro " + cobro;
     }
 
+     /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|fechaPago|Importe|metodoPago|idCobro
+     */
+    public String data(){
+        String ret;
+        ret = id +"|"+ fechaPago +"|"+ importe +"|"+ metodoPago +"|"+ idCobro;
+        return ret;
+    }
+    
     public static long nextIdPago() {
         long ret = 0;
         for (int i = 0; i < Utilidades.PAGOS.length; i++) {
@@ -182,6 +241,7 @@ public Pago(Pago p) {
 //        ret.setCobro(cobro);
         return ret;
     }
+
     /**
      * Función que se le pasa una lista ArrayList<code>Pago</code> y un array de
      * identificadores, y devuelve una sublista con los Pagos cuyos ids

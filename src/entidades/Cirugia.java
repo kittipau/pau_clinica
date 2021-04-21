@@ -7,6 +7,7 @@ package entidades;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import pau_clinica.Validaciones;
 
 /**
  *
@@ -14,7 +15,25 @@ import java.util.Scanner;
  */
 public class Cirugia extends Empleado {
 
+    private long idEmp;
     private ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
+
+    public long getIdEmp() {
+        return idEmp;
+    }
+
+    public void setIdEmp(long idEmp) {
+        try {
+            if (Validaciones.validarId(idEmp)) {
+                this.idEmp = idEmp;
+            } else {
+                throw new Exception("Id Inválido: " + idEmp);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public ArrayList<Especialidad> getEspecialidades() {
         return especialidades;
@@ -36,11 +55,44 @@ public class Cirugia extends Empleado {
         this.especialidades = especialidades;
     }
 
-    public Cirugia(long id, String nombre, String apellido, String tlfn, String NIF, String direccion, ArrayList<Especialidad> especialidades) throws Exception {
+    public Cirugia(Empleado e, ArrayList<Especialidad> especialidades, long idEmp) {
+        super(e);
+        try {
+            if (Validaciones.validarId(idEmp)) {
+                this.idEmp = idEmp;
+            } else {
+                throw new Exception("Id Inválido: " + idEmp);
+
+            }
+            this.especialidades = especialidades;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
+    public Cirugia(long id, String nombre, String apellido, String tlfn, String NIF, String direccion, ArrayList<Especialidad> especialidades)  {
         super(id, nombre, apellido, tlfn, NIF, direccion);
         this.especialidades = especialidades;
 
     }
+    
+       public Cirugia(long id, String nombre, String apellido, String tlfn, String NIF, String direccion, ArrayList<Especialidad> especialidades, long idEmp) {
+        super(id, nombre, apellido, tlfn, NIF, direccion);
+        try {
+            if (Validaciones.validarId(idEmp)) {
+                this.idEmp = idEmp;
+            } else {
+                throw new Exception("Id Inválido: " + idEmp);
+
+            }
+            this.especialidades = especialidades;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
 
     public Cirugia(Cirugia c) {
         this.id = c.id;
@@ -63,6 +115,17 @@ public class Cirugia extends Empleado {
         return ret;
     }
 
+    /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|nombre|apellido|tlfn|NIF|direccion|IdEmp
+     */
+    public String data(){
+        String ret;
+        ret = super.id + "|" + super.nombre + "|" + super.apellido + "|" + super.tlfn + "|" + super.NIF + "|" + super.direccion+"|"+idEmp;
+        return ret;
+    }
+   
+    
     /**
      * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un
      * array de identificadores, y devuelve una sublista con los Cirujanos cuyos

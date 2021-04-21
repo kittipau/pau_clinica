@@ -25,6 +25,60 @@ public class Cita {
     protected Secretariado secretario;
     protected ArrayList<Medicamento> medicamentos = new ArrayList<Medicamento>();
     protected long idTrat;
+    protected long idPaciente;
+    protected long idSecret;
+
+    public long getIdTrat() {
+        return idTrat;
+    }
+
+    public void setIdTrat(long idTrat) {
+        try {
+            if (Validaciones.validarId(idTrat)) {
+                this.idTrat = idTrat;
+            } else {
+                throw new Exception("Id Inválido: " + idTrat);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public long getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(long idPaciente) {
+        try {
+            if (Validaciones.validarId(idPaciente)) {
+                this.idPaciente = idPaciente;
+            } else {
+                throw new Exception("Id Inválido: " + idPaciente);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+   
+    public long getIdSecret() {
+        return idSecret;
+    }
+
+    public void setIdSecret(long idSecret) {
+         try {
+            if (Validaciones.validarId(idSecret)) {
+                this.idSecret = idSecret;
+            } else {
+                throw new Exception("Id Inválido: " + idSecret);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     //getters
     public long getId() {
@@ -119,6 +173,46 @@ public class Cita {
             System.out.println(ex.getMessage());
         }
     }
+     public Cita(long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos, long idTrat, long idPaciente, long idSecret) {
+   
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+            }
+            this.fecha = fecha;
+
+            if (Validaciones.validarrangoHorario(rangoHorario)) {
+                this.rangoHorario = rangoHorario;
+            } else {
+                throw new Exception("Rango inválido: " + rangoHorario);
+            }
+            this.hora = hora;
+            this.secretario = secretario;
+            this.medicamentos = medicamentos;
+             if (Validaciones.validarId(idTrat)) {
+                this.idTrat = idTrat;
+            } else {
+                throw new Exception("Id Inválido: " + idTrat);
+
+            }
+             if (Validaciones.validarId(idSecret)) {
+                this.idSecret = idSecret;
+            } else {
+                throw new Exception("Id Inválido: " + idSecret);
+
+            }
+             if (Validaciones.validarId(idSecret)) {
+                this.idSecret = idSecret;
+            } else {
+                throw new Exception("Id Inválido: " + idSecret);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public Cita(Cita c) {
         this.id = c.id;
@@ -134,6 +228,17 @@ public class Cita {
     }
 
 //METODOS
+    
+    /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|fecha|rangoHorario|hora|idSecret|idTrat|idPaciente
+     */
+    public String data(){
+        String ret;
+        ret = id +"|"+ fecha +"|"+ rangoHorario +"|"+ hora +"|"+ idSecret +"|"+ idTrat +"|"+ idPaciente;
+        return ret;
+    }
+    
     public static long nextIdCita() {
         long ret = 0;
         for (int i = 0; i < Utilidades.CITAS.length; i++) {
@@ -169,7 +274,7 @@ public class Cita {
 
         Time hora = Utilidades.Hora.nuevaHora().conversorHora();
         ret.setHora(hora);
-        System.out.println("Se ha creado la cita: "+ret);
+        System.out.println("Se ha creado la cita: " + ret);
         return ret;
     }
 
@@ -184,7 +289,7 @@ public class Cita {
                 ret = e;
                 System.out.println("Id: " + ret.getId() + ", fecha: " + ret.getFecha() + " , hora: " + ret.getHora() + ", rango Horario: " + ret.getRangoHorario());
             }
-                   }
+        }
     }
 
     public static Cita buscarCitadoporId(int id, ArrayList<Cita> citas) {

@@ -20,10 +20,12 @@ public class Historial {
     private long historial; // >0
     private String descripcion; // Máximo 40 caracteres alfanuméricos
     private ArrayList<Alergia> alergias = new ArrayList<Alergia>();
+    
 
     public long getHistoria() {
         return historial;
     }
+    //
 
     public void setHistorial(long historial) {
         try {
@@ -85,6 +87,17 @@ public class Historial {
     }
 
     //METODOS
+
+ /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return historial(PK)|descripcion
+     */
+    public String data(){
+        String ret;
+        ret = historial +"|"+ descripcion;
+        return ret;
+    }
+    
     public static long nextHistorial() {
         long ret = 0;
         for (int i = 0; i < Utilidades.HISTORIALES.length; i++) {

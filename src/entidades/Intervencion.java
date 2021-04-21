@@ -20,6 +20,94 @@ public class Intervencion extends Cita {
     protected int duracion;
     private ArrayList<Enfermeria> enfermeros = new ArrayList<Enfermeria>();
     private ArrayList<Cirugia> cirujanos = new ArrayList<Cirugia>();
+    private long idCita;
+    private long idEnf1;
+    private long idEnf2;
+    private long idCiru1;
+    private long idCiru2;
+
+    public long getIdCita() {
+        return idCita;
+    }
+
+    public void setIdCita(long idCita) {
+        try {
+            if (Validaciones.validarId(idCita)) {
+                this.idCita = idCita;
+            } else {
+                throw new Exception("Id Inválido: " + idCita);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void setIdEnf1(long idEnf1) {
+        try {
+            if (Validaciones.validarId(idEnf1)) {
+                this.idEnf1 = idEnf1;
+            } else {
+                throw new Exception("Id Inválido: " + idEnf1);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void setIdEnf2(long idEnf2) {
+        try {
+            if (Validaciones.validarId(idEnf2)) {
+                this.idEnf2 = idEnf2;
+            } else {
+                throw new Exception("Id Inválido: " + idEnf2);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void setIdCiru1(long idCiru1) {
+        try {
+            if (Validaciones.validarId(idCiru1)) {
+                this.idCiru1 = idCiru1;
+            } else {
+                throw new Exception("Id Inválido: " + idCiru1);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void setIdCiru2(long idCiru2) {
+        try {
+            if (Validaciones.validarId(idCiru2)) {
+                this.idCiru2 = idCiru2;
+            } else {
+                throw new Exception("Id Inválido: " + idCiru2);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public long getIdEnf1() {
+        return idEnf1;
+    }
+
+    public long getIdEnf2() {
+        return idEnf2;
+    }
+
+    public long getIdCiru1() {
+        return idCiru1;
+    }
+
+    public long getIdCiru2() {
+        return idCiru2;
+    }
 
     //getter
     public int getDuracion() {
@@ -82,6 +170,49 @@ public class Intervencion extends Cita {
         this.cirujanos = cirujanos;
     }
 
+    public Intervencion(Cita c, int duracion, long idCita, long idEnf1, long IdEnf2, long IdCiru1, long IdCiru2) {
+        super(c);
+        try {
+            if (Validaciones.validarEntero(duracion)) {
+                this.duracion = duracion;
+
+            } else {
+                throw new Exception("Duración inválida: " + duracion);
+
+            }
+            if (Validaciones.validarId(idCita)) {
+                this.idCita = idCita;
+            } else {
+                throw new Exception("Id Inválido: " + idCita);
+
+            }
+            if (Validaciones.validarId(idEnf1)) {
+                this.idEnf1 = idEnf1;
+            } else {
+                throw new Exception("Id Inválido: " + idEnf1);
+
+            }
+            if (Validaciones.validarId(idEnf2)) {
+                this.idEnf2 = idEnf2;
+            } else {
+                throw new Exception("Id Inválido: " + idEnf2);
+
+            }
+            if (Validaciones.validarId(idCiru1)) {
+                this.idCiru1 = idCiru1;
+            } else {
+                throw new Exception("Id Inválido: " + idCiru1);
+            }
+            if (Validaciones.validarId(idCiru2)) {
+                this.idCiru2 = idCiru2;
+            } else {
+                throw new Exception("Id Inválido: " + idCiru2);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
     public Intervencion(Cita c, int duracion) {
         super(c);
         try {
@@ -117,6 +248,20 @@ public class Intervencion extends Cita {
         return "Duración de la intervención: " + duracion + "minutos,  enfermeros: " + enfermeros + ", cirujanos: " + cirujanos + "/n ID: " + id + ". fecha: " + fecha + ", rangoHorario: " + rangoHorario + ", hora: " + hora + ", secretario: " + secretario + ", medicamentos recetados: " + medicamentos;
     }
 
+    
+     /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|fecha|rangoHorario|hora|idSecret|idTrat|idPaciente|duracion|idCita|idEnf1|idEnf2|idCiru1|idCiru2
+     */
+    public String data(){
+        String ret;
+        ret = super.id +"|"+ super.fecha +"|"+ super.rangoHorario +"|"+ super.hora +"|"+ super.idSecret +"|"+ super.idTrat +"|"+ super.idPaciente +"|"+ duracion  +"|"+ idCita +"|"+ idEnf1 +"|"+ idEnf2 +"|"+ idCiru1 +"|"+ idCiru2;
+        return ret;
+    }
+    
+  
+    
+    
     public static Intervencion nuevaIntervencion() {
         Cita cita = Cita.nuevaCita();
         Scanner in = new Scanner(System.in, "ISO-8859-1");
@@ -132,8 +277,8 @@ public class Intervencion extends Cita {
         return ret;
 
     }
-    
-      public static final ArrayList<Intervencion> convertir(Intervencion[] array) {
+
+    public static final ArrayList<Intervencion> convertir(Intervencion[] array) {
         ArrayList<Intervencion> ret = new ArrayList<Intervencion>();
         for (Cita i : array) {
             ret.add((Intervencion) i);

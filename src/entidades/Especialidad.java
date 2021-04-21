@@ -126,6 +126,16 @@ public class Especialidad {
 
     }
 
+     /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|nombre
+     */
+    public String data(){
+        String ret;
+        ret = id +"|"+ nombre;
+        return ret;
+    }
+    
     /**
      * Función que se le pasa una lista ArrayList<code>especialidad</code> y un
      * array de identificadores, y devuelve una sublista con los Cirujanos cuyos

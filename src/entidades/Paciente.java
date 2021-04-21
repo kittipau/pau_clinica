@@ -26,6 +26,7 @@ public class Paciente {
     private ArrayList<Tratamiento> tratamientos = new ArrayList<Tratamiento>();
     private ArrayList<Cita> citas = new ArrayList<Cita>();
     private Historial historial;
+    private long nHistoria;
 
     //getters
     public long getId() {
@@ -64,6 +65,23 @@ public class Paciente {
         return historial;
     }
     //setters
+
+    public long getnHistotia() {
+        return nHistoria;
+    }
+
+    public void setnHistotia(long nHistoria) {
+        try {
+            if (Validaciones.validarId(nHistoria)) {
+                this.nHistoria = nHistoria;
+            } else {
+                throw new Exception("Id Inválido: " + nHistoria);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public void setId(long id) {
         try {
@@ -155,7 +173,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(long id, String nombre, String apellido, String DNI, String tlfn, String direccion, ArrayList<Tratamiento> tratamientos, ArrayList<Cita> citas, Historial historial) {
+    public Paciente(long id, String nombre, String apellido, String DNI, String tlfn, String direccion, ArrayList<Tratamiento> tratamientos, ArrayList<Cita> citas, Historial historial, long nHistoria) {
         try {
             if (Validaciones.validarId(id)) {
                 this.id = id;
@@ -188,7 +206,54 @@ public class Paciente {
             } else {
                 throw new Exception("Dirección inválida: " + direccion);
             }
+            if (Validaciones.validarId(this.nHistoria)) {
+                this.nHistoria = this.nHistoria;
+            } else {
+                throw new Exception("Id Inválido: " + this.nHistoria);
 
+            }
+            this.historial = historial;
+            this.citas = citas;
+            this.tratamientos = tratamientos;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+     public Paciente(long id, String nombre, String apellido, String DNI, String tlfn, String direccion, ArrayList<Tratamiento> tratamientos, ArrayList<Cita> citas, Historial historial) {
+        try {
+            if (Validaciones.validarId(id)) {
+                this.id = id;
+            } else {
+                throw new Exception("Id Inválido: " + id);
+
+            }
+            if (Validaciones.validarNombre(nombre)) {
+                this.nombre = nombre;
+            } else {
+                throw new Exception("Nombre inválido: " + nombre);
+            }
+            if (Validaciones.validarNombre(apellido)) {
+                this.apellido = apellido;
+            } else {
+                throw new Exception("Apellido inválido: " + apellido);
+            }
+            if (Validaciones.validarDNI(DNI)) {
+                this.DNI = DNI;
+            } else {
+                throw new Exception("DNI inválido: " + DNI);
+            }
+            if (Validaciones.validattlfn(tlfn)) {
+                this.tlfn = tlfn;
+            } else {
+                throw new Exception("Teléfono inválido: " + tlfn);
+            }
+            if (Validaciones.validarDireccion(direccion)) {
+                this.direccion = direccion;
+            } else {
+                throw new Exception("Dirección inválida: " + direccion);
+            }
+            
             this.historial = historial;
             this.citas = citas;
             this.tratamientos = tratamientos;
@@ -275,8 +340,18 @@ public class Paciente {
 
         } while (!Validaciones.validarDireccion(direccion));
         ret.setDireccion(direccion);
-        System.out.println("Se ha creado el paciente: "+ret);
+        System.out.println("Se ha creado el paciente: " + ret);
 
+        return ret;
+    }
+    
+     /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|nombre|apellido|DNI|tlfn|direccion|nºHistoria
+     */
+    public String data(){
+        String ret;
+        ret = id +"|"+ nombre +"|"+ apellido +"|"+ DNI +"|"+ tlfn +"|"+ direccion +"|"+nHistoria;
         return ret;
     }
 
@@ -294,7 +369,7 @@ public class Paciente {
         }
     }
 
-     public static void buscarPacientes(ArrayList<Paciente> pacientes) {
+    public static void buscarPacientes(ArrayList<Paciente> pacientes) {
         Paciente buscado;
         ArrayList<Paciente> encontrados;
         Scanner in = new Scanner(System.in);

@@ -16,6 +16,7 @@ import pau_clinica.Validaciones;
 public class Enfermeria extends Empleado {
 
     private char categoria; //válidos "A", "B", "C"
+    private long idEmp;
 
     //getters
     public char getCategoria() {
@@ -36,7 +37,22 @@ public class Enfermeria extends Empleado {
         }
 
     }
+ public long getIdEmp() {
+        return idEmp;
+    }
 
+    public void setIdEmp(long idEmp) {
+        try {
+            if (Validaciones.validarId(idEmp)) {
+                this.idEmp = idEmp;
+            } else {
+                throw new Exception("Id Inválido: " + idEmp);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     //constructores
     public Enfermeria() {
         super();
@@ -44,7 +60,7 @@ public class Enfermeria extends Empleado {
 
     public Enfermeria(char categoria, long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
         super(id, nombre, apellido, tlfn, NIF, direccion);
-         try {
+        try {
             if (Validaciones.validarCategoria(categoria)) {
                 this.categoria = categoria;
             } else {
@@ -58,7 +74,7 @@ public class Enfermeria extends Empleado {
 
     public Enfermeria(Enfermeria e) {
         super(e);
-         try {
+        try {
             if (Validaciones.validarCategoria(categoria)) {
                 this.categoria = categoria;
             } else {
@@ -71,7 +87,7 @@ public class Enfermeria extends Empleado {
 
     public Enfermeria(Empleado e, char categoria) {
         super(e);
-         try {
+        try {
             if (Validaciones.validarCategoria(categoria)) {
                 this.categoria = categoria;
             } else {
@@ -103,6 +119,17 @@ public class Enfermeria extends Empleado {
         return ret;
 
     }
+    
+     /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|nombre|apellido|tlfn|NIF|direccion|categoria
+     */
+    public String data(){
+        String ret;
+        ret = super.id + "|" + super.nombre + "|" + super.apellido + "|" + super.tlfn + "|" + super.NIF + "|" + super.direccion + "|" + categoria+"|"+idEmp;
+        return ret;
+    }
+   
 
     /**
      * Función que se le pasa una lista ArrayList<code>Cirujano</code> y un

@@ -123,7 +123,16 @@ public class InformeGlobal {
         return ret;
 
     }
-
+ /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|descripción
+     */
+    public String data(){
+        String ret;
+        ret = id +"|"+ descripcion;
+        return ret;
+    }
+    
     /**
      * Función que se le pasa una lista ArrayList<code>InformeGlobal</code> y un
      * array de identificadores, y devuelve una sublista con los InformeGlobal

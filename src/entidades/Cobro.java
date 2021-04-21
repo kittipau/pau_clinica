@@ -21,7 +21,7 @@ public class Cobro {
 
     private long id; // > 0 
     private double importe; // > 0 
-    private Date FechaFin;
+    private Date FechaFin;    
     //VAL: Todos los valores comprendidos entre el 01/01/2000 hasta el 31/12/2100
     //INVAL: Letras y caracteres especiales excepto “/"
 
@@ -130,7 +130,17 @@ public class Cobro {
         }
         return ret;
     }
-
+    
+ /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|importe|fechafin
+     */
+    public String data(){
+        String ret;
+        ret = id +"|"+ importe +"|"+ FechaFin;
+        return ret;
+    }
+    
     public static long nextIdCobro() {
         long ret = 0;
         for (int i = 0; i < Utilidades.COBROS.length; i++) {

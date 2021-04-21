@@ -179,6 +179,18 @@ public class Empleado {
     }
 
     //MÉTODO
+    
+     /**
+     * Función que marca el orden de importación/exportación de los campos
+     * @return id(PK)|nombre|apellido|tlfn|NIF|direccion
+     */
+    public String data(){
+        String ret;
+        ret = id +"|"+ nombre +"|"+ apellido +"|"+ tlfn +"|"+ NIF +"|"+ direccion;
+        return ret;
+    }
+    
+    
     /**
      * Función que se le pasa una lista ArrayList<code>Empleado</code> y un
      * array de identificadores, y devuelve una sublista con los Empleados cuyos
