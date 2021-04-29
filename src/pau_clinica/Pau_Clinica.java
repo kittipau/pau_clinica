@@ -23,11 +23,13 @@ public class Pau_Clinica {
      */
         public static void main(String[] args) {
         
+          
+            
         Connection c = ConexionBD.establecerConexion();
             
-        EmpleadoDAO edao = new EmpleadoDAO();    
-        ArrayList<Empleado> todosEmple = edao.verTodosEmpleados() ; 
-        Empleado e = Empleado.nuevoEmpleado();
+//        EmpleadoDAO edao = new EmpleadoDAO();    
+//        ArrayList<Empleado> todosEmple = edao.verTodosEmpleados() ; 
+//        Empleado e = Empleado.nuevoEmpleado();
     
         
         
@@ -49,6 +51,8 @@ public class Pau_Clinica {
         ArrayList<Secretariado> secretarios = Secretariado.convertir(Utilidades.SECRETARIOS);
         ArrayList<Tratamiento> tratamientos = Tratamiento.convertir(Utilidades.TRATAMIENTOS);
 
+        
+  
 //        System.out.println(cirujanos);
 //
 //        boolean ret = Validaciones.validarMetodoPago("Tarjeta");

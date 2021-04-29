@@ -5,6 +5,10 @@
  */
 package entidades;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -62,13 +66,12 @@ public class Cita {
         }
     }
 
-   
     public long getIdSecret() {
         return idSecret;
     }
 
     public void setIdSecret(long idSecret) {
-         try {
+        try {
             if (Validaciones.validarId(idSecret)) {
                 this.idSecret = idSecret;
             } else {
@@ -173,8 +176,9 @@ public class Cita {
             System.out.println(ex.getMessage());
         }
     }
-     public Cita(long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos, long idTrat, long idPaciente, long idSecret) {
-   
+
+    public Cita(long id, Date fecha, char rangoHorario, Time hora, Secretariado secretario, ArrayList<Medicamento> medicamentos, long idTrat, long idPaciente, long idSecret) {
+
         try {
             if (Validaciones.validarId(id)) {
                 this.id = id;
@@ -191,19 +195,19 @@ public class Cita {
             this.hora = hora;
             this.secretario = secretario;
             this.medicamentos = medicamentos;
-             if (Validaciones.validarId(idTrat)) {
+            if (Validaciones.validarId(idTrat)) {
                 this.idTrat = idTrat;
             } else {
                 throw new Exception("Id Inválido: " + idTrat);
 
             }
-             if (Validaciones.validarId(idSecret)) {
+            if (Validaciones.validarId(idSecret)) {
                 this.idSecret = idSecret;
             } else {
                 throw new Exception("Id Inválido: " + idSecret);
 
             }
-             if (Validaciones.validarId(idSecret)) {
+            if (Validaciones.validarId(idSecret)) {
                 this.idSecret = idSecret;
             } else {
                 throw new Exception("Id Inválido: " + idSecret);
@@ -228,17 +232,17 @@ public class Cita {
     }
 
 //METODOS
-    
     /**
      * Función que marca el orden de importación/exportación de los campos
+     *
      * @return id(PK)|fecha|rangoHorario|hora|idSecret|idTrat|idPaciente
      */
-    public String data(){
+    public String data() {
         String ret;
-        ret = id +"|"+ fecha +"|"+ rangoHorario +"|"+ hora +"|"+ idSecret +"|"+ idTrat +"|"+ idPaciente;
+        ret = id + "|" + fecha + "|" + rangoHorario + "|" + hora + "|" + idSecret + "|" + idTrat + "|" + idPaciente;
         return ret;
     }
-    
+
     public static long nextIdCita() {
         long ret = 0;
         for (int i = 0; i < Utilidades.CITAS.length; i++) {
@@ -341,4 +345,37 @@ public class Cita {
         return ret;
     }
 
+         
+     /**
+     * Función a la que se le pasa el id del paciente y devuelve la lista 
+     * de citas en un archivo.dat
+     *
+     * @param idPaciente para buscar
+     * 
+     * @return void
+     */
+     public static void exportarCitasBinario(long idPaciente) {
+        String path = "citas.dat";
+        try {
+            FileOutputStream fichero = new FileOutputStream(path, true);
+            ObjectOutputStream escritor = new ObjectOutputStream(fichero);
+            for (Cita c : Utilidades.CITAS) {
+                if(idPaciente == c.getIdPaciente()){               
+               
+                escritor.writeObject((Cita) c);
+                escritor.flush();
+                 }
+            }
+            escritor.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Se ha producido una FileNotFoundException" + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Se ha producido una IOException" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Se ha producido una Exception" + e.getMessage());
+        }
+    }
+
 }
+    
+    

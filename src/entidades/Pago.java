@@ -5,6 +5,11 @@
  */
 package entidades;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import pau_clinica.*;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -279,5 +284,39 @@ public Pago(long id, Date fechaPago, double importe, String metodoPago, long idC
         }
         return ret;
     }
-
+    
+   private static void exportarAnimalesDeEdad(double importe) {
+        String path = "pagos.txt";
+        File fichero = new File(path);
+        FileWriter escritor = null;
+        PrintWriter buffer = null;
+        try {
+            try {
+                escritor = new FileWriter(fichero, true);
+                buffer = new PrintWriter(escritor);
+                buffer.print("Los pagos con importe superior a "+ importe + "son: ");
+                for (Pago p : Utilidades.PAGOS) {
+                    if (p.getImporte()>= importe) 
+                    {
+                        buffer.print(p.getId() + ": " + "Fecha: " + p.getFechaPago()+ "método de pago: "+ p.getMetodoPago()+ "Referente al cobro: "+ p.getIdCobro()+"\n");
+                    }
+                }
+            } finally {
+                if (buffer != null) {
+                    buffer.close();
+                }
+                if (escritor != null) {
+                    escritor.close();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Se ha producido una FileNotFoundException" + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Se ha producido una IOException" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Se ha producido una Exception" + e.getMessage());
+        }
+    }
+    
 }
+

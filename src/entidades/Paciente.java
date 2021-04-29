@@ -6,6 +6,11 @@
 package entidades;
 
 import static entidades.Empleado.nextIdEmpleado;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import pau_clinica.Utilidades;
@@ -219,8 +224,8 @@ public class Paciente {
             System.out.println(ex.getMessage());
         }
     }
-    
-     public Paciente(long id, String nombre, String apellido, String DNI, String tlfn, String direccion, ArrayList<Tratamiento> tratamientos, ArrayList<Cita> citas, Historial historial) {
+
+    public Paciente(long id, String nombre, String apellido, String DNI, String tlfn, String direccion, ArrayList<Tratamiento> tratamientos, ArrayList<Cita> citas, Historial historial) {
         try {
             if (Validaciones.validarId(id)) {
                 this.id = id;
@@ -253,7 +258,7 @@ public class Paciente {
             } else {
                 throw new Exception("Dirección inválida: " + direccion);
             }
-            
+
             this.historial = historial;
             this.citas = citas;
             this.tratamientos = tratamientos;
@@ -344,14 +349,15 @@ public class Paciente {
 
         return ret;
     }
-    
-     /**
+
+    /**
      * Función que marca el orden de importación/exportación de los campos
+     *
      * @return id(PK)|nombre|apellido|DNI|tlfn|direccion|nºHistoria
      */
-    public String data(){
+    public String data() {
         String ret;
-        ret = id +"|"+ nombre +"|"+ apellido +"|"+ DNI +"|"+ tlfn +"|"+ direccion +"|"+nHistoria;
+        ret = id + "|" + nombre + "|" + apellido + "|" + DNI + "|" + tlfn + "|" + direccion + "|" + nHistoria;
         return ret;
     }
 
@@ -473,5 +479,36 @@ public class Paciente {
             ret.add((Paciente) i);
         }
         return ret;
+    }
+
+    public static void exportarPacienteporID(long id, ArrayList<Paciente> pacientes) {
+        String path = "Paciente.txt";
+        File fichero = new File(path);
+        FileWriter escritor = null;
+        PrintWriter buffer = null;
+        try {
+            try {
+                escritor = new FileWriter(fichero, true);
+                buffer = new PrintWriter(escritor);
+                for (Paciente p : pacientes) {
+                    if (p.getId() == id) {
+                        buffer.print(p.data());
+                    }
+                }
+            } finally {
+                if (buffer != null) {
+                    buffer.close();
+                }
+                if (escritor != null) {
+                    escritor.close();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Se ha producido una FileNotFoundException" + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Se ha producido una IOException" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Se ha producido una Exception" + e.getMessage());
+        }
     }
 }

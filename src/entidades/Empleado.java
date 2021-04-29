@@ -9,8 +9,10 @@ import DAO.EmpleadoDAO;
 import static entidades.Alergia.nextIdAlergia;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import static java.lang.System.in;
 import java.util.ArrayList;
@@ -412,36 +414,32 @@ public class Empleado {
         return ret;
 
     }
+    /**
+     * Funcion que dado el id de un empleado devuelve un archivo.dat con sus datos.
+     *
+     * @param idemp identificador del empleado para buscar
+     * 
+     * @return void
+     */
+     public static void exportarEmpleadoBinario(long idemp) {
+        String path = "Empleado.dat";
+        try {
+            FileOutputStream fichero = new FileOutputStream(path, true);
+            ObjectOutputStream escritor = new ObjectOutputStream(fichero);
+            for (Empleado e : Utilidades.EMPLEADOS) {
+                if(idemp == e.getId())
+                escritor.writeObject((Empleado) e);
+                escritor.flush();
+            }
+            escritor.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Se ha producido una FileNotFoundException" + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Se ha producido una IOException" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Se ha producido una Exception" + e.getMessage());
+        }
+    }
 
-//    private static void exportarEmpleado(Empleado e) {
-//        String path = "Empleado.txt";
-//        File fichero = new File(path);
-//        FileWriter escritor = null;
-//        PrintWriter buffer = null;
-//        try {
-//            try {
-//                escritor = new FileWriter(fichero, true);
-//                buffer = new PrintWriter(escritor);
-//
-//                buffer.print(e.data());
-//
-//            } finally {
-//                if (buffer != null) {
-//                    buffer.close();
-//                }
-//                if (escritor != null) {
-//                    escritor.close();
-//                }
-//            }
-//        } catch (FileNotFoundException e) {
-//            System.out.println("Se ha producido una FileNotFoundException"
-//                    + e.getMessage());
-//        } catch (IOException e) {
-//            System.out.println("Se ha producido una IOException"
-//                    + e.getMessage());
-//        } catch (Exception e) {
-//            System.out.println("Se ha producido una Exception"
-//                    + e.getMessage());
-//        }
-//    }
+
 }

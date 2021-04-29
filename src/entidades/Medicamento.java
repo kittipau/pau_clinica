@@ -6,6 +6,11 @@
 package entidades;
 
 import static entidades.InformeGlobal.nextIdInforme;
+import java.io.EOFException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import pau_clinica.Utilidades;
@@ -223,4 +228,70 @@ public class Medicamento {
         }
         return ret;
     }
-}
+
+    public static Medicamento ImportarMedicamentosBinario(String path) {
+        Medicamento ret = new Medicamento();
+        FileInputStream lector = null;
+        ObjectInputStream lectorObjeto = null;
+        try {
+            try {
+                lector = new FileInputStream(path);
+                lectorObjeto = new ObjectInputStream(lector);
+                ret = (Medicamento) lectorObjeto.readObject();
+                System.out.println("" + ret);
+            } finally {
+                if (lectorObjeto != null) {
+                    lectorObjeto.close();
+                }
+                if (lector != null) {
+                    lector.close();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Se ha producido una FileNotFoundException" + e.getMessage());
+        } catch (EOFException e) {
+            System.out.println("Final de fichero");
+        } catch (IOException e) {
+            System.out.println("Se ha producido una IOException: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("Se ha producido una ClassNotFoundException" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Se ha producido una Exception" + e.getMessage());
+        }
+        return ret;
+    }
+    
+
+    public static Medicamento importarMedicamento(String path) {
+        Medicamento ret = new Medicamento();
+        FileInputStream lector = null;
+        ObjectInputStream lectorObjeto = null;
+        try {
+            try {
+                lector = new FileInputStream(path);
+                lectorObjeto = new ObjectInputStream(lector);
+                ret = (Medicamento) lectorObjeto.readObject();
+                System.out.println("" + ret);
+            } finally {
+                if (lectorObjeto != null) {
+                    lectorObjeto.close();
+                }
+                if (lector != null) {
+                    lector.close();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Se ha producido una FileNotFoundException" + e.getMessage());
+        } catch (EOFException e) {
+            System.out.println("Final de fichero");
+        } catch (IOException e) {
+            System.out.println("Se ha producido una IOException: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            System.out.println("Se ha producido una ClassNotFoundException" + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Se ha producido una Exception" + e.getMessage());
+        }
+        return ret;
+    }
+ }
+    
