@@ -5,7 +5,13 @@
  */
 package entidades;
 
+import DAO.EmpleadoDAO;
 import static entidades.Alergia.nextIdAlergia;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import static java.lang.System.in;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -179,18 +185,17 @@ public class Empleado {
     }
 
     //MÉTODO
-    
-     /**
+    /**
      * Función que marca el orden de importación/exportación de los campos
+     *
      * @return id(PK)|nombre|apellido|tlfn|NIF|direccion
      */
-    public String data(){
+    public String data() {
         String ret;
-        ret = id +"|"+ nombre +"|"+ apellido +"|"+ tlfn +"|"+ NIF +"|"+ direccion;
+        ret = id + "|" + nombre + "|" + apellido + "|" + tlfn + "|" + NIF + "|" + direccion;
         return ret;
     }
-    
-    
+
     /**
      * Función que se le pasa una lista ArrayList<code>Empleado</code> y un
      * array de identificadores, y devuelve una sublista con los Empleados cuyos
@@ -262,8 +267,15 @@ public class Empleado {
 
         } while (!Validaciones.validarDireccion(direccion));
         ret.setDireccion(direccion);
-        System.out.println("Se ha creado el empleado: "+ret);
-        return ret;
+        System.out.println("Se ha creado el empleado: " + ret);
+
+        EmpleadoDAO edao = new EmpleadoDAO();
+        boolean exito = edao.insertarEmpleado(ret);
+        if (exito) {
+            return ret;
+        } else {
+            return null;
+        }
     }
 
     public static ArrayList<Empleado> arrayde(ArrayList<Empleado> lista, int[] ids) {
@@ -313,7 +325,7 @@ public class Empleado {
             op = in.nextInt();
             if (op < 0 || op > 3) {
                 System.out.println("\n Opcion incorrecta \n");
-                
+
             }
             switch (op) {
                 case 0:
@@ -401,4 +413,35 @@ public class Empleado {
 
     }
 
+//    private static void exportarEmpleado(Empleado e) {
+//        String path = "Empleado.txt";
+//        File fichero = new File(path);
+//        FileWriter escritor = null;
+//        PrintWriter buffer = null;
+//        try {
+//            try {
+//                escritor = new FileWriter(fichero, true);
+//                buffer = new PrintWriter(escritor);
+//
+//                buffer.print(e.data());
+//
+//            } finally {
+//                if (buffer != null) {
+//                    buffer.close();
+//                }
+//                if (escritor != null) {
+//                    escritor.close();
+//                }
+//            }
+//        } catch (FileNotFoundException e) {
+//            System.out.println("Se ha producido una FileNotFoundException"
+//                    + e.getMessage());
+//        } catch (IOException e) {
+//            System.out.println("Se ha producido una IOException"
+//                    + e.getMessage());
+//        } catch (Exception e) {
+//            System.out.println("Se ha producido una Exception"
+//                    + e.getMessage());
+//        }
+//    }
 }

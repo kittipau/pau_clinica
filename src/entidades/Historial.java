@@ -18,7 +18,7 @@ import pau_clinica.Validaciones;
 public class Historial {
 
     private long historial; // >0
-    private String descripcion; // Máximo 40 caracteres alfanuméricos
+    private String descripcion; // Máximo 150 caracteres alfanuméricos
     private ArrayList<Alergia> alergias = new ArrayList<Alergia>();
     
 

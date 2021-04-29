@@ -355,13 +355,6 @@ public class Paciente {
         return ret;
     }
 
-//    private long id; // >0 
-//    private String nombre; //<=15 caracteres alfanumericos
-//    private String apellido; //<=20 caracteres alfanumericos
-//    private String DNI; // VAL: 8 caracteres numéricos y 1 letra INVAL:!= 8 caracteres numéricos y 1 letra
-//    private String tlfn; // Máximo 9 caracteres numéricos
-//    private String direccion;// <=40 caracteres alfanumericos
-    //Funcion para ver todos los pacientes//
     public static void verPacientes() {
         System.out.println("Listado de pacientes: ");
         for (int i = 0; i < Utilidades.numPacientes; i++) {

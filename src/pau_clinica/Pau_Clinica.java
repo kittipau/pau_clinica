@@ -5,7 +5,10 @@
  */
 package pau_clinica;
 
+import ConexionBD.ConexionBD;
 import entidades.*;
+import dao.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,7 +21,16 @@ public class Pau_Clinica {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+        public static void main(String[] args) {
+        
+        Connection c = ConexionBD.establecerConexion();
+            
+        EmpleadoDAO edao = new EmpleadoDAO();    
+        ArrayList<Empleado> todosEmple = edao.verTodosEmpleados() ; 
+        Empleado e = Empleado.nuevoEmpleado();
+    
+        
+        
         Scanner in = new Scanner(System.in, "ISO-8859-1");
         ArrayList<Alergia> alergias = Alergia.convertir(Utilidades.ALERGIAS);
         ArrayList<Cirugia> cirujanos = Cirugia.convertir(Utilidades.CIRUJANOS);

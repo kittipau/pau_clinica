@@ -352,4 +352,6 @@ public class Utilidades {
         return Normalizer.normalize(string, Normalizer.Form.NFC)
                 .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");}
 
+     
+     
 }
