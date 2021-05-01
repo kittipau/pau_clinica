@@ -82,7 +82,7 @@ public class RevisionDAO {
                 long idCita=e.getIdCita();
                 long idCiru=e.getIdCirujano();               
                 
-                String sql = "UPDATE ejemplares SET ";
+                String sql = "UPDATE Revision SET ";
                 sql += "anotacion=" + anotacion;
                 sql += ", idCita=" + idCita;
                 sql += ", idCirugia=" + idCiru;
