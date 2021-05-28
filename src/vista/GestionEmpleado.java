@@ -84,6 +84,11 @@ public class GestionEmpleado extends javax.swing.JFrame {
         jButton2.setText("Buscar");
 
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         insertarnuevoemple.setText("Crear");
         insertarnuevoemple.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +174,12 @@ public class GestionEmpleado extends javax.swing.JFrame {
             principal.setVisible(true);
             this.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        EliminarEmpleado eli = new EliminarEmpleado();
+        eli.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

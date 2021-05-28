@@ -8,6 +8,7 @@ package DAO;
 import ConexionBD.ConexionBD;
 import entidades.EmpleadoEnt;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -84,6 +85,35 @@ public class EmpleadoDAO {
         }
         
         return ret;
+    }
+    
+    public boolean eliminarEmpleado(int idEmpl) {
+        boolean ret = false;
+         try {
+            if (c == null || c.isClosed()) {
+                c = ConexionBD.establecerConexion();
+            }
+            try {
+                PreparedStatement pstmt = null;
+                pstmt = c.prepareStatement("DELETE FROM empleado WHERE id = ?");
+                pstmt.setString(1, String.valueOf(idEmpl));
+                pstmt.executeUpdate();
+                System.out.println("Se ha eliminado el empleado de la BD.");
+                ret = true;
+            } catch (SQLException ex) {
+                System.out.println("Se ha producido una SQLException:" + ex.getMessage());
+                Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println("El empleado no se ha eliminado de la BD.");
+            } finally {
+                if (c != null) {
+                    ConexionBD.cerrarConexion();
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return ret;
     }
 
 }

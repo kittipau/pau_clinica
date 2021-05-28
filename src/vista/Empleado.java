@@ -156,9 +156,9 @@ public class Empleado implements Serializable {
         return true;
     }
 
-    @Override
+   @Override
     public String toString() {
-        return "vista.Empleado[ id=" + id + " ]";
+        return "ID: " + id + ". Nombre: " + nombre + " " + apellido + ", DNI: " + nif;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

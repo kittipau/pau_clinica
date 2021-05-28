@@ -61,6 +61,8 @@ public class CobroDAO {
         } catch (SQLException ex) {
             Logger.getLogger(EmpleadoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
         return ret;
     }
 }
