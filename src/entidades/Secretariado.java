@@ -13,7 +13,7 @@ import pau_clinica.Validaciones;
  *
  * @author punib
  */
-public class Secretariado extends Empleado {
+public class Secretariado extends EmpleadoEnt {
 
     private int experiencia; // >= 0
     private ArrayList<InformeGlobal> informes = new ArrayList<InformeGlobal>();
@@ -108,7 +108,7 @@ public class Secretariado extends Empleado {
         }
     }
 
-    public Secretariado(int experiencia, Empleado e, ArrayList<InformeGlobal> informes) {
+    public Secretariado(int experiencia, EmpleadoEnt e, ArrayList<InformeGlobal> informes) {
         super(e);
         this.experiencia = experiencia;
         this.informes = informes;
@@ -125,13 +125,13 @@ public class Secretariado extends Empleado {
         this.tlfn = s.tlfn;
     }
 
-    public Secretariado(Empleado e, int experiencia, ArrayList<InformeGlobal> informes) {
+    public Secretariado(EmpleadoEnt e, int experiencia, ArrayList<InformeGlobal> informes) {
         super(e);
         this.experiencia = experiencia;
         this.informes = informes;
     }
 
-    public Secretariado(Empleado e, int experiencia) {
+    public Secretariado(EmpleadoEnt e, int experiencia) {
         super(e);
         this.experiencia = experiencia;
 
@@ -154,7 +154,7 @@ public class Secretariado extends Empleado {
 
         } while (!Validaciones.validarEntero(experiencia));
 
-        Empleado empleado = Empleado.nuevoEmpleado();
+        EmpleadoEnt empleado = EmpleadoEnt.nuevoEmpleado();
         Secretariado ret = new Secretariado(empleado, experiencia);
         return ret;
     }

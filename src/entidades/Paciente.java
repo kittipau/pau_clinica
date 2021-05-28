@@ -5,7 +5,7 @@
  */
 package entidades;
 
-import static entidades.Empleado.nextIdEmpleado;
+import static entidades.EmpleadoEnt.nextIdEmpleado;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

@@ -13,7 +13,7 @@ import pau_clinica.Validaciones;
  *
  * @author punib
  */
-public class Enfermeria extends Empleado {
+public class Enfermeria extends EmpleadoEnt {
 
     private char categoria; //válidos "A", "B", "C"
     private long idEmp;
@@ -85,7 +85,7 @@ public class Enfermeria extends Empleado {
         }
     }
 
-    public Enfermeria(Empleado e, char categoria) {
+    public Enfermeria(EmpleadoEnt e, char categoria) {
         super(e);
         try {
             if (Validaciones.validarCategoria(categoria)) {
@@ -105,7 +105,7 @@ public class Enfermeria extends Empleado {
     }
 
     public static Enfermeria nuevoEnfermero() {
-        Empleado empleado = Empleado.nuevoEmpleado();
+        EmpleadoEnt empleado = EmpleadoEnt.nuevoEmpleado();
         Scanner in = new Scanner(System.in, "ISO-8859-1");
         char categoria = 't';
         do {

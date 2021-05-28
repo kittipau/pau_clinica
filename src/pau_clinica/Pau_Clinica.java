@@ -7,7 +7,7 @@ package pau_clinica;
 
 import ConexionBD.ConexionBD;
 import entidades.*;
-import dao.*;
+import DAO.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,12 +24,22 @@ public class Pau_Clinica {
         public static void main(String[] args) {
         
           
-            
-        Connection c = ConexionBD.establecerConexion();
-            
-//        EmpleadoDAO edao = new EmpleadoDAO();    
-//        ArrayList<Empleado> todosEmple = edao.verTodosEmpleados() ; 
-//        Empleado e = Empleado.nuevoEmpleado();
+     // para probar la conexión       
+//        Connection c = ConexionBD.establecerConexion();
+//        ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+//        EmpleadoDAO empleadodao = new EmpleadoDAO();
+//        
+//         empleados = empleadodao.verTodosEmpleados();
+        EmpleadoEnt emplea = new EmpleadoEnt();
+        emplea = EmpleadoEnt.nuevoEmpleado();
+        
+        
+        EmpleadoDAO edao = new EmpleadoDAO();    
+        ArrayList<EmpleadoEnt> todosEmple = edao.verTodosEmpleados();
+            System.out.println(todosEmple);
+//        EmpleadoEnt e = EmpleadoEnt.nuevoEmpleado();
+        CobroDAO cdao = new CobroDAO();
+        ArrayList<Cobro> todosCobros = cdao.VerTodosCobros();
     
         
         
@@ -38,7 +48,7 @@ public class Pau_Clinica {
         ArrayList<Cirugia> cirujanos = Cirugia.convertir(Utilidades.CIRUJANOS);
         ArrayList<Cita> citas = Cita.convertir(Utilidades.CITAS);
         ArrayList<Cobro> cobros = Cobro.convertir(Utilidades.COBROS);
-        ArrayList<Empleado> empledos = Empleado.convertir(Utilidades.EMPLEADOS);
+        ArrayList<EmpleadoEnt> empledos = EmpleadoEnt.convertir(Utilidades.EMPLEADOS);
         ArrayList<Enfermeria> enfermeros = Enfermeria.convertir(Utilidades.ENFERMEROS);
         ArrayList<Especialidad> especialidades = Especialidad.convertir(Utilidades.ESPECIALIDADES);
         ArrayList<Historial> historiales = Historial.convertir(Utilidades.HISTORIALES);
@@ -142,7 +152,7 @@ public class Pau_Clinica {
 
     private static void menuEmpleados() {
         int op = -1;
-        ArrayList<Empleado> empleados = new ArrayList<Empleado>();
+        ArrayList<EmpleadoEnt> empleados = new ArrayList<EmpleadoEnt>();
         Scanner in = new Scanner(System.in, "ISO-8859-1");
         do {
             System.out.println("Pulsa 1 para ver empleados.");
@@ -159,13 +169,13 @@ public class Pau_Clinica {
                 case 0:
                     break;
                 case 1:
-                    Empleado.verEmpleados();
+                    EmpleadoEnt.verEmpleados();
                     break;
                 case 2:
-                    Empleado.nuevoEmpleado();
+                    EmpleadoEnt.nuevoEmpleado();
                     break;
                 case 3:
-                    Empleado.buscarEmpleados(empleados);
+                    EmpleadoEnt.buscarEmpleados(empleados);
                     break;
 
             }

@@ -24,17 +24,17 @@ public class Utilidades {
     private static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
-    public static final Empleado EMPLEADOS[] = {
-        new Empleado(1, "Sara", "Garcia", "649678821", "72598327C", "C/Menendez Pelayo"),
-        new Empleado(2, "Carlos", "Martinez", "649673821", "72598327N", "C/Venancio Bosco"),
-        new Empleado(3, "David", "Lopez", "659678821", "73598327E", "C/Bajada el Chorrillo"),
-        new Empleado(4, "Hector", "Setien", "677894451", "74653724J", "C/vargas"),
-        new Empleado(5, "Sofia", "Santisteban", "649673821", "78566327R", "Barrio Llatazos"),
-        new Empleado(6, "Nerea", "Gonzalez", "666777888", "72598327N", "C/Ignacio estus"),
-        new Empleado(7, "Jose", "Rodriguez", "607598547", "72256715E", "C/Venancio Bosco"),
-        new Empleado(8, "Bella", "Rodriguez", "607598453", "72958632T", "C/belen"),
-        new Empleado(9, "Mónica", "Perez", "690783036", "85632014F", "C/San ignacio"),
-        new Empleado(10, "Pedro", "Setien", "664589674", "01257895G", "C/Javier Echevarría"),};
+    public static final EmpleadoEnt EMPLEADOS[] = {
+        new EmpleadoEnt(1, "Sara", "Garcia", "649678821", "72598327C", "C/Menendez Pelayo"),
+        new EmpleadoEnt(2, "Carlos", "Martinez", "649673821", "72598327N", "C/Venancio Bosco"),
+        new EmpleadoEnt(3, "David", "Lopez", "659678821", "73598327E", "C/Bajada el Chorrillo"),
+        new EmpleadoEnt(4, "Hector", "Setien", "677894451", "74653724J", "C/vargas"),
+        new EmpleadoEnt(5, "Sofia", "Santisteban", "649673821", "78566327R", "Barrio Llatazos"),
+        new EmpleadoEnt(6, "Nerea", "Gonzalez", "666777888", "72598327N", "C/Ignacio estus"),
+        new EmpleadoEnt(7, "Jose", "Rodriguez", "607598547", "72256715E", "C/Venancio Bosco"),
+        new EmpleadoEnt(8, "Bella", "Rodriguez", "607598453", "72958632T", "C/belen"),
+        new EmpleadoEnt(9, "Mónica", "Perez", "690783036", "85632014F", "C/San ignacio"),
+        new EmpleadoEnt(10, "Pedro", "Setien", "664589674", "01257895G", "C/Javier Echevarría"),};
     public static final int numEmpleados = EMPLEADOS.length;
 
     public static final Enfermeria ENFERMEROS[] = {
@@ -46,7 +46,7 @@ public class Utilidades {
     public static final int numEnfermerias = ENFERMEROS.length;
 
     public static final Secretariado[] SECRETARIOS = {
-        //int experiencia, Empleado e, ArrayList<InformeGlobal> informes        
+        //int experiencia, EmpleadoEnt e, ArrayList<InformeGlobal> informes        
         new Secretariado(2, EMPLEADOS[3], new ArrayList<InformeGlobal>()),
         new Secretariado(3, EMPLEADOS[4], new ArrayList<InformeGlobal>()),
         new Secretariado(6, EMPLEADOS[6], new ArrayList<InformeGlobal>())

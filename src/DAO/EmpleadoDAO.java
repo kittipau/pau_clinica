@@ -6,7 +6,7 @@
 package DAO;
 
 import ConexionBD.ConexionBD;
-import entidades.Empleado;
+import entidades.EmpleadoEnt;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class EmpleadoDAO {
 
     private Connection c;
-    private Empleado e;
+    private EmpleadoEnt e;
 
     public EmpleadoDAO() {
         c = ConexionBD.establecerConexion();
@@ -36,19 +36,19 @@ public class EmpleadoDAO {
         this.c = c;
     }
 
-    public Empleado getE() {
+    public EmpleadoEnt getE() {
         return e;
     }
 
-    public void setE(Empleado e) {
+    public void setE(EmpleadoEnt e) {
         this.e = e;
     }
 
-    public ArrayList<Empleado> verTodosEmpleados() {
-        ArrayList<Empleado> ret = new ArrayList<Empleado>();
+    public ArrayList<EmpleadoEnt> verTodosEmpleados() {
+        ArrayList<EmpleadoEnt> ret = new ArrayList<EmpleadoEnt>();
         try {
             Statement stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM empleados");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM empleado");
 
             while (rs.next()) {
                 int idEmple = rs.getInt("id");
@@ -59,7 +59,7 @@ public class EmpleadoDAO {
                 String DireEmp =rs.getString(6);
                 
                 
-                Empleado nuevo = new Empleado(idEmple, nomEmp,apeEmp, telEmp, NIFEmp, DireEmp );
+                EmpleadoEnt nuevo = new EmpleadoEnt(idEmple, nomEmp,apeEmp, telEmp, NIFEmp, DireEmp );
                 ret.add(nuevo);                
             }
 
@@ -69,12 +69,12 @@ public class EmpleadoDAO {
         return ret;
     }
 
-    public boolean insertarEmpleado(Empleado e) {
+    public boolean insertarEmpleado(EmpleadoEnt e) {
          boolean ret = false;
         try {         
             
             Statement st = c.createStatement();
-            String sql ="INSERT INTO empleados (nombre, apellido, telefono ,NIF, direccion ) VALUES ('"+e.getNombre()+"'  , '"+e.getApellido()+"' , '"+e.getTlfn()+"' , '"+e.getNIF()+"' , '"+e.getDireccion()+"')";
+            String sql ="INSERT INTO empleado (nombre, apellido, telefono ,NIF, direccion ) VALUES ('"+e.getNombre()+"'  , '"+e.getApellido()+"' , '"+e.getTlfn()+"' , '"+e.getNIF()+"' , '"+e.getDireccion()+"')";
             int mod = st.executeUpdate(sql);
             ret = (mod>0);
             

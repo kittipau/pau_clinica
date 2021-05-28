@@ -24,7 +24,7 @@ import pau_clinica.Validaciones;
  *
  * @author punib
  */
-public class Empleado {
+public class EmpleadoEnt {
 
     protected long id; // <0 
     protected String nombre; // Máximo 20 caracteres alfanuméricos
@@ -33,7 +33,7 @@ public class Empleado {
     protected String NIF; // VAL: 8 caracteres numéricos y 1 letra INVAL:!= 8 caracteres numéricos y 1 letra
     protected String direccion; // Máximo 30 caracteres alfanuméricos
 
-    public Empleado() {
+    public EmpleadoEnt() {
     }
 
     public void setId(long id) {
@@ -133,7 +133,7 @@ public class Empleado {
         return direccion;
     }
 
-    public Empleado(long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
+    public EmpleadoEnt(long id, String nombre, String apellido, String tlfn, String NIF, String direccion) {
         try {
             if (Validaciones.validarId(id)) {
                 this.id = id;
@@ -172,7 +172,7 @@ public class Empleado {
 
     }
 
-    public Empleado(Empleado e) {
+    public EmpleadoEnt(EmpleadoEnt e) {
         this.id = e.id;
         this.nombre = e.nombre;
         this.apellido = e.apellido;
@@ -199,7 +199,7 @@ public class Empleado {
     }
 
     /**
-     * Función que se le pasa una lista ArrayList<code>Empleado</code> y un
+     * Función que se le pasa una lista ArrayList<code>EmpleadoEnt</code> y un
      * array de identificadores, y devuelve una sublista con los Empleados cuyos
      * ids coinciden con los identificadores del array en la lista
      *
@@ -218,8 +218,8 @@ public class Empleado {
 
     }
 
-    public static Empleado nuevoEmpleado() {
-        Empleado ret = new Empleado();
+    public static EmpleadoEnt nuevoEmpleado() {
+        EmpleadoEnt ret = new EmpleadoEnt();
         Scanner in = new Scanner(System.in, "ISO-8859-1");
         long id = nextIdEmpleado();
         ret.setId(id);
@@ -227,7 +227,7 @@ public class Empleado {
         do {
             System.out.println("Introduce el nombre del empleado: ");
             nombre = in.nextLine();
-            if (!Validaciones.validarNombre(nombre));
+            if (!Validaciones.validarNombre(nombre))
             System.out.println("El nombre introducido no es válido." + nombre);
 
         } while (!Validaciones.validarNombre(nombre));
@@ -236,7 +236,7 @@ public class Empleado {
         do {
             System.out.println("Introduce el apellido del empleado: ");
             apellido = in.nextLine();
-            if (!Validaciones.validarNombre(apellido));
+            if (!Validaciones.validarNombre(apellido))
             System.out.println("El apellido introducido no es válido." + apellido);
 
         } while (!Validaciones.validarNombre(apellido));
@@ -245,7 +245,7 @@ public class Empleado {
         do {
             System.out.println("Introduce el teléfono del empleado: ");
             tlfn = in.nextLine();
-            if (!Validaciones.validarTlfn(tlfn));
+            if (!Validaciones.validarTlfn(tlfn))
             System.out.println("El telefono introducido no es válido." + tlfn);
 
         } while (!Validaciones.validarTlfn(tlfn));
@@ -254,7 +254,7 @@ public class Empleado {
         do {
             System.out.println("Introduce el NIF del empleado: ");
             NIF = in.nextLine();
-            if (!Validaciones.validarDNI(NIF));
+            if (!Validaciones.validarDNI(NIF))
             System.out.println("El NIF introducido no es válido." + NIF);
 
         } while (!Validaciones.validarDNI(NIF));
@@ -264,7 +264,7 @@ public class Empleado {
         do {
             System.out.println("Introduce la direccion del empleado: ");
             direccion = in.nextLine();
-            if (!Validaciones.validarDireccion(direccion));
+            if (!Validaciones.validarDireccion(direccion))
             System.out.println("La dirección introducida no es válida." + direccion);
 
         } while (!Validaciones.validarDireccion(direccion));
@@ -280,12 +280,12 @@ public class Empleado {
         }
     }
 
-    public static ArrayList<Empleado> arrayde(ArrayList<Empleado> lista, int[] ids) {
-        ArrayList<Empleado> ret = new ArrayList<Empleado>();
+    public static ArrayList<EmpleadoEnt> arrayde(ArrayList<EmpleadoEnt> lista, int[] ids) {
+        ArrayList<EmpleadoEnt> ret = new ArrayList<EmpleadoEnt>();
         for (int i = 0; i < ids.length; i++) {
             for (int j = 0; j < lista.size(); j++) {
                 if (lista.get(j).getId() == ids[i]) {
-                    ret.add((Empleado) lista.get(j));
+                    ret.add((EmpleadoEnt) lista.get(j));
                     break;
                 }
             }
@@ -293,10 +293,10 @@ public class Empleado {
         return ret;
     }
 
-    public static final ArrayList<Empleado> convertir(Empleado[] array) {
-        ArrayList<Empleado> ret = new ArrayList<Empleado>();
-        for (Empleado i : array) {
-            ret.add((Empleado) i);
+    public static final ArrayList<EmpleadoEnt> convertir(EmpleadoEnt[] array) {
+        ArrayList<EmpleadoEnt> ret = new ArrayList<EmpleadoEnt>();
+        for (EmpleadoEnt i : array) {
+            ret.add((EmpleadoEnt) i);
         }
         return ret;
     }
@@ -310,15 +310,15 @@ public class Empleado {
     }
 
     //funciones para BUSCAR empleados//
-    public static void buscarEmpleados(ArrayList<Empleado> empleados) {
-        Empleado buscado;
-        ArrayList<Empleado> encontrados;
+    public static void buscarEmpleados(ArrayList<EmpleadoEnt> empleados) {
+        EmpleadoEnt buscado;
+        ArrayList<EmpleadoEnt> encontrados;
         Scanner in = new Scanner(System.in);
         in = new Scanner(System.in, "ISO-8859-1");
         int op = -1;
         do {
             buscado = null;
-            encontrados = new ArrayList<Empleado>();
+            encontrados = new ArrayList<EmpleadoEnt>();
 
             System.out.println("Pula 1 para buscar por ID");
             System.out.println("Pulsa 2 para buscar por nombre");
@@ -351,7 +351,7 @@ public class Empleado {
                     encontrados = buscarEmpleadoPorNombre(nombreEmp, empleados);
                     if (encontrados.size() > 0) {
                         System.out.println("Empleados que coincuden: ");
-                        for (Empleado e : encontrados) {
+                        for (EmpleadoEnt e : encontrados) {
                             System.out.println(buscado.getNombre() + ", " + buscado.getId() + ". " + buscado.getApellido() + ", " + buscado.getTlfn());
                         }
                     }
@@ -362,7 +362,7 @@ public class Empleado {
                     encontrados = buscarEmpleadoPorNIF(nifemp, empleados);
                     if (encontrados.size() > 0) {
                         System.out.println("Empleados que coinciden: ");
-                        for (Empleado e : encontrados) {
+                        for (EmpleadoEnt e : encontrados) {
                             System.out.println(buscado.getNIF() + ", " + +buscado.getId() + ". " + buscado.getNombre() + ", " + buscado.getApellido() + ", " + buscado.getTlfn());
                         }
                         break;
@@ -373,9 +373,9 @@ public class Empleado {
         } while (op < 0 || op > 3);
     }
 
-    public static Empleado buscarEmpleadoPorId(int id, ArrayList<Empleado> empleados) {
-        Empleado ret = null;
-        for (Empleado e : Empleado.convertir(Utilidades.EMPLEADOS)) {
+    public static EmpleadoEnt buscarEmpleadoPorId(int id, ArrayList<EmpleadoEnt> empleados) {
+        EmpleadoEnt ret = null;
+        for (EmpleadoEnt e : EmpleadoEnt.convertir(Utilidades.EMPLEADOS)) {
             if (e.getId() == id) {
                 ret = e;
                 break;
@@ -384,9 +384,9 @@ public class Empleado {
         return ret;
     }
 
-    public static ArrayList<Empleado> buscarEmpleadoPorNombre(String nombre, ArrayList<Empleado> empleados) {
-        ArrayList<Empleado> ret = new ArrayList<Empleado>();
-        for (Empleado e : Empleado.convertir(Utilidades.EMPLEADOS)) {
+    public static ArrayList<EmpleadoEnt> buscarEmpleadoPorNombre(String nombre, ArrayList<EmpleadoEnt> empleados) {
+        ArrayList<EmpleadoEnt> ret = new ArrayList<EmpleadoEnt>();
+        for (EmpleadoEnt e : EmpleadoEnt.convertir(Utilidades.EMPLEADOS)) {
             if (Utilidades.removeDiacriticalMarks(e.getNombre().toLowerCase()).contains(Utilidades.removeDiacriticalMarks(nombre.toLowerCase()))) {
                 ret.add(e);
             }
@@ -399,9 +399,9 @@ public class Empleado {
         return ret;
     }
 
-    public static ArrayList<Empleado> buscarEmpleadoPorNIF(String nif, ArrayList<Empleado> empleados) {
-        ArrayList<Empleado> ret = new ArrayList<Empleado>();
-        for (Empleado e : Empleado.convertir(Utilidades.EMPLEADOS)) {
+    public static ArrayList<EmpleadoEnt> buscarEmpleadoPorNIF(String nif, ArrayList<EmpleadoEnt> empleados) {
+        ArrayList<EmpleadoEnt> ret = new ArrayList<EmpleadoEnt>();
+        for (EmpleadoEnt e : EmpleadoEnt.convertir(Utilidades.EMPLEADOS)) {
             if (Utilidades.removeDiacriticalMarks(e.getNIF().toLowerCase()).contains(Utilidades.removeDiacriticalMarks(nif.toLowerCase()))) {
                 ret.add(e);
             }
@@ -426,9 +426,9 @@ public class Empleado {
         try {
             FileOutputStream fichero = new FileOutputStream(path, true);
             ObjectOutputStream escritor = new ObjectOutputStream(fichero);
-            for (Empleado e : Utilidades.EMPLEADOS) {
+            for (EmpleadoEnt e : Utilidades.EMPLEADOS) {
                 if(idemp == e.getId())
-                escritor.writeObject((Empleado) e);
+                escritor.writeObject((EmpleadoEnt) e);
                 escritor.flush();
             }
             escritor.close();

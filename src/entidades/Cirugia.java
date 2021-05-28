@@ -13,7 +13,7 @@ import pau_clinica.Validaciones;
  *
  * @author punib
  */
-public class Cirugia extends Empleado {
+public class Cirugia extends EmpleadoEnt {
 
     private long idEmp;
     private ArrayList<Especialidad> especialidades = new ArrayList<Especialidad>();
@@ -46,16 +46,16 @@ public class Cirugia extends Empleado {
     public Cirugia() {
     }
 
-    public Cirugia(Empleado e) {
+    public Cirugia(EmpleadoEnt e) {
         super(e);
     }
 
-    public Cirugia(Empleado e, ArrayList<Especialidad> especialidades) {
+    public Cirugia(EmpleadoEnt e, ArrayList<Especialidad> especialidades) {
         super(e);
         this.especialidades = especialidades;
     }
 
-    public Cirugia(Empleado e, ArrayList<Especialidad> especialidades, long idEmp) {
+    public Cirugia(EmpleadoEnt e, ArrayList<Especialidad> especialidades, long idEmp) {
         super(e);
         try {
             if (Validaciones.validarId(idEmp)) {
@@ -110,7 +110,7 @@ public class Cirugia extends Empleado {
     }
 
     public static Cirugia nuevoCirujano() {
-        Empleado empleado = Empleado.nuevoEmpleado();
+        EmpleadoEnt empleado = EmpleadoEnt.nuevoEmpleado();
         Cirugia ret = new Cirugia(empleado);
         return ret;
     }

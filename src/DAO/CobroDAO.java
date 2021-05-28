@@ -7,7 +7,7 @@ package DAO;
 
 import ConexionBD.ConexionBD;
 import entidades.Cobro;
-import entidades.Empleado;
+import entidades.EmpleadoEnt;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
